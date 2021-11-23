@@ -3,9 +3,9 @@ import axios from 'axios'
 import {Link} from "react-router-dom"
 import {Navigate} from "react-router"
 import "./login.styles.scss"
-import header from "../../assets/header.svg"
-import bg1 from "../../assets/bg-1.svg"
-import bg2 from "../../assets/bg-2.svg"
+
+
+import Background from '../../component/background/background.component'
 
 export default class Login extends Component {
     state = {
@@ -36,19 +36,11 @@ export default class Login extends Component {
         }
         return (
             <>
-          
-                <div className="shape1">
-                <img src={bg1}></img>
-                </div>
-
- 
-
+            <Background />
             <div className="form-container">
                 
             <form onSubmit={this.handleSubmit} class="login-form">
-                                <div className="header-container">
-                    <h1 className="title"><img src={header}></img></h1>
-                    </div>
+                           
             
   
                 <h3 className="header-text"> Log In</h3>
@@ -69,9 +61,6 @@ export default class Login extends Component {
                 
             </form>
             </div>
-            <div className="shape2">
-                <img src={bg2}></img>
-                </div>
             </>
         )
     }

@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import React from 'react';
 import SignIn from './component/sign-in/sign-in.component';
-import Login from './component/login/login.component';
-import Register from './component/register/register.component';
-import ForgotPassword from './component/forgot-password/forgot-password.component';
-import Reset from './component/reset/reset.component';
+import Login from './pages/login/login.component';
+import Register from './pages/register/register.component';
+import ForgotPassword from './pages/forgot-password/forgot-password.component';
+import Reset from './pages/reset/reset.component';
 class App extends React.Component {
   render(){
   return (
@@ -14,7 +14,7 @@ class App extends React.Component {
 
         <Router>
           <Routes>
-            <Route exact path="/" element = {<Register />} />
+            <Route exact path="/" element = {<Login />} />
             <Route exact path="/login" element = {<Login />} />
             <Route exact path="/register" element = {<Register />} />
             <Route exact path="/forgot" element = {<ForgotPassword />} />
