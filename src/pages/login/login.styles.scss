@@ -142,5 +142,56 @@ border-radius: 8px;
 }
 
 @media (max-width: 920px) {
-    
+    body{
+        // font-size: 2px;
+        // background-color: white;
+    }
+    .shape1{
+        
+        font-size: 2px;
+    }
+    .bg1{
+        // width: 230px;
+        height: 200px;
+    }
+    .bg2{
+        // width: 230px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .shape1{
+        
+        font-size: 2px;
+    }
+    .bg1{
+        // width: 230px;
+        height: 140px;
+    }
+    .bg2{
+        // width: 230px;
+        display: none;
+        visibility: hidden;
+    }
+     .login-form{
+        input, textarea{
+            width: 200px;
+        }
+
+     
+    }
+    .login-button-2{
+    margin-top: 15px;
+    }
+    .header-text{
+        margin-top: 15px;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .login-text{
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
 }

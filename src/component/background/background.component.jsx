@@ -9,10 +9,10 @@ export default class Background extends Component {
         return (
             <>
                 <div className="shape1">
-                <img src={bg1}></img>
+                <img src={bg1} className="bg1"></img>
                 </div>
                 <div className="shape2">
-                <img src={bg2}></img>
+                <img src={bg2} className="bg2"></img>
                 </div>
                 <div className="form-container">
                 <div className="header-container">

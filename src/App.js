@@ -2,7 +2,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import React from 'react';
-import SignIn from './component/sign-in/sign-in.component';
+
 import Login from './pages/login/login.component';
 import Register from './pages/register/register.component';
 import ForgotPassword from './pages/forgot-password/forgot-password.component';
