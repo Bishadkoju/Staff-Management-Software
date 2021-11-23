@@ -47,16 +47,16 @@ export default class Login extends Component {
                 <p className="login-text"> Get access to the management <br/> tool by loggin in</p>
                 <div className="form-input">
                     
-                    <input type = "email" className="" placeholder="Email Address" onChange={e => this.email = e.target.value}/>
+                    <input type = "email" className="" placeholder="Email Address" required onChange={e => this.email = e.target.value}/>
                     
-                    <input type = "password" className="" placeholder="Password" onChange={e => this.password = e.target.value}/>
+                    <input type = "password" className="" placeholder="Password" required onChange={e => this.password = e.target.value}/>
                 </div>
 
                 <p className="forgot">
                     <Link  className="forgot-text"to ={"/forgot"}>Forgot Password ?</Link>
                 </p>
                 <div class="button-container">
-                <button className="login-button">Login</button>
+                <button onChange={this.handleSubmit} className="login-button">Login</button>
                 </div>
                 
             </form>
