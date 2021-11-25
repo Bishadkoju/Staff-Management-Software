@@ -4,6 +4,7 @@ import "../login/login.styles.scss"
 import "./reset.styles.scss"
 import {Link} from "react-router-dom"
 import ResetHeader from "../../assets/reset.svg"
+import Header from '../../component/header/header.compoent'
 export default class Reset extends Component {
 
     handleSubmit = e => {
@@ -13,6 +14,7 @@ export default class Reset extends Component {
         return (
             <>
             <Background />
+            <Header />
             <div className="form-container">
                 
             <form onSubmit={this.handleSubmit} class="login-form">

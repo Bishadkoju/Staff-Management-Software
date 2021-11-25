@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "../../pages/login/login.styles.scss"
 import Background from '../../component/background/background.component'
 import "../login/login.styles.scss"
+import Header from '../../component/header/header.compoent'
 export default class ForgotPassword extends Component {
 
     handleSubmit = e => {
@@ -11,6 +12,7 @@ export default class ForgotPassword extends Component {
         return (
             <>
             <Background />
+            <Header />
             <div className="form-container">
                 
             <form onSubmit={this.handleSubmit} class="login-form">

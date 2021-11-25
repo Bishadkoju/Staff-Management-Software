@@ -1,0 +1,216 @@
+.register-top-header{
+    margin-top: -120px;
+}
+
+.register-form-container{
+    // background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    // border: 5px solid #FFFF00;
+    border-radius: 20px;
+    padding: 25px;
+    // background-color: rgb(161, 203, 219);
+}
+.form-title{
+    margin-bottom: 5px;
+}
+.formTitle{
+    font-size: 12px;
+    line-height: 120%;
+    // margin-bottom: 20px;
+}
+.register-form{
+    // background-color: blue;
+}
+.registerOrder{
+    text-align: center;
+}
+.registerImage{
+    height: 25px;
+}
+.marginup{
+    margin-top: -20px;
+}
+.bigfont{
+    font-size: 16px;
+}
+.smallfont{
+    font-size: 12px;
+}
+.form-wrapper{
+    // background-color: yellow;
+    max-width: 650px;
+    border-left: 3px solid #969696;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+    .form-input2{
+        // margin-bottom: 34px;
+        // display: flex;
+        // flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px
+      
+     }
+     .col-big{
+         input, select{
+             width: 616px;
+         }
+     }
+     .col-md{
+        input, select{
+            width: 293px;
+        }
+    }
+    .col-small{
+        input, select{
+            width: 140px;
+        }
+    }
+    .pic{
+        margin-top: 6px;
+        margin-bottom: -150px;
+    }
+     .register-form{
+        input, textarea{
+            display: inline;
+            
+            height: 32px;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 5px;
+            margin-bottom: -15px;
+            border: none;
+        }
+        select{
+         display: inline;
+         
+         height: 32px;
+         background: white;
+         border-radius: 8px;
+         padding: 8px;
+         margin: 5px;
+         margin-bottom: 5px;
+         border: none;
+         color: #585757;
+        }
+     
+        ::placeholder {
+         color: #585757;
+         font-size: 12px;
+         line-height: 120%;
+       }
+     }
+
+.secondPart{
+    margin-top: 5px;
+}
+
+
+
+
+  .card{
+    width: 310px;
+    height: 627px;
+    padding: 15px;
+    margin-top: 40px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 15px 10px 25px 0px  #3fa1a9;
+    background: #fff;
+    background-image: url('https://github.com/OlgaKoplik/CodePen/blob/master/leaf2.png?raw=true'), url('https://github.com/OlgaKoplik/CodePen/blob/master/leaf.png?raw=true');
+    background-repeat: no-repeat, no-repeat;
+    background-position: 120% -5%, 200% -40%;
+    background-size: 40%, 80%;
+    animation: open .5s;
+  }
+  @keyframes open {
+    0%  {background-position: 166% -25%, 220% -69%;}
+    100%{background-position: 120% -5%, 200% -40%;}
+  }
+  
+  .field{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    }
+  input[type="file"] {
+    display: none;
+  }
+  
+  .custom-file-upload {
+    // border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    padding: 6px;
+    cursor: pointer;
+    background: linear-gradient(270deg, #3fa1a9, #79f1a4);
+    margin-bottom: 25px;
+    text-align: center;
+    // width: 580px;
+  }
+  
+  .img-wrap{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    // border-radius: 50%;
+  }
+  .img-upload:before{
+    content: url(../../assets/upload.png);
+    font-size: 9px;
+    position: absolute;
+    padding-top: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #63d3a6;
+    width: 200px;
+    height: 200px;
+    // border-radius: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fff;
+  }
+  .img-upload:hover:before{
+   opacity: 1;
+  }
+  img {
+    width: auto;
+    height: 100%;
+  }
+  
+.image-upload{
+    position: absolute;
+    margin-top: -330px;
+    margin-left: 485px
+}
+  
+.image2{
+    margin-top: 10px;
+    margin-left: 5px;
+    border-radius: 50px;
+    .img-wrap{
+        width: 280px;
+        
+        
+    }
+}
+
+.image3{
+    margin-top: 10px;
+    margin-left: 15px;
+    .img-wrap{
+        width: 280px;
+    }
+}
+  

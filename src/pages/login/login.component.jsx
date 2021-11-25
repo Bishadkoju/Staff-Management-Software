@@ -3,7 +3,7 @@ import axios from 'axios'
 import {Link} from "react-router-dom"
 import {Navigate} from "react-router"
 import "./login.styles.scss"
-
+import Header from '../../component/header/header.compoent'
 
 import Background from '../../component/background/background.component'
 
@@ -18,7 +18,7 @@ export default class Login extends Component {
             password: this.password,
         }
 
-        axios.post("http://localhost:8000/login",data).then(
+        axios.post("localhost:8000/api/v1/auth/login",data).then(
             res=> {
                 console.log(res);
                 this.setState({loggedIn: true})
@@ -37,6 +37,7 @@ export default class Login extends Component {
         return (
             <>
             <Background />
+            <Header/>
             <div className="form-container">
                 
             <form onSubmit={this.handleSubmit} class="login-form">
