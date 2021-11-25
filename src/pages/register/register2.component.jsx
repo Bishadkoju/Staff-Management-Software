@@ -5,6 +5,7 @@ import Header from '../../component/header/header.compoent'
 import {Link} from "react-router-dom"
 import image1 from "../../assets/profile.svg"
 import image2 from "../../assets/citizenship.svg"
+import image3 from "../../assets/contract.svg"
 import register1 from "../../assets/registration2.svg"
 
 import "./register.styles.scss"
@@ -27,22 +28,31 @@ export default class Register extends Component {
 
       state = {
         file: '',
+        file2: "",
+        file3: "",
         imagePreviewUrl: image1,
-        imagePreviewUrl2: image2
+        imagePreviewUrl2: image2,
+        imagePreviewUrl3: image3
       }
     
       photoUpload = e =>{
         e.preventDefault();
         const reader = new FileReader();
         const file = e.target.files[0];
+        const file2 = e.target.files[1];
+        const file3 = e.target.files[2];
         reader.onloadend = () => {
           this.setState({
             file: file,
+            file2: file2,
+            file3: file3,
             imagePreviewUrl: reader.result,
-            imagePreviewUrl2: reader.result
+            imagePreviewUrl2: reader.result,
+            imagePreviewUrl3: reader.result
           });
         }
         reader.readAsDataURL(file);
+       
       }
 
       
@@ -74,6 +84,8 @@ export default class Register extends Component {
 
     render() {
           const {imagePreviewUrl, 
+            imagePreviewUrl2,
+            imagePreviewUrl3,
            name, 
            status, 
            active} = this.state;
@@ -128,11 +140,11 @@ export default class Register extends Component {
                         </div>
 
                         <div className="form-input2 col-md image2">                           
-                            <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl}/>
+                            <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl2}/>
                         </div>
 
                         <div className="form-input2 col-md image3">                           
-                            <ImgUpload className="image" onChange={this.photoUpload} src={imagePreviewUrl}/>
+                            <ImgUpload className="image" onChange={this.photoUpload} src={imagePreviewUrl3}/>
                         </div>
 
 
