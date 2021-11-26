@@ -48,14 +48,20 @@ export default class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const data = {
-            first_name: this.firstName,
-            last_name: this.lastName,
-            email:this.email,
-            password: this.password,
-            password_confirm : this.confirmPassword
+            name: this.name,
+            id: this.id,
+            gender:this.gender,
+            date: this.date,
+            email : this.email,
+            contact:this.contact,
+            address:this.address,
+            emergencyno:this.emergencyno,
+            relation:this.relation,
+            iamge1: imagePreviewUrl
+        
             
         }
-        axios.post("http://localhost:8000/register",data).then(
+        axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
             res=> {
                 console.log(res);
             }
@@ -99,14 +105,14 @@ export default class Register extends Component {
                         <input type = "text" className="" placeholder="Full Name*" required onChange={e => this.name = e.target.value}/>
                     </div>
                     <div className="form-input2 col-small"> 
-                        <input type = "number" className="" placeholder="ID*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "number" className="" placeholder="ID*" required onChange={e => this.id = e.target.value}/>
                         </div>
 
 
 
 
                         <div className="form-input2 col-small"> 
-                        <select name="Gender">
+                        <select name="Gender" onChange={e => this.gender = e.target.value}>
                         <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -116,7 +122,7 @@ export default class Register extends Component {
                         <div className="form-input2 col-md"> 
                         <input type="text" onFocus={ (e)=> { e.currentTarget.type = "date"; 
                                                             e.currentTarget.focus();
-                                                        }} placeholder="Date of Birth" />
+                                                        }} placeholder="Date of Birth" onChange={e => this.date = e.target.value} />
 
                         </div> 
                     
@@ -129,24 +135,24 @@ export default class Register extends Component {
                 <div className="form-wrapper">
                     
                     <div className="form-input2 col-big">    
-                        <input type = "text" className="" placeholder="Email Address*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "email" className="" placeholder="Email Address*" required onChange={e => this.email = e.target.value}/>
                     </div>
                     <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Contact Number*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "number" className="" placeholder="Contact Number*" required onChange={e => this.number = e.target.value}/>
                         </div>
 
                         <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Address*" required onChange={e => this.name = e.target.value}/>
-                        </div>
-
-                        
-                        <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Emergency No." required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Address*" required onChange={e => this.address = e.target.value}/>
                         </div>
 
                         
                         <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Relation" required onChange={e => this.name = e.target.value}/>
+                        <input type = "number" className="" placeholder="Emergency No." required onChange={e => this.emergencyno = e.target.value}/>
+                        </div>
+
+                        
+                        <div className="form-input2 col-md"> 
+                        <input type = "text" className="" placeholder="Relation" required onChange={e => this.relation = e.target.value}/>
                         </div>
 
 

@@ -48,14 +48,14 @@ export default class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const data = {
-            first_name: this.firstName,
-            last_name: this.lastName,
-            email:this.email,
-            password: this.password,
-            password_confirm : this.confirmPassword
+            fathername: this.role,
+            mothername: this.store,
+            marital:this.startDate,
+            education: this.endDate,
+    
             
         }
-        axios.post("http://localhost:8000/register",data).then(
+        axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
             res=> {
                 console.log(res);
             }
@@ -95,7 +95,7 @@ export default class Register extends Component {
                     </div>
                     <div className="form-wrapper">
                     
-                    <div className="form-input2 col-big"> 
+                    <div className="form-input2 col-big" onChange={e => this.role = e.target.value}> 
                         <select name="Role">
                             <option value="">Role</option>
                             <option value="gm">General Manager</option>
@@ -105,20 +105,20 @@ export default class Register extends Component {
                         </div>
 
                     <div className="form-input2 col-big">    
-                        <input type = "text" className="" placeholder="Store*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Store*" required onChange={e => this.store = e.target.value}/>
                     </div>
 
 
                         <div className="form-input2 col-big"> 
                         <input type="text" onFocus={ (e)=> { e.currentTarget.type = "date"; 
                                                             e.currentTarget.focus();
-                                                        }} placeholder="Starting Date*" />
+                                                        }} placeholder="Starting Date*" onChange={e => this.startDate = e.target.value}/>
 
                         </div> 
                         <div className="form-input2 col-big"> 
                         <input type="text" onFocus={ (e)=> { e.currentTarget.type = "date"; 
                                                             e.currentTarget.focus();
-                                                        }} placeholder="Termination Date*" />
+                                                        }} placeholder="Termination Date*" onChange={e => this.endDate = e.target.value} />
 
                         </div> 
                     

@@ -93,17 +93,22 @@ export default class Register extends Component {
       
 
 
-    handleSubmit = (event) => {
+      handleSubmit = (event) => {
         event.preventDefault()
         const data = {
-            first_name: this.firstName,
-            last_name: this.lastName,
-            email:this.email,
-            password: this.password,
-            password_confirm : this.confirmPassword
+            fathername: this.fathername,
+            mothername: this.mothername,
+            marital:this.marital,
+            education: this.education,
+            pan : this.pan,
+            blank:this.bank,
+            address:this.address,
+            image2:this.imagePreviewUrl2,
+            image3:this.imagePreviewUrl3,
+        
             
         }
-        axios.post("http://localhost:8000/register",data).then(
+        axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
             res=> {
                 console.log(res);
             }
@@ -146,16 +151,16 @@ export default class Register extends Component {
                     <div className="form-wrapper">
                     
                     <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="Father's Name*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Father's Name*" required onChange={e => this.fathername = e.target.value}/>
                     </div>
                     <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Mother's Name*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Mother's Name*" required onChange={e => this.mothername = e.target.value}/>
                         </div>
                         <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="Marital Status*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Marital Status*" required onChange={e => this.marital = e.target.value}/>
                     </div>
                     <div className="form-input2 col-big">    
-                        <input type = "text" className="" placeholder="Education Status*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Education Status*" required onChange={e => this.education = e.target.value}/>
                     </div>
 
                     
@@ -168,10 +173,10 @@ export default class Register extends Component {
                 <div className="form-wrapper">
                     
                     <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="PAN No*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="PAN No*" required onChange={e => this.pan = e.target.value}/>
                     </div>
                     <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Bank Account Number*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Bank Account Number*" required onChange={e => this.bank = e.target.value}/>
                         </div>
 
                         <div className="form-input2 col-md image2">                           

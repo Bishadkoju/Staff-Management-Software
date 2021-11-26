@@ -9,7 +9,7 @@ import Background from '../../component/background/background.component'
 
 export default class Login extends Component {
     state = {
-
+        loggedIn: false
     }
     handleSubmit = (event) => {
         event.preventDefault()
@@ -21,7 +21,9 @@ export default class Login extends Component {
         axios.post("localhost:8000/api/v1/auth/login",data).then(
             res=> {
                 console.log(res);
+                localStorage.setItem("token", res.token);
                 this.setState({loggedIn: true})
+
             }
         ).catch(
             err=>{
@@ -32,7 +34,7 @@ export default class Login extends Component {
     }
     render() {
         if (this.state.loggedIn){
-            return <Navigate to = {"/"} />
+            return <Navigate to = {"/reset"} />
         }
         return (
             <>
