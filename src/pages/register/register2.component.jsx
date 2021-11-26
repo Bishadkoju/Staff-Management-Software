@@ -27,31 +27,66 @@ const ImgUpload =({
 export default class Register extends Component {
 
       state = {
-        file: '',
         file2: "",
         file3: "",
-        imagePreviewUrl: image1,
         imagePreviewUrl2: image2,
-        imagePreviewUrl3: image3
+        imagePreviewUrl3: image3,
       }
     
       photoUpload = e =>{
         e.preventDefault();
         const reader = new FileReader();
         const file = e.target.files[0];
-        const file2 = e.target.files[1];
-        const file3 = e.target.files[2];
+      
         reader.onloadend = () => {
           this.setState({
             file: file,
-            file2: file2,
-            file3: file3,
+ 
             imagePreviewUrl: reader.result,
-            imagePreviewUrl2: reader.result,
-            imagePreviewUrl3: reader.result
+    
           });
         }
         reader.readAsDataURL(file);
+       console.log(file)
+       
+      }
+      
+
+      photoUpload2 = e =>{
+        e.preventDefault();
+        const reader2 = new FileReader();
+        
+        const file2 = e.target.files[0];
+        
+        reader2.onloadend = () => {
+          this.setState({
+            
+            file2: file2,
+ 
+            imagePreviewUrl2: reader2.result,
+  
+          });
+        }
+        reader2.readAsDataURL(file2);
+       
+      }
+
+      photoUpload3 = e =>{
+        e.preventDefault();
+        const reader3 = new FileReader();
+        
+        const file3 = e.target.files[0];
+        
+        reader3.onloadend = () => {
+          this.setState({
+            
+            file3: file3,
+ 
+            imagePreviewUrl3: reader3.result,
+  
+          });
+        }
+        reader3.readAsDataURL(file3);
        
       }
 
@@ -99,7 +134,7 @@ export default class Register extends Component {
                            
             
                 <div class="register-top-header">
-                <h3 className="header-text bigfont"> Register 2</h3>
+                <h3 className="header-text bigfont marginup-lg"> Register</h3>
                 <p className="login-text marginup smallfont"> Get access to the management <br/> tool by loggin in</p>
                 </div>
                 <div className="registerOrder marginup">
@@ -119,7 +154,7 @@ export default class Register extends Component {
                         <div className="form-input2 col-md">    
                         <input type = "text" className="" placeholder="Marital Status*" required onChange={e => this.name = e.target.value}/>
                     </div>
-                    <div className="form-input2 col-md">    
+                    <div className="form-input2 col-big">    
                         <input type = "text" className="" placeholder="Education Status*" required onChange={e => this.name = e.target.value}/>
                     </div>
 
@@ -140,11 +175,11 @@ export default class Register extends Component {
                         </div>
 
                         <div className="form-input2 col-md image2">                           
-                            <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl2}/>
+                            <ImgUpload onChange={this.photoUpload2} src={imagePreviewUrl2}/>
                         </div>
 
                         <div className="form-input2 col-md image3">                           
-                            <ImgUpload className="image" onChange={this.photoUpload} src={imagePreviewUrl3}/>
+                            <ImgUpload  onChange={this.photoUpload3} src={imagePreviewUrl3}/>
                         </div>
 
 
@@ -157,7 +192,7 @@ export default class Register extends Component {
                         
 
 
-                <div class="button-container">
+                <div class="button-container buttonRegister2">
                 <button onChange={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/register3"}>Next</Link></button>
                 <button className="login-button-2">Cancel</button>
                 </div>
