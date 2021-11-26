@@ -57,7 +57,7 @@ export default class Register extends Component {
             address:this.address,
             emergencyno:this.emergencyno,
             relation:this.relation,
-            iamge1: imagePreviewUrl
+            iamge1: this.imagePreviewUrl
         
             
         }
