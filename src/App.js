@@ -22,7 +22,7 @@ class App extends React.Component {
             <Route exact path="/register2" element = {<Register2 />} />
             <Route exact path="/register3" element = {<Register3 />} />
             <Route exact path="/forgot" element = {<ForgotPassword />} />
-            <Route exact path="/reset" element = {<Reset />} />
+            <Route path="/reset" element = {<Reset />} />
         </Routes>
       </Router>
 
