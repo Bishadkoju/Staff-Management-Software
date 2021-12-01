@@ -48,6 +48,7 @@ export default class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const data = {
+            form1:{
             name: this.name,
             id: this.id,
             gender:this.gender,
@@ -58,12 +59,15 @@ export default class Register extends Component {
             emergencyno:this.emergencyno,
             relation:this.relation,
             iamge1: this.imagePreviewUrl
+            }
         
             
         }
-        axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
+        console.log("datas are" + data)
+        axios.post("register/employee/",data).then(
             res=> {
                 console.log(res);
+                console.log("datas are" + data)
             }
         ).catch(
             err=>{
@@ -171,7 +175,7 @@ export default class Register extends Component {
 
 
                 <div class="button-container">
-                <button onChange={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/register2"}>Next</Link></button>
+                <button onClick={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/register2"}>Next</Link></button>
                 <button className="login-button-2">Cancel</button>
                 </div>
                 

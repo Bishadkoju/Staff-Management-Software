@@ -48,10 +48,12 @@ export default class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const data = {
+            form3:{
             fathername: this.role,
             mothername: this.store,
             marital:this.startDate,
             education: this.endDate,
+            }
     
             
         }
@@ -131,7 +133,7 @@ export default class Register extends Component {
 
 
                 <div class="button-container">
-                <button onChange={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/register3"}>Finish</Link></button>
+                <button onClick={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/login"}>Finish</Link></button>
                 <button className="login-button-2">Cancel</button>
                 </div>
                 

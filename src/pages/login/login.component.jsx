@@ -18,13 +18,13 @@ export default class Login extends Component {
             password: this.password,
         }
 
-        axios.post("localhost:8000/api/v1/auth/login",data).then(
+        axios.post("http://restapi.adequateshop.com/api/authaccount/login",data).then(
             res=> {
-                console.log(res);
-                localStorage.setItem("token", res.token);
+                localStorage.setItem("token", res.data.token);
                 this.setState({loggedIn: true})
-
+                this.props.setUser(res.data.user)
             }
+            
         ).catch(
             err=>{
                 console.log(err);
@@ -34,7 +34,7 @@ export default class Login extends Component {
     }
     render() {
         if (this.state.loggedIn){
-            return <Navigate to = {"/reset"} />
+            return <Navigate to = {"/home"} />
         }
         return (
             <>

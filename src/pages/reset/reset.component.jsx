@@ -3,14 +3,40 @@ import Background from "../../component/background/background.component"
 import "../login/login.styles.scss"
 import "./reset.styles.scss"
 import {Link} from "react-router-dom"
+import {Redirect} from "react-router"
 import ResetHeader from "../../assets/reset.svg"
 import Header from '../../component/header/header.compoent'
+import axios from 'axios'
 export default class Reset extends Component {
+    state={}
 
     handleSubmit = e => {
         e.preventDefault()
+
+        const data = {
+            token:this.props.match.params.id,
+            password: this.password,
+            password_confirm: this.confirmPassword
+
+        }
+
+        axios.post("auth/reset",data).then(
+            res=>{
+                console.log(res)
+                this.setState({
+                    reset: true
+                })
+            }
+        ).catch(
+            err=>{
+                console.log(err)
+            })
+
     }
     render() {
+        if (this.state.reset){
+            return <Navigate to={"/login" }/>
+        }
         return (
             <>
             <Background />

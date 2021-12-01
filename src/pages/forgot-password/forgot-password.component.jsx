@@ -3,10 +3,22 @@ import "../../pages/login/login.styles.scss"
 import Background from '../../component/background/background.component'
 import "../login/login.styles.scss"
 import Header from '../../component/header/header.compoent'
+import axios from 'axios'
 export default class ForgotPassword extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
+
+        const data ={
+            email: this.email
+        }
+        axios.post("auth/forgot",data).then(
+            res=> {
+                console.log(res)
+            }
+        ).catch(err=>{
+            console.log(err)
+        })
     }
     render() {
         return (
