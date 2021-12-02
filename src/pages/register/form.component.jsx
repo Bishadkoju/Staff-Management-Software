@@ -83,7 +83,13 @@ export class Form extends Component {
         console.log("console form data")
         console.log(data)
 
-        axios.post("register/employee/",data).then(
+        const config = {
+            headers:{
+                Authorization: "Token "+ "6677ebfbe105a8bbbbdd74dd9030309e1d0b7033"
+            }
+        }
+
+        axios.post("register/employee/",config, data).then(
             res=> {
                 console.log(res);
             }
