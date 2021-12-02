@@ -18,11 +18,12 @@ export default class Login extends Component {
             password: this.password,
         }
 
-        axios.post("http://restapi.adequateshop.com/api/authaccount/login",data).then(
+        axios.post("login/",data).then(
             res=> {
-                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("token", res.data.key);
                 this.setState({loggedIn: true})
                 this.props.setUser(res.data.user)
+                console.log(res)
             }
             
         ).catch(
@@ -50,7 +51,7 @@ export default class Login extends Component {
                 <p className="login-text"> Get access to the management <br/> tool by loggin in</p>
                 <div className="form-input">
                     
-                    <input type = "email" className="" placeholder="Email Address" required onChange={e => this.email = e.target.value}/>
+                    <input type = "name" className="" placeholder="Email Address" required onChange={e => this.email = e.target.value}/>
                     
                     <input type = "password" className="" placeholder="Password" required onChange={e => this.password = e.target.value}/>
                 </div>

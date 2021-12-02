@@ -25,31 +25,15 @@ const ImgUpload =({
 
 
 export default class Register extends Component {
-
-      state = {
-        file2: "",
-        file3: "",
-        imagePreviewUrl2: image2,
-        imagePreviewUrl3: image3,
-      }
-    
-      photoUpload = e =>{
-        e.preventDefault();
-        const reader = new FileReader();
-        const file = e.target.files[0];
-      
-        reader.onloadend = () => {
-          this.setState({
-            file: file,
+  continue = e => {
+    e.preventDefault();
+    this.props.nextStep();
+};
  
-            imagePreviewUrl: reader.result,
-    
-          });
-        }
-        reader.readAsDataURL(file);
-       console.log(file)
-       
-      }
+back = e => {
+  e.preventDefault();
+  this.props.prevStep();
+};
       
 
       photoUpload2 = e =>{
@@ -93,51 +77,56 @@ export default class Register extends Component {
       
 
 
-      handleSubmit = (event) => {
-        event.preventDefault()
-        const data = {
-          form2:{
-            fathername: this.fathername,
-            mothername: this.mothername,
-            marital:this.marital,
-            education: this.education,
-            pan : this.pan,
-            blank:this.bank,
-            address:this.address,
-            image2:this.imagePreviewUrl2,
-            image3:this.imagePreviewUrl3,
-          }
+      // handleSubmit = (event) => {
+      //   event.preventDefault()
+      //   const data = {
+      //     form2:{
+      //       fathername: this.fathername,
+      //       mothername: this.mothername,
+      //       marital:this.marital,
+      //       education: this.education,
+      //       pan : this.pan,
+      //       blank:this.bank,
+      //       address:this.address,
+      //       image2:this.imagePreviewUrl2,
+      //       image3:this.imagePreviewUrl3,
+      //     }
         
             
-        }
-        axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
-            res=> {
-                console.log(res);
-            }
-        ).catch(
-            err=>{
-                console.log(err);
-            }
-        )
-        // console.log(data);
-    }
+      //   }
+    //     axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
+    //         res=> {
+    //             console.log(res);
+    //         }
+    //     ).catch(
+    //         err=>{
+    //             console.log(err);
+    //         }
+    //     )
+    //     // console.log(data);
+      
 
 
 
     render() {
-          const {imagePreviewUrl, 
-            imagePreviewUrl2,
-            imagePreviewUrl3,
-           name, 
-           status, 
-           active} = this.state;
+          // const {
+          //  name, 
+          //  status, 
+          //  active} = this.state;
+
+           const { values, inputChange, imagePreviewUrl2, imagePreviewUrl3 } = this.props;
+
+        //    const {
+        //     values: { name, email, phone, password, facebook, twitter, github }
+        // } = this.props;
+
         return (
             <>
             <Background />
             <Header/>
             <div className="register-form-container">
                 
-            <form onSubmit={this.handleSubmit} class="register-form">
+            <form  class="register-form">
                            
             
                 <div class="register-top-header">
@@ -153,16 +142,16 @@ export default class Register extends Component {
                     <div className="form-wrapper">
                     
                     <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="Father's Name*" required onChange={e => this.fathername = e.target.value}/>
+                        <input type = "text" className="" placeholder="Father's Name*" required name="fathername" onChange={inputChange('fathername')} value={values.fathername}/>
                     </div>
                     <div className="form-input2 col-md"> 
-                        <input type = "text" className="" placeholder="Mother's Name*" required onChange={e => this.mothername = e.target.value}/>
+                        <input type = "text" className="" placeholder="Mother's Name*" required name="mothername" onChange={inputChange('mothername')} value={values.mothername}/>
                         </div>
                         <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="Marital Status*" required onChange={e => this.marital = e.target.value}/>
+                        <input type = "text" className="" placeholder="Marital Status*" required name="marital" onChange={inputChange('marital')} value={values.marital}/>
                     </div>
                     <div className="form-input2 col-big">    
-                        <input type = "text" className="" placeholder="Education Status*" required onChange={e => this.education = e.target.value}/>
+                        <input type = "text" className="" placeholder="Education Status*" required name="education" onChange={inputChange('education')} value={values.education}/>
                     </div>
 
                     
@@ -175,10 +164,10 @@ export default class Register extends Component {
                 <div className="form-wrapper">
                     
                     <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="PAN No*" required onChange={e => this.pan = e.target.value}/>
+                        <input type = "text" className="" placeholder="PAN No*" required name="pan" onChange={inputChange('pan')} value={values.pan}/>
                     </div>
                     <div className="form-input2 col-md"> 
-                        <input type = "text" className="" placeholder="Bank Account Number*" required onChange={e => this.bank = e.target.value}/>
+                        <input type = "text" className="" placeholder="Bank Account Number*" name="bank" onChange={inputChange('bank')} value={values.bank}/>
                         </div>
 
                         <div className="form-input2 col-md image2">                           
@@ -200,8 +189,8 @@ export default class Register extends Component {
 
 
                 <div class="button-container buttonRegister2">
-                <button onClick={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/register3"}>Next</Link></button>
-                <button className="login-button-2">Cancel</button>
+                <button onClick={this.continue} className="login-button">Next</button>
+                <button onClick={this.back} className="login-button-2">Back</button>
                 </div>
                 
             </form>

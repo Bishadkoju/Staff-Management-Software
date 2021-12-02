@@ -24,10 +24,21 @@ const ImgUpload =({
 
 export default class Register extends Component {
 
-      state = {
-        file: '',
-        imagePreviewUrl: image1
-      }
+  continue = e => {
+    e.preventDefault();
+    this.props.nextStep();
+};
+ 
+back = e => {
+  e.preventDefault();
+  this.props.prevStep();
+};
+
+register = e => {
+  e.preventDefault();
+  this.props.formSubmit();
+};
+
     
       photoUpload = e =>{
         e.preventDefault();
@@ -45,44 +56,47 @@ export default class Register extends Component {
       
 
 
-    handleSubmit = (event) => {
-        event.preventDefault()
-        const data = {
-            form3:{
-            fathername: this.role,
-            mothername: this.store,
-            marital:this.startDate,
-            education: this.endDate,
-            }
+    // handleSubmit = (event) => {
+    //     event.preventDefault()
+    //     const data = {
+    //         form3:{
+    //         fathername: this.role,
+    //         mothername: this.store,
+    //         marital:this.startDate,
+    //         education: this.endDate,
+    //         }
     
             
-        }
-        axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
-            res=> {
-                console.log(res);
-            }
-        ).catch(
-            err=>{
-                console.log(err);
-            }
-        )
+    //     }
+        // axios.post("localhost:8000/api/v1/auth/register/employee/",data).then(
+        //     res=> {
+        //         console.log(res);
+        //     }
+        // ).catch(
+        //     err=>{
+        //         console.log(err);
+        //     }
+        // )
         // console.log(data);
-    }
+    
 
 
 
     render() {
-          const {imagePreviewUrl, 
-           name, 
-           status, 
-           active} = this.state;
+    
+
+           const { values, inputChange } = this.props;
+           
+           
+
         return (
             <>
             <Background />
             <Header/>
+
             <div className="register-form-container">
                 
-            <form onSubmit={this.handleSubmit} class="register-form">
+            <form  class="register-form">
                            
             
                 <div class="register-top-header">
@@ -97,30 +111,32 @@ export default class Register extends Component {
                     </div>
                     <div className="form-wrapper">
                     
-                    <div className="form-input2 col-big" onChange={e => this.role = e.target.value}> 
-                        <select name="Role">
-                            <option value="">Role</option>
+                    <div className="form-input2 col-big"> 
+                        <select name="role" onChange={inputChange('role')} value={values.role}>
+                            <option value="">Roles</option>
                             <option value="gm">General Manager</option>
                             <option value="sm">Store Manager</option>
                             <option value="employee">Employee</option>
                         </select>
                         </div>
 
+               
+
                     <div className="form-input2 col-big">    
-                        <input type = "text" className="" placeholder="Store*" required onChange={e => this.store = e.target.value}/>
+                        <input type = "text" className="" placeholder="Store*" required name="store" onChange={inputChange('store')} value={values.store}/>
                     </div>
 
 
                         <div className="form-input2 col-big"> 
                         <input type="text" onFocus={ (e)=> { e.currentTarget.type = "date"; 
                                                             e.currentTarget.focus();
-                                                        }} placeholder="Starting Date*" onChange={e => this.startDate = e.target.value}/>
+                                                        }} placeholder="Starting Date*" name="startdate" onChange={inputChange('startdate')} value={values.startdate}/>
 
                         </div> 
                         <div className="form-input2 col-big"> 
                         <input type="text" onFocus={ (e)=> { e.currentTarget.type = "date"; 
                                                             e.currentTarget.focus();
-                                                        }} placeholder="Termination Date*" onChange={e => this.endDate = e.target.value} />
+                                                        }} placeholder="Termination Date*" name="enddate" onChange={inputChange('enddate')} value={values.enddate} />
 
                         </div> 
                     
@@ -133,8 +149,8 @@ export default class Register extends Component {
 
 
                 <div class="button-container">
-                <button onClick={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/login"}>Finish</Link></button>
-                <button className="login-button-2">Cancel</button>
+                <button onClick={this.register} className="login-button"><Link  className="forgot-text"to ={"/login"}>Finish</Link></button>
+                <button className="login-button-2">Back</button>
                 </div>
                 
             </form>

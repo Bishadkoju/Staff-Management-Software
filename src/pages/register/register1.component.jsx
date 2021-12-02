@@ -15,6 +15,7 @@ const ImgUpload =({
     <label htmlFor="photo-upload" className="custom-file-upload fas">
       <div className="img-wrap img-upload" >
         <img for="photo-upload" src={src}/>
+        
       </div>
       <input id="photo-upload" type="file" onChange={onChange}/> 
     </label>
@@ -24,12 +25,14 @@ const ImgUpload =({
 
 export default class Register extends Component {
 
-      state = {
-        file: '',
-        imagePreviewUrl: image1
-      }
-    
-      photoUpload = e =>{
+    continue = e => {
+        e.preventDefault();
+        this.props.nextStep();
+    };
+
+ 
+
+    photoUpload = e =>{
         e.preventDefault();
         const reader = new FileReader();
         const file = e.target.files[0];
@@ -40,57 +43,63 @@ export default class Register extends Component {
           });
         }
         reader.readAsDataURL(file);
-      }
-
-      
+      } 
 
 
-    handleSubmit = (event) => {
-        event.preventDefault()
-        const data = {
-            form1:{
-            name: this.name,
-            id: this.id,
-            gender:this.gender,
-            date: this.date,
-            email : this.email,
-            contact:this.contact,
-            address:this.address,
-            emergencyno:this.emergencyno,
-            relation:this.relation,
-            iamge1: this.imagePreviewUrl
-            }
-        
+    // handleSubmit = (event) => {
+    //     event.preventDefault()
+    //     const data = {
+    //         form1:{
+    //         name: this.name,
+    //         id: this.id,
+    //         gender:this.gender,
+    //         date: this.date,
+    //         email : this.email,
+    //         contact:this.contact,
+    //         address:this.address,
+    //         emergencyno:this.emergencyno,
+    //         relation:this.relation,
+    //         iamge1: this.image
+    //         }
             
-        }
-        console.log("datas are" + data)
-        axios.post("register/employee/",data).then(
-            res=> {
-                console.log(res);
-                console.log("datas are" + data)
-            }
-        ).catch(
-            err=>{
-                console.log(err);
-            }
-        )
-        // console.log(data);
-    }
+            
+    //     }
+
+    //     console.log("name" + this.name)
+    //     console.log("file" + this.file)
+    //     console.log("datas are" + data)
+    //     axios.post("register/employee/",data).then(
+    //         res=> {
+                
+    //             console.log(res);
+    //             console.log("datas are" + data)
+    //         }
+    //     ).catch(
+    //         err=>{
+    //             console.log(err);
+    //             console.log("datas are" + data)
+    //         }
+    //     )
+    //     console.log(data);
+        
 
 
 
     render() {
-          const {imagePreviewUrl, 
-           name, 
-           status, 
-           active} = this.state;
+        //   const { 
+        //    name, 
+        //    status, 
+        //    active} = this.state;
+           const { values, inputChange, file,photoUpload , imagePreviewUrl } = this.props;
+
+
         return (
             <>
             <Background />
             <Header/>
             <div className="register-form-container">
                 
-            <form onSubmit={this.handleSubmit} class="register-form">
+            <form class="register-form">
                            
             
                 <div class="register-top-header">
@@ -106,17 +115,17 @@ export default class Register extends Component {
                     <div className="form-wrapper">
                     
                     <div className="form-input2 col-md">    
-                        <input type = "text" className="" placeholder="Full Name*" required onChange={e => this.name = e.target.value}/>
+                        <input type = "text" className="" placeholder="Full Name*" required name="name" onChange={inputChange('name')} value={values.name}/>
                     </div>
                     <div className="form-input2 col-small"> 
-                        <input type = "number" className="" placeholder="ID*" required onChange={e => this.id = e.target.value}/>
+                        <input type = "number" className="" placeholder="ID*" required name="id" onChange={inputChange('id')} value={values.id}/>
                         </div>
 
 
 
 
                         <div className="form-input2 col-small"> 
-                        <select name="Gender" onChange={e => this.gender = e.target.value}>
+                        <select name="gender" onChange={inputChange('gender')} value={values.gender}>
                         <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -126,7 +135,7 @@ export default class Register extends Component {
                         <div className="form-input2 col-md"> 
                         <input type="text" onFocus={ (e)=> { e.currentTarget.type = "date"; 
                                                             e.currentTarget.focus();
-                                                        }} placeholder="Date of Birth" onChange={e => this.date = e.target.value} />
+                                                        }} placeholder="Date of Birth" name="date" onChange={inputChange('date')} value={values.date} />
 
                         </div> 
                     
@@ -139,24 +148,24 @@ export default class Register extends Component {
                 <div className="form-wrapper">
                     
                     <div className="form-input2 col-big">    
-                        <input type = "email" className="" placeholder="Email Address*" required onChange={e => this.email = e.target.value}/>
+                        <input type = "email" className="" placeholder="Email Address*" required name="email" onChange={inputChange('email')} value={values.email}/>
                     </div>
                     <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Contact Number*" required onChange={e => this.number = e.target.value}/>
+                        <input type = "number" className="" placeholder="Contact Number*" required name="number" onChange={inputChange('number')} value={values.number}/>
                         </div>
 
                         <div className="form-input2 col-md"> 
-                        <input type = "text" className="" placeholder="Address*" required onChange={e => this.address = e.target.value}/>
-                        </div>
-
-                        
-                        <div className="form-input2 col-md"> 
-                        <input type = "number" className="" placeholder="Emergency No." required onChange={e => this.emergencyno = e.target.value}/>
+                        <input type = "text" className="" placeholder="Address*" required name="address" onChange={inputChange('address')} value={values.address}/>
                         </div>
 
                         
                         <div className="form-input2 col-md"> 
-                        <input type = "text" className="" placeholder="Relation" required onChange={e => this.relation = e.target.value}/>
+                        <input type = "number" className="" placeholder="Emergency No." required name="emergencyno" onChange={inputChange('emergencyno')} value={values.emergencyno}/>
+                        </div>
+
+                        
+                        <div className="form-input2 col-md"> 
+                        <input type = "text" className="" placeholder="Relation" required name="relation" onChange={inputChange('relation')} value={values.relation}/>
                         </div>
 
 
@@ -166,7 +175,7 @@ export default class Register extends Component {
 
                 <div className="form-input2 col-md">                           
                         <div class="image-upload">
-                            <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl}/>
+                            <ImgUpload onChange={photoUpload} src={imagePreviewUrl} />
                         </div>
                         </div>
 
@@ -175,7 +184,7 @@ export default class Register extends Component {
 
 
                 <div class="button-container">
-                <button onClick={this.handleSubmit} className="login-button"><Link  className="forgot-text"to ={"/register2"}>Next</Link></button>
+                <button onClick={this.continue} className="login-button">Next</button>
                 <button className="login-button-2">Cancel</button>
                 </div>
                 
