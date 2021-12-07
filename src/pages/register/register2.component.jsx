@@ -170,12 +170,13 @@ back = e => {
                         <input type = "text" className="" placeholder="Bank Account Number*" name="bank" onChange={inputChange('bank')} value={values.bank}/>
                         </div>
 
-                        <div className="form-input2 col-md image2">                           
+                        <div className="form-input2 col-md image3">                           
                             <ImgUpload onChange={this.photoUpload2} src={imagePreviewUrl2}/>
+
+                            <ImgUpload  onChange={this.photoUpload3} src={imagePreviewUrl3}/>
                         </div>
 
                         <div className="form-input2 col-md image3">                           
-                            <ImgUpload  onChange={this.photoUpload3} src={imagePreviewUrl3}/>
                         </div>
 
 

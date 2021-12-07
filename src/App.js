@@ -13,6 +13,7 @@ import ForgotPassword from './pages/forgot-password/forgot-password.component';
 import Reset from './pages/reset/reset.component';
 import Home from './pages/Home/home.component';
 import Form from './pages/register/form.component';
+import Dashboard from './pages/dashboard/dashboard.component';
 
 class App extends React.Component {
   
@@ -20,14 +21,14 @@ class App extends React.Component {
 
   componentDidMount(){
 
-      axios.get("user").then(
-          res => {
-              this.setUser(res.data)
-          },
-          err => {
-              console.log(err);
-          }
-      )
+      // axios.get("user").then(
+      //     res => {
+      //         this.setUser(res.data)
+      //     },
+      //     err => {
+      //         console.log(err);
+      //     }
+      // )
   }
 
   setUser = user => {
@@ -43,6 +44,7 @@ class App extends React.Component {
           <Routes>
             <Route exact path="/" element = {<Login />} />
             <Route exact path="/login" element = {<Login setUser={this.setUser}/>} />
+            <Route exact path="/dashboard" element = {<Dashboard user = {this.state.user}/>} />
             
             <Route exact path="/register" element = {<Form />} />
             <Route exact path="/forgot" element = {<ForgotPassword />} />

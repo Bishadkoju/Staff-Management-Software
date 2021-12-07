@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Background from "../../component/background/background.component"
 import "../login/login.styles.scss"
 import "./reset.styles.scss"
+import {Navigate} from "react-router"
 import {Link} from "react-router-dom"
 import {Redirect} from "react-router"
 import ResetHeader from "../../assets/reset.svg"

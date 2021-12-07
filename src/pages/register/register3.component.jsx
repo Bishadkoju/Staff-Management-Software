@@ -123,7 +123,7 @@ register = e => {
                
 
                     <div className="form-input2 col-big">    
-                        <input type = "text" className="" placeholder="Store*" required name="store" onChange={inputChange('store')} value={values.store}/>
+                        <input type = "text" className="" placeholder="Store*"  name="store" onChange={inputChange('store')} value={values.store}/>
                     </div>
 
 
@@ -150,7 +150,7 @@ register = e => {
 
                 <div class="button-container">
                 <button onClick={this.register} className="login-button"><Link  className="forgot-text"to ={"/login"}>Finish</Link></button>
-                <button className="login-button-2">Back</button>
+                <button onClick={this.props.prevStep} className="login-button-2">Back</button>
                 </div>
                 
             </form>
