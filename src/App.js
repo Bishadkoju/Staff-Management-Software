@@ -19,18 +19,6 @@ class App extends React.Component {
   
   state={}
 
-  componentDidMount(){
-
-      // axios.get("user").then(
-      //     res => {
-      //         this.setUser(res.data)
-      //     },
-      //     err => {
-      //         console.log(err);
-      //     }
-      // )
-  }
-
   setUser = user => {
       this.setState({
       user: user

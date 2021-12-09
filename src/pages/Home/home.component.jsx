@@ -31,7 +31,7 @@ const Home = (props) => {
       "store": selectedStore
     }
     try {
-      const res = await axiosInstance.post("employee/check_in",data)
+      const res = await axiosInstance.post("employee/check_in/",data)
       console.log(res)
       if(res.status === 200) {
           console.log('ok')
@@ -44,11 +44,10 @@ const Home = (props) => {
   const checkOut = async () => {
     console.log("check out");
     const data = {
-      "checked_in": false,
-      "store": selectedStore
+      "checked_out": true
     }
     try {
-      const res = await axiosInstance.post("employee/check_out",data)
+      const res = await axiosInstance.post("employee/check_out/",data)
       console.log(res)
       if(res.status === 200) {
           console.log('ok')
