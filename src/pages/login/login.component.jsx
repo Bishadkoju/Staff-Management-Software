@@ -17,11 +17,6 @@ export default class Login extends Component {
             email:this.email,
             password: this.password,
         }
-        const config = {
-            headers:{
-                Authorization: "Token "+ "6677ebfbe105a8bbbbdd74dd9030309e1d0b7033"
-            }
-        }
 
         try {
             const res = await axiosInstance.post("auth/login/",data)
@@ -38,7 +33,7 @@ export default class Login extends Component {
     }
     render() {
         if (this.state.loggedIn){
-            return <Navigate to = {"/home"} />
+            return <Navigate to = {"/dashboard"} />
         }
         return (
             <>
@@ -58,7 +53,10 @@ export default class Login extends Component {
 
                 <p className="forgot">
                     <Link  className="forgot-text"to ={"/forgot"}>Forgot Password ?</Link>
+                    <br/>
+                    <Link  className="forgot-text"to ={"/register"}>Register</Link>
                 </p>
+                
                 <div class="button-container">
                 <button onChange={this.handleSubmit} className="login-button">Login</button>
                 </div>

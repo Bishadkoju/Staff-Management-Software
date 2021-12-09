@@ -77,7 +77,7 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-danger">Log out</span><br/>
+                          <span className="heading_text text-danger"><NavLink to="/" >Log Out</NavLink></span><br/>
                         </p>
                       </div>
                     </div>
