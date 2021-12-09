@@ -1,13 +1,144 @@
-body {
-    font-family: "Open Sans Condensed";
-    padding: 20px 60px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+
+.body{
+    background-color: #f8f8fa!important;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    color: black!important;
 }
 
-a{
+a:hover{
     text-decoration: none;
-    color: black;
 }
 
-* {
-    box-sizing: border-box;
+.primary_color{
+    color: #516bbd;
+}
+
+.small_font{
+    font-size: 10px;
+}
+
+.online_color{
+    color: #0e5271;
+}
+
+.medium_font{
+    font-size: 12px!important;
+}
+
+.muted_text{
+    font-size: 12px;
+}
+
+.heading_text{
+    font-weight: 600;
+}
+
+.div_format{
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid #e8e9eb;
+}
+
+.shadow_div{
+    box-shadow: 5px 10px 5px #e8e9eb;
+}
+
+/* Navigation Bar */
+#nav{
+    background-color: #13304d;
+    height: 70px;
+}
+
+#nav a{
+    color: white;
+}
+
+#nav a:hover{
+    text-decoration: none;
+}
+
+#nav .dropdown-menu a{
+    color: #13304d;
+}
+
+#nav .dropdown .profile_name{
+    cursor: pointer;
+}
+
+#nav .active{
+    color: #0085ff;
+}
+
+#nav .profile_picture{
+    background-color: #0e5271;
+    padding: 10px;
+    border-radius: 60%;
+    font-size: smaller;
+}
+
+#nav .dropdown-menu{
+    line-height: 90%;
+}
+
+.logo_img{
+    width: 70px!important;
+    height: 32px!important;
+}
+
+#nav .active_nav{
+    color: white!important;
+}
+
+/* End of Navigation Bar */
+
+/* CheckIn */
+.check_in_background{
+    border: 5px solid #abd3ff;
+    border-radius: 60%;
+    height: 100px;
+    width: 100px;
+    background-color: #dfe4f3;
+}
+
+.check_in_background a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* notice */
+.notice_desc{
+    font-size: 12px;
+}
+
+.notice_desc a{
+    color: #516bbd;
+}
+
+.profile_picture img{
+    width: 40px!important;
+    height: 40px!important;
+}
+
+/* handbook page */
+.active_handbook{
+    background-color: #516bbd;
+    color: white;
+}
+
+/* Earning page  */
+.earning_desc{
+    width: 20%;
+    margin: 20px 5px 10px 0px;
+
+}
+
+/* Leave Page  */
+.btn_primary{
+    background-color: #005099;
+    color: white;
 }
