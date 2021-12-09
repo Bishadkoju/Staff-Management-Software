@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Staff-Management-Software/static/css/main.9214adb7.chunk.css",
-    "main.js": "/Staff-Management-Software/static/js/main.6fcd5469.chunk.js",
-    "main.js.map": "/Staff-Management-Software/static/js/main.6fcd5469.chunk.js.map",
-    "runtime-main.js": "/Staff-Management-Software/static/js/runtime-main.a91950a2.js",
-    "runtime-main.js.map": "/Staff-Management-Software/static/js/runtime-main.a91950a2.js.map",
-    "static/js/2.a4e1011b.chunk.js": "/Staff-Management-Software/static/js/2.a4e1011b.chunk.js",
-    "static/js/2.a4e1011b.chunk.js.map": "/Staff-Management-Software/static/js/2.a4e1011b.chunk.js.map",
-    "static/js/3.5ab89cec.chunk.js": "/Staff-Management-Software/static/js/3.5ab89cec.chunk.js",
-    "static/js/3.5ab89cec.chunk.js.map": "/Staff-Management-Software/static/js/3.5ab89cec.chunk.js.map",
+    "main.css": "/Staff-Management-Software/static/css/main.fc792f74.chunk.css",
+    "main.js": "/Staff-Management-Software/static/js/main.2d9e977b.chunk.js",
+    "main.js.map": "/Staff-Management-Software/static/js/main.2d9e977b.chunk.js.map",
+    "runtime-main.js": "/Staff-Management-Software/static/js/runtime-main.c78e02fc.js",
+    "runtime-main.js.map": "/Staff-Management-Software/static/js/runtime-main.c78e02fc.js.map",
+    "static/js/2.c87a75b0.chunk.js": "/Staff-Management-Software/static/js/2.c87a75b0.chunk.js",
+    "static/js/2.c87a75b0.chunk.js.map": "/Staff-Management-Software/static/js/2.c87a75b0.chunk.js.map",
+    "static/js/3.8c97b7de.chunk.js": "/Staff-Management-Software/static/js/3.8c97b7de.chunk.js",
+    "static/js/3.8c97b7de.chunk.js.map": "/Staff-Management-Software/static/js/3.8c97b7de.chunk.js.map",
     "index.html": "/Staff-Management-Software/index.html",
-    "static/css/main.9214adb7.chunk.css.map": "/Staff-Management-Software/static/css/main.9214adb7.chunk.css.map",
-    "static/js/2.a4e1011b.chunk.js.LICENSE.txt": "/Staff-Management-Software/static/js/2.a4e1011b.chunk.js.LICENSE.txt",
+    "static/css/main.fc792f74.chunk.css.map": "/Staff-Management-Software/static/css/main.fc792f74.chunk.css.map",
+    "static/js/2.c87a75b0.chunk.js.LICENSE.txt": "/Staff-Management-Software/static/js/2.c87a75b0.chunk.js.LICENSE.txt",
     "static/media/bg-1.c6e0f9d7.svg": "/Staff-Management-Software/static/media/bg-1.c6e0f9d7.svg",
     "static/media/bg-2.2513fc96.svg": "/Staff-Management-Software/static/media/bg-2.2513fc96.svg",
     "static/media/citizenship.132eed15.svg": "/Staff-Management-Software/static/media/citizenship.132eed15.svg",
@@ -24,9 +24,9 @@
     "static/media/reset.bdbbf781.svg": "/Staff-Management-Software/static/media/reset.bdbbf781.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a91950a2.js",
-    "static/js/2.a4e1011b.chunk.js",
-    "static/css/main.9214adb7.chunk.css",
-    "static/js/main.6fcd5469.chunk.js"
+    "static/js/runtime-main.c78e02fc.js",
+    "static/js/2.c87a75b0.chunk.js",
+    "static/css/main.fc792f74.chunk.css",
+    "static/js/main.2d9e977b.chunk.js"
   ]
 }
