@@ -17,6 +17,11 @@ export default class Login extends Component {
             email:this.email,
             password: this.password,
         }
+        const config = {
+            headers:{
+                Authorization: "Token "+ "6677ebfbe105a8bbbbdd74dd9030309e1d0b7033"
+            }
+        }
 
         try {
             const res = await axiosInstance.post("auth/login/",data)
