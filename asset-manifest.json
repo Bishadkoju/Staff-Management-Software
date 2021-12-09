@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/Staff-Management-Software/static/css/main.9214adb7.chunk.css",
+    "main.js": "/Staff-Management-Software/static/js/main.6fcd5469.chunk.js",
+    "main.js.map": "/Staff-Management-Software/static/js/main.6fcd5469.chunk.js.map",
+    "runtime-main.js": "/Staff-Management-Software/static/js/runtime-main.a91950a2.js",
+    "runtime-main.js.map": "/Staff-Management-Software/static/js/runtime-main.a91950a2.js.map",
+    "static/js/2.a4e1011b.chunk.js": "/Staff-Management-Software/static/js/2.a4e1011b.chunk.js",
+    "static/js/2.a4e1011b.chunk.js.map": "/Staff-Management-Software/static/js/2.a4e1011b.chunk.js.map",
+    "static/js/3.5ab89cec.chunk.js": "/Staff-Management-Software/static/js/3.5ab89cec.chunk.js",
+    "static/js/3.5ab89cec.chunk.js.map": "/Staff-Management-Software/static/js/3.5ab89cec.chunk.js.map",
+    "index.html": "/Staff-Management-Software/index.html",
+    "static/css/main.9214adb7.chunk.css.map": "/Staff-Management-Software/static/css/main.9214adb7.chunk.css.map",
+    "static/js/2.a4e1011b.chunk.js.LICENSE.txt": "/Staff-Management-Software/static/js/2.a4e1011b.chunk.js.LICENSE.txt",
+    "static/media/bg-1.c6e0f9d7.svg": "/Staff-Management-Software/static/media/bg-1.c6e0f9d7.svg",
+    "static/media/bg-2.2513fc96.svg": "/Staff-Management-Software/static/media/bg-2.2513fc96.svg",
+    "static/media/citizenship.132eed15.svg": "/Staff-Management-Software/static/media/citizenship.132eed15.svg",
+    "static/media/contract.793bdc3d.svg": "/Staff-Management-Software/static/media/contract.793bdc3d.svg",
+    "static/media/header.28f58181.svg": "/Staff-Management-Software/static/media/header.28f58181.svg",
+    "static/media/profile.754e10b3.svg": "/Staff-Management-Software/static/media/profile.754e10b3.svg",
+    "static/media/register1.8fd776c6.svg": "/Staff-Management-Software/static/media/register1.8fd776c6.svg",
+    "static/media/registration2.69d2ea49.svg": "/Staff-Management-Software/static/media/registration2.69d2ea49.svg",
+    "static/media/registration3.110ea488.svg": "/Staff-Management-Software/static/media/registration3.110ea488.svg",
+    "static/media/reset.bdbbf781.svg": "/Staff-Management-Software/static/media/reset.bdbbf781.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a91950a2.js",
+    "static/js/2.a4e1011b.chunk.js",
+    "static/css/main.9214adb7.chunk.css",
+    "static/js/main.6fcd5469.chunk.js"
+  ]
+}
