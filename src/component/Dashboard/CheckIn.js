@@ -11,7 +11,7 @@ function Check_In() {
                   <div class="check_in_background text-center">
                     <br />
                     <span class="">
-                      <a href="#">Check In</a> 
+                      <a href="/check">Check In</a> 
                     </span>
                   </div>
                 </div>

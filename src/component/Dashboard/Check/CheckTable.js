@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Check_in_history() {
+function CheckTable() {
     return (
         <div className="div_format mt-4 pt-3">
             <span className="heading_text">Check in/out History</span>
@@ -49,17 +49,11 @@ function Check_in_history() {
                       <input type="checkbox" name="action_check_in" id="action_check_in" />
                     </td>
                   </tr>
-
                 </tbody>
               </table>
-              <div className="see_more_check_in_table d-flex justify-content-end">
-                <div>
-                  <a href="/check" className="btn btn-primary">See More...</a>
-                </div>
-              </div>
             </div>
           </div>
     )
 }
 
-export default Check_in_history
+export default CheckTable
