@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProfileImage from "../../../assets/profile.jpeg";
 import CoverImage from "../../../assets/cover.png";
 import ProfileDetailInfo from "./ProfileDetailInfo";
 import EarningLeaveInfo from "./EarningLeaveInfo";
 import PiggyImage from "../../../assets/piggy.jpeg";
+
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const ProfileInfo = () => {
   const coverPhotoStyle = {
@@ -12,21 +14,38 @@ const ProfileInfo = () => {
     position: "relative",
   };
 
-  const displayProfileDetailInfo = () => {
-    const profileDetailInfoArr = [
-      "Email",
-      "Location",
-      "Phone",
-      "Emergency Contact",
-      "Father's Name",
-      "Mother's Name",
-      "Marital Status",
-      "Educational Status",
-      "Current Store",
-      "Starting Date",
-      "Termination Date",
-    ];
+  const [userInfo, setUserInfo] = useState([]);
 
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = async () => {
+    await axiosInstance.get("/employee/")
+    .then(res => {
+      console.log(res.data);
+      setUserInfo(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  };
+
+  const profileDetailInfoArr = [
+    "Email",
+    "Location",
+    "Phone",
+    "Emergency Contact",
+    "Father's Name",
+    "Mother's Name",
+    "Marital Status",
+    "Educational Status",
+    "Current Store",
+    "Starting Date",
+    "Termination Date",
+  ];
+
+  const displayProfileDetailInfo = () => {
     let display = [];
     for (let i = 0; i < 3; i++) {
       display.push(
