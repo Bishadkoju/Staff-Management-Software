@@ -18,6 +18,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Earning from "./pages/Dashboard/Earning";
 import Leave from "./pages/Dashboard/Leave";
 import Handbook from "./pages/Dashboard/Handbook";
+import Test from "./pages/test/test";
 
 class App extends React.Component {
   state = {};
@@ -53,6 +54,7 @@ class App extends React.Component {
             />
 
             <Route path="/reset" element={<Reset />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </Router>
       </div>

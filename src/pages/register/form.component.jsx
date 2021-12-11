@@ -1,190 +1,152 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Register1 from "./register1.component";
 import Register2 from "./register2.component";
 import Register3 from "./register3.component";
 import image1 from "../../assets/profile.svg";
 import image2 from "../../assets/contract.svg";
 import image3 from "../../assets/citizenship.svg";
+import { baseURL } from "../../HelperFunction/Axios";
 import axios from "axios";
-import Login from "../login/login.component";
 
-export class Form extends Component {
-  state = {
-    step: 1,
+const Form = () => {
+  const [step, setStep] = useState(1);
+  const [inputs, setInputs] = useState({});
+  const [imageInputs, setImageInputs] = useState(null);
+  const [imageSource, setImageSource] = useState(null);
 
-    file: "",
-    file2: "",
-    file3: "",
-    imagePreviewUrl: image1,
-    imagePreviewUrl2: image2,
-    imagePreviewUrl3: image3,
-
-    name: "",
-    id: "",
-    gender: "",
-    date: "",
-    email: "",
-    contact: "",
-    address: "",
-    emergencyno: "",
-    relation: "",
-
-    role: "",
-    store: "",
-    startdate: "",
-    enddate: "",
-
-    fathername: "",
-    mothername: "",
-    marital: "",
-    education: "",
-    pan: "",
-    bank: "",
+  const nextStep = () => {
+    setStep((currentStep) => currentStep + 1);
   };
 
-  // photoUpload = e =>{
-  //     e.preventDefault();
-  //     console.log("run")
-  //     const reader = new FileReader();
-  //     const file = e.target.files[0];
-  //     reader.onloadend = () => {
-  //       this.setState({
-  //         file: file,
-  //         imagePreviewUrl: reader.result
-  //       });
-  //     }
-  //     console.log(file)
-  //     // console.log(imagePreviewUrl)
-  //     reader.readAsDataURL(file);
-  //   }
-
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({ step: step + 1 });
+  const prevStep = () => {
+    setStep((currentStep) => currentStep - 1);
   };
 
-  prevStep = () => {
-    const { step } = this.state;
-    console.log(step - 1);
-    this.setState({ step: step - 1 });
+  const handleChange = (event) => {
+    console.log("change");
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  inputChange = (input) => (e) => {
-    this.setState({
-      [input]: e.target.value,
+  const handleImageChange = (event) => {
+    var image = event.target.files[0];
+    var imageName = event.target.name;
+    setImageInputs((prev) => ({ ...prev, [imageName]: image }));
+
+    var reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onloadend = function (e) {
+      setImageSource({ [imageName]: reader.result });
+    };
+  };
+
+  // On file upload (click the upload button)
+  const formSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: "user@example.com",
+      first_name: "string",
+      middle_name: "string",
+      last_name: "string",
+      password1: "hello@ccount",
+      password2: "hello@ccount",
+      father_name: "string",
+      mother_name: "string",
+      phone_number: 0,
+      address: "string",
+      pan_number: 0,
+      gender: "M",
+      date_of_birth: "2021-12-07",
+      joined_date: "2021-12-07",
+      termination_date: "2021-12-07",
+      marital_status: "S",
+      store: 1,
+      educational_status: "string",
+      account: "54645",
+      emergency_full_name: "",
+      emergency_phone_number: "",
+      emergency_relation: "",
+    };
+
+    // Create an object of formData
+    const formData = new FormData();
+
+    // Update the formData object
+    // formData.append(
+    //   "citizenship",
+    //   this.state.selectedFile,
+    //   this.state.selectedFile.name
+    // );
+
+    Object.keys(data).map((key, index) => {
+      formData.append(key, data[key]);
     });
-  };
-
-  formSubmit = () => {
-    const data = this.state;
-    console.log("console form data");
-    console.log(data);
-
-    const config = {
-      headers: {
-        Authorization: "Token " + "6677ebfbe105a8bbbbdd74dd9030309e1d0b7033",
-      },
-    };
-
-    axios
-      .post("register/employee/", config, data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
+    Object.keys(inputs).map((key, index) => {
+      formData.append(key, inputs[key]);
+    });
+    if (imageInputs) {
+      Object.keys(imageInputs).map((key, index) => {
+        formData.append(key, imageInputs[key], imageInputs[key].name);
       });
-    // console.log(data);
+    }
+
+    // Details of the uploaded file
+    console.log(imageInputs);
+
+    // Request made to the backend api
+    // Send formData object
+    axios.post(baseURL + "/auth/register/employee/", formData);
+  };
+  const commonProps = {
+    nextStep,
+    prevStep,
+    handleChange,
+    handleImageChange,
+    imageSource,
+    formSubmit,
   };
 
-  render() {
-    const { step } = this.state;
-    const {
-      name,
-      id,
-      gender,
-      date,
-      email,
-      contact,
-      address,
-      emergencyno,
-      relation,
-      role,
-      store,
-      startdate,
-      enddate,
-      fathername,
-      mothername,
-      marital,
-      education,
-      pan,
-      bank,
-    } = this.state;
-
-    const values = {
-      name,
-      id,
-      gender,
-      date,
-      email,
-      contact,
-      address,
-      emergencyno,
-      relation,
-      role,
-      store,
-      startdate,
-      enddate,
-      fathername,
-      mothername,
-      marital,
-      education,
-      pan,
-      bank,
-    };
-
-    switch (step) {
-      case 1:
-        return (
-          <Register1
-            nextStep={this.nextStep}
-            inputChange={this.inputChange}
-            values={values}
-            // file={this.state.file}
-            // photoUpload={this.photoUpload}
-            imagePreviewUrl={this.state.imagePreviewUrl}
+  switch (step) {
+    case 1:
+      return <Register1 {...commonProps} />;
+    case 2:
+      return <Register2 {...commonProps} />;
+    case 3:
+      return <Register3 {...commonProps} />;
+    default:
+      return (
+        <form>
+          <input
+            type="file"
+            id="myFile"
+            name="citizenship"
+            encoding="multipart/form-data"
+            onChange={handleImageChange}
           />
-        );
-      case 2:
-        return (
-          <Register2
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            inputChange={this.inputChange}
-            values={values}
-            imagePreviewUrl2={this.state.imagePreviewUrl3}
-            imagePreviewUrl3={this.state.imagePreviewUrl3}
-          />
-        );
-      case 3:
-        return (
-          <Register3
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            inputChange={this.inputChange}
-            values={values}
-            formSubmit={this.formSubmit}
-          />
-        );
 
-      //    case 4:
-      //        return(
-      //     <Success
-      // />)
-    }
-    console.log("worked");
-    console.log(this.state);
+          <label>
+            Enter your name:
+            <input
+              type="text"
+              name="username"
+              value={inputs.username || ""}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Enter your age:
+            <input
+              type="number"
+              name="age"
+              value={inputs.age || ""}
+              onChange={handleChange}
+            />
+          </label>
+          <button onClick={formSubmit}>Submit</button>
+        </form>
+      );
   }
-}
+};
 
 export default Form;
