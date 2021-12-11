@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React,{useState, useEffect} from "react";
 import axiosInstance from "../../HelperFunction/Axios";
 
@@ -19,7 +18,9 @@ function CheckIn(props) {
   const getStore = async() => {
     const res = await axiosInstance.get("employee/")
       if(res.status === 200) {
+        if(res.data.employee){
           setStore(res.data.employee.store)
+        }
       }
   }
 
