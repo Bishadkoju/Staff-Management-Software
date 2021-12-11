@@ -92,10 +92,9 @@ const ProfileInfo = () => {
   };
 
   return (
-    <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="profile_div">
+          <div class="profile_div bg-white">
             <div class="cover_photo" style={coverPhotoStyle}></div>
             <div class="profile_picture_div">
               <img
@@ -125,7 +124,6 @@ const ProfileInfo = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

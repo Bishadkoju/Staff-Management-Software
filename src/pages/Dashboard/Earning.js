@@ -1,14 +1,10 @@
 import React from "react";
 import Layout from "../../HOC/Layout";
-import EarningGraph from "../../component/Dashboard/EarningGraph";
-import PiggyImg from "../../assets/piggy.png";
-import NoBoxInfoBar from "../../component/Dashboard/General/NoBoxInfoBar";
+import EarningGraph from "../../component/Dashboard/Earning/EarningGraph";
+import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryBar";
 
 function Earning() {
-  const imgStyle = {
-    width: "30%",
-  };
-
+  
   return (
     <div className="body">
       <Layout></Layout>
@@ -26,29 +22,7 @@ function Earning() {
       <div className="container bg-white p-4 mt-4 rounded-div">
         <div className="row">
           <div className="col-md-9">
-            <div className="d-flex justify-content-start muted_text">
-              <div class="media" style={{maxWidth : "200px"}}>
-                <img class="mr-2" src={PiggyImg} alt="Piggy Image" style={imgStyle} />
-                <div>
-                  <span className="muted_text text-muted">TOTAL EARNING</span>
-                  <br />
-                  <h4>$249, 500</h4>
-                </div>
-              </div>
-
-              <div className="pr-4">
-                <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
-              </div>
-              <div className="pr-4">
-                <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
-              </div>
-              <div className="pr-4">
-                <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
-              </div>
-              <div className="pr-4">
-                <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
-              </div>
-            </div>
+            <EarningSummaryBar />
           </div>
           <div className="col-md-3 d-flex justify-content-end">
             <div className="dropdown">

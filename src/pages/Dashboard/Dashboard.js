@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../../HOC/Layout";
 import InfoBar from "../../component/Bar/InfoBar";
-import Check_In from "../../component/Dashboard/CheckIn";
+import Check_In from "../../component/Dashboard/Check/CheckIn";
 import Notice from "../../component/Dashboard/Notice/Notice";
-import Check_in_history from "../../component/Dashboard/Check_in_history";
+import Check_in_history from "../../component/Dashboard/Check/CheckInHistory";
 
 function Dashboard() {
   return (

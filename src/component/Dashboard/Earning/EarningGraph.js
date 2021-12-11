@@ -1,5 +1,5 @@
 import React from "react";
-import Graph from "../../assets/graph.png";
+import Graph from "../../../assets/graph.png";
 
 const EarningGraph = () => {
   return (

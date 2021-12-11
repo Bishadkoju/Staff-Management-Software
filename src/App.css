@@ -9,6 +9,10 @@
     color: black!important;
 }
 
+.modal{
+    z-index: 999999999999;
+}
+
 a:hover{
     text-decoration: none;
 }
@@ -54,6 +58,14 @@ a:hover{
 
 .font_14{
     font-size: 14px;
+}
+
+.f_24{
+    font-size: 24px!important;
+}
+
+.f_36{
+    font-size: 36px!important;
 }
 
 .btn-circle{
@@ -129,6 +141,10 @@ a:hover{
 
 #nav .active_nav{
     color: white!important;
+}
+
+.dropDownMenuLeft{
+    left: -100px!important;
 }
 
 /* End of Navigation Bar */
@@ -221,4 +237,50 @@ a:hover{
 .profile_picture_div .profile_summary img{
     width: 50px;
     height: 50px;
+}
+
+.nav_cle_head_active{
+    color: #5d78ff;
+    background-color: #f6f7fd;
+    padding: 5px 10px 5px 10px;
+}
+
+.nav_cle_head{
+    color: #6c7293;
+    padding: 5px 10px 5px 10px;
+}
+
+/* Admin page  */
+.side-menu{
+    height: 90vh;
+}
+
+.side-menu .active-side-nav{
+    background-color: #005099;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* Users page  */
+.user_table_search_user{
+    width: 200px;
+    padding-left: 10px;
+}
+
+.drop_menu_no_down_arrow::after{
+    display: none;
+}
+
+.dropdownMenuAdminTable{
+    left: -100px!important;
+}
+
+.div_flex_icon{
+    flex-basis: 25px; 
+    flex-grow: 0; 
+    flex-shrink: 0;
+}
+
+.admin_nav{
+    width: 100%; 
 }
