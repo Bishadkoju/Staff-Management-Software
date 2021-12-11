@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import axiosInstance from "../../HelperFunction/Axios";
 import {Link} from "react-router-dom"
 import {Navigate} from "react-router"
 import "./login.styles.scss"
@@ -11,36 +11,29 @@ export default class Login extends Component {
     state = {
         loggedIn: false
     }
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
         const data = {
             email:this.email,
             password: this.password,
         }
-        const config = {
-            headers:{
-                Authorization: "Token "+ "6677ebfbe105a8bbbbdd74dd9030309e1d0b7033"
-            }
-        }
 
-        axios.post("login/",data).then(
-            res=> {
+        try {
+            const res = await axiosInstance.post("auth/login/",data)
+            console.log(res)
+            if(res.status === 200) {
+                console.log('ok')
                 localStorage.setItem("token", res.data.key);
                 this.setState({loggedIn: true})
-                this.props.setUser(res.data.user)
-                console.log(res)
             }
-            
-        ).catch(
-            err=>{
-                console.log(err);
-            }
-        )
-        // console.log(data);
+          } catch (err) {
+            console.log(err);
+          }
+
     }
     render() {
         if (this.state.loggedIn){
-            return <Navigate to = {"/home"} />
+            return <Navigate to = {"/dashboard"} />
         }
         return (
             <>
@@ -49,9 +42,6 @@ export default class Login extends Component {
             <div className="form-container">
                 
             <form onSubmit={this.handleSubmit} class="login-form">
-                           
-            
-  
                 <h3 className="header-text"> Log In</h3>
                 <p className="login-text"> Get access to the management <br/> tool by loggin in</p>
                 <div className="form-input">
@@ -63,7 +53,10 @@ export default class Login extends Component {
 
                 <p className="forgot">
                     <Link  className="forgot-text"to ={"/forgot"}>Forgot Password ?</Link>
+                    <br/>
+                    <Link  className="forgot-text"to ={"/register"}>Register</Link>
                 </p>
+                
                 <div class="button-container">
                 <button onChange={this.handleSubmit} className="login-button">Login</button>
                 </div>
