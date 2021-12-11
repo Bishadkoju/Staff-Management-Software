@@ -18,6 +18,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Earning from "./pages/Dashboard/Earning";
 import Leave from "./pages/Dashboard/Leave";
 import Handbook from "./pages/Dashboard/Handbook";
+import Profile from "./pages/Dashboard/Profile";
+import CheckInOut from "./pages/Dashboard/CheckInOut";
 
 class App extends React.Component {
   state = {};
@@ -53,6 +55,8 @@ class App extends React.Component {
             <Route exact path="/earning" element={<Earning />} />
             <Route exact path="/leave" element={<Leave />} />
             <Route exact path="/handbook" element={<Handbook />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/check" element={<CheckInOut />} />
 
             <Route exact path="/register" element={<Form />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />

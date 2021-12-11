@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../HOC/Layout";
 import InfoBar from "../../component/Bar/InfoBar";
-import Check_In from "../../component/Dashboard/Check_In";
+import Check_In from "../../component/Dashboard/CheckIn";
 import Notice from "../../component/Dashboard/Notice/Notice";
 import Check_in_history from "../../component/Dashboard/Check_in_history";
 
