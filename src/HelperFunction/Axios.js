@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const baseURL = "https://sms05.herokuapp.com/api/v1";
-
+export const baseURL = "https://sms05.herokuapp.com/api/v1";
 
 const axiosInstance = axios.create({
     baseURL : baseURL,  

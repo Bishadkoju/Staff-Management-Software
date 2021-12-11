@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import Background from "../../component/background/background.component"
 import "../login/login.styles.scss"
 import "./reset.styles.scss"
-import {Link} from "react-router-dom"
-import { Navigate } from "react-router-dom";
+import {Navigate} from "react-router"
 import ResetHeader from "../../assets/reset.svg"
 import Header from '../../component/header/header.compoent'
 import axios from 'axios'
@@ -31,6 +30,9 @@ export default class Reset extends Component {
             err=>{
                 console.log(err)
             })
+
+    }
+    cancel = () =>{
 
     }
     render() {

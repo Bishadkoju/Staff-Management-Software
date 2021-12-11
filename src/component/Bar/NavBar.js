@@ -119,7 +119,9 @@ function NavBar() {
                       <div>
                         <p className="dropdown_menu">
                           <span className="heading_text text-danger">
-                            Log out
+
+                            <NavLink to="/">Log Out</NavLink>
+
                           </span>
                           <br />
                         </p>

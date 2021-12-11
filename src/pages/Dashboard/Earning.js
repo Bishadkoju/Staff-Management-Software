@@ -4,7 +4,6 @@ import EarningGraph from "../../component/Dashboard/Earning/EarningGraph";
 import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryBar";
 
 function Earning() {
-  
   return (
     <div className="body">
       <Layout></Layout>
@@ -23,6 +22,7 @@ function Earning() {
         <div className="row">
           <div className="col-md-9">
             <EarningSummaryBar />
+
           </div>
           <div className="col-md-3 d-flex justify-content-end">
             <div className="dropdown">
