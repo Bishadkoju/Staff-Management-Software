@@ -78,14 +78,14 @@ const ApplyLeaveModal = () => {
                   </div>
                   {/* end of leave type radio button  */}
                   <div class="form-group">
-                      <label for="leave_from">From*</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        name="leave_from"
-                        id="leave_from"
-                      />
-                    </div>
+                    <label for="leave_from">From*</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="leave_from"
+                      id="leave_from"
+                    />
+                  </div>
                 </div>
 
                 <div className="col-md-6">
@@ -140,14 +140,14 @@ const ApplyLeaveModal = () => {
                   </div>
 
                   <div class="form-group">
-                      <label for="leave_to">To*</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        name="leave_to"
-                        id="leave_to"
-                      />
-                    </div>
+                    <label for="leave_to">To*</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="leave_to"
+                      id="leave_to"
+                    />
+                  </div>
                 </div>
               </div>
               {/* Leave  Type and Day type  */}

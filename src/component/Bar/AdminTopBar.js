@@ -3,7 +3,7 @@ import header from "../../assets/header.png";
 import { Link, NavLink } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 
-function NavBar() {
+const AdminNavBar = () => {
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -11,29 +11,7 @@ function NavBar() {
           <div className="logo">
             <img src={header} className="logo_img" alt="Logo" />
           </div>
-          <div className="link">
-            <NavLink
-              to="/dashboard"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/earning"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
-            >
-              Earning
-            </NavLink>
-            <NavLink
-              to="/leave"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
-            >
-              My Leave
-            </NavLink>
-          </div>
+
           <div className="user_info d-flex justify-content-md-between">
             <div>
               <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
@@ -119,9 +97,7 @@ function NavBar() {
                       <div>
                         <p className="dropdown_menu">
                           <span className="heading_text text-danger">
-
-                            <NavLink to="/">Log Out</NavLink>
-
+                            Log out
                           </span>
                           <br />
                         </p>
@@ -139,4 +115,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default AdminNavBar;
