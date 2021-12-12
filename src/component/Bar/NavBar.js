@@ -1,9 +1,16 @@
 import React from "react";
 import header from "../../assets/header.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
+import {logout} from '../../HelperFunction/loginHelper'
 
 function NavBar() {
+  const navigagte = useNavigate()
+  const handleLogout = () => {
+    console.log('logout')
+    logout()
+    navigagte('/');
+  }
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -118,9 +125,8 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-danger">
-
-                            <NavLink to="/">Log Out</NavLink>
+                          <span className="heading_text text-danger" onClick={handleLogout}>
+                            Log Out
 
                           </span>
                           <br />

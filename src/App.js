@@ -20,6 +20,7 @@ import Leave from "./pages/Dashboard/Leave";
 import Handbook from "./pages/Dashboard/Handbook";
 import Profile from "./pages/Dashboard/Profile";
 import CheckInOut from "./pages/Dashboard/CheckInOut";
+import Test from "./pages/test/test";
 
 // Admin Pages
 import AdminDashboard from "./pages/Admin/AdminDashboard";
