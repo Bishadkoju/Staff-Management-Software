@@ -8,7 +8,10 @@ const AdminHandbook = () => {
       <AdminLayout />
       <div className="container mt-4">
         <div className="row">
-          <div className="col-md-3">
+          <div class="col-md-2">
+            <AdminSideNavBar />
+          </div>
+          <div className="col-md-2">
             <div className="handbook_left bg-white">
               <div className="p-2">
                 <h5>Handbook</h5>
@@ -28,7 +31,7 @@ const AdminHandbook = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-9 ">
+          <div className="col-md-8 ">
             <div className="bg-white">
               <div className="p-2">
                 <h1>HEADING 1</h1>

@@ -7,7 +7,7 @@ const AdminUserHeading = () => {
         <h2>Users</h2>
       </div>
       <div>
-        <a href="" class="btn btn_primary">
+        <a href="/register" class="btn btn_primary">
           <span class="pr-2">+</span>
           <span>Register a user</span>
         </a>

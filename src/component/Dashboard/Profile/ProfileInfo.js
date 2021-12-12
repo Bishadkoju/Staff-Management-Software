@@ -124,7 +124,6 @@ const ProfileInfo = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
