@@ -22,6 +22,17 @@ import Profile from "./pages/Dashboard/Profile";
 import CheckInOut from "./pages/Dashboard/CheckInOut";
 import Test from "./pages/test/test";
 
+// Admin Pages
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AdminUsers from "./pages/Admin/AdminUsers";
+import AdminEarning from "./pages/Admin/AdminEarning";
+import AdminLeave from "./pages/Admin/AdminLeave";
+import AdminHandbook from "./pages/Admin/AdminHandbook";
+import AdminProfile from "./pages/Admin/AdminProfile";
+
+import Test from "./pages/test/test";
+
+
 class App extends React.Component {
   state = {};
 
@@ -48,6 +59,14 @@ class App extends React.Component {
             <Route exact path="/handbook" element={<Handbook />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/check" element={<CheckInOut />} />
+
+
+            <Route exact path="/admin" element={<AdminDashboard />} />
+            <Route exact path="/admin/user" element={<AdminUsers />} />
+            <Route exact path="/admin/earning" element={<AdminEarning />} />
+            <Route exact path="/admin/leave" element={<AdminLeave />} />
+            <Route exact path="/admin/handbook" element={<AdminHandbook />} />
+            <Route exact path="/admin/profile" element={<AdminProfile />} />
 
             <Route exact path="/register" element={<Form />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />

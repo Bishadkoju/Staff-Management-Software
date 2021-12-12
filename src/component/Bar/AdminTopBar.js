@@ -1,16 +1,9 @@
 import React from "react";
 import header from "../../assets/header.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
-import {logout} from '../../HelperFunction/loginHelper'
 
-function NavBar() {
-  const navigagte = useNavigate()
-  const handleLogout = () => {
-    console.log('logout')
-    logout()
-    navigagte('/');
-  }
+const AdminNavBar = () => {
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -18,29 +11,7 @@ function NavBar() {
           <div className="logo">
             <img src={header} className="logo_img" alt="Logo" />
           </div>
-          <div className="link">
-            <NavLink
-              to="/dashboard"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/earning"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
-            >
-              Earning
-            </NavLink>
-            <NavLink
-              to="/leave"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
-            >
-              My Leave
-            </NavLink>
-          </div>
+
           <div className="user_info d-flex justify-content-md-between">
             <div>
               <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
@@ -62,7 +33,7 @@ function NavBar() {
                   className="dropdown-menu dropDownMenuLeft"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/profile">
+                  <a className="dropdown-item" href="/admin/profile">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-user" aria-hidden="true"></i>
@@ -79,7 +50,7 @@ function NavBar() {
                     </div>
                   </a>
 
-                  <a className="dropdown-item" href="/handbook">
+                  <a className="dropdown-item" href="/admin/handbook">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-user" aria-hidden="true"></i>
@@ -125,9 +96,8 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-danger" onClick={handleLogout}>
-                            Log Out
-
+                          <span className="heading_text text-danger">
+                            Log out
                           </span>
                           <br />
                         </p>
@@ -145,4 +115,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default AdminNavBar;

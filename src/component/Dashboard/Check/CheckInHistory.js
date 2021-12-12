@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Leave_table() {
+function Check_in_history() {
     return (
         <div className="div_format mt-4 pt-3">
             <span className="heading_text">Check in/out History</span>
@@ -24,11 +24,7 @@ function Leave_table() {
                     <td className="text-muted muted_text">08:45 PM</td>
                     <td className="text-muted muted_text">8 hr 6 mins</td>
                     <td>
-                      <input
-                        type="checkbox"
-                        name="action_check_in"
-                        id="action_check_in"
-                      />
+                      <input type="checkbox" name="action_check_in" id="action_check_in" />
                     </td>
                   </tr>
 
@@ -39,11 +35,7 @@ function Leave_table() {
                     <td className="text-muted muted_text">08:45 PM</td>
                     <td className="text-muted muted_text">8 hr 6 mins</td>
                     <td>
-                      <input
-                        type="checkbox"
-                        name="action_check_in"
-                        id="action_check_in"
-                      />
+                      <input type="checkbox" name="action_check_in" id="action_check_in" />
                     </td>
                   </tr>
 
@@ -54,18 +46,15 @@ function Leave_table() {
                     <td className="text-muted muted_text">08:45 PM</td>
                     <td className="text-muted muted_text">8 hr 6 mins</td>
                     <td>
-                      <input
-                        type="checkbox"
-                        name="action_check_in"
-                        id="action_check_in"
-                      />
+                      <input type="checkbox" name="action_check_in" id="action_check_in" />
                     </td>
                   </tr>
+
                 </tbody>
               </table>
               <div className="see_more_check_in_table d-flex justify-content-end">
                 <div>
-                  <a href="" className="btn btn-primary">See More...</a>
+                  <a href="/check" className="btn btn-primary">See More...</a>
                 </div>
               </div>
             </div>
@@ -73,4 +62,4 @@ function Leave_table() {
     )
 }
 
-export default Leave_table
+export default Check_in_history

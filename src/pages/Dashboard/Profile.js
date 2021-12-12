@@ -28,9 +28,10 @@ const Profile = () => {
         </div>
       </div>
       {/* end of Profile Heading  */}
-
-      <ProfileInfo />
-      <ProfileModal />
+      <div className="container">
+        <ProfileInfo />
+        <ProfileModal />
+      </div>
     </div>
   );
 };

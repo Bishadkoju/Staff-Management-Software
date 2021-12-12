@@ -1,8 +1,6 @@
 import axios from "axios";
 import { logout } from "./loginHelper";
 
-
-
 export const baseURL = "https://sms05.herokuapp.com/api/v1";
 
 const axiosInstance = axios.create({
