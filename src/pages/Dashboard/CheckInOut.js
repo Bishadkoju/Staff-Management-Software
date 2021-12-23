@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CheckTable from "../../component/Dashboard/Check/CheckTable";
 import Layout from "../../HOC/Layout";
+import axiosInstance from "../../HelperFunction/Axios";
 
 const CheckInOut = () => {
+  const [attendenceDate, setAttendenceDate] = useState("");
+  const [attendence, setAttendence] = useState([]);
+  const [selecteDate, setSelectDate] = useState("");
+
+  const handleChange = async (e) => {
+    let date = e.target.value.slice(0, 7);
+    if(selecteDate == ""){
+
+    }
+    setAttendenceDate(e.target.value);
+    await axiosInstance
+      .get(`/attendance/self/list/${date}/`)
+      .then((res) => {
+        setAttendence(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  
+
+  useEffect(() => {
+    const getAttendenceList = async () => {
+      await axiosInstance
+        .get("/attendance/list/")
+        .then((res) => {
+          setAttendence(res.data);
+        })
+        .catch((err) => {
+          // error handling
+        });
+    };
+
+    getAttendenceList();
+  }, []);
+
   return (
     <div className="body">
       <Layout></Layout>
@@ -20,33 +59,13 @@ const CheckInOut = () => {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-12">
-            <div className="dropdown">
-              <button
-                className="btn btn-primary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-calendar pr-2" aria-hidden="true"></i>
-                December 2021
-              </button>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
-            </div>
+            <input
+              type="date"
+              className="attendence_date date_input"
+              name="attendence_date"
+              value={attendenceDate}
+              onChange={(e) => handleChange(e)}
+            />
           </div>
         </div>
       </div>
@@ -54,7 +73,7 @@ const CheckInOut = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <CheckTable />
+            <CheckTable attendence={attendence} />
           </div>
         </div>
       </div>

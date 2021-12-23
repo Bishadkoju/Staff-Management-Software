@@ -14,7 +14,7 @@ const Stores = () => {
           <img
             className="mr-3"
             src={StoreImg}
-            alt="Generic placeholder image"
+            alt="Generic placeholder"
             style={StoreImageStyle}
           />
           <div className="media-body">
