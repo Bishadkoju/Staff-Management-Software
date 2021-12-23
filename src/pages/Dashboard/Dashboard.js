@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from "react";
-import axiosInstance from "../../HelperFunction/Axios";
 import Layout from "../../HOC/Layout";
 import InfoBar from "../../component/Bar/InfoBar";
 import CheckIn from "../../component/Dashboard/CheckIn";
 import Notice from "../../component/Dashboard/Notice/Notice";
 import CheckInHistory from "../../component/Dashboard/CheckInHistory";
 
-function Dashboard() {
+const Dashboard = () => {
 
   return (
     <div className="body">
@@ -40,9 +39,9 @@ function Dashboard() {
       </div>
 
       {/* Check In or Checkout History */}
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
             <CheckInHistory />
           </div>
         </div>

@@ -10,10 +10,15 @@ function CheckInHistory(props) {
 
 
   const getAttendance = async () => {
-    const res = await axiosInstance.get("employee/self/attendances/");
-    if (res.status === 200) {
-      setAttendances(res.data.slice(0, limit));
-    }
+    await axiosInstance.get('/attendance/list/')
+    .then(res => {
+      setAttendances(res.data);
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    
   };
   return (
     <div className="div_format mt-4 pt-3">

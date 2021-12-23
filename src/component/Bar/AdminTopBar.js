@@ -68,7 +68,7 @@ const AdminNavBar = () => {
                   </a>
 
                   <a
-                    class="dropdown-item"
+                    className="dropdown-item"
                     href="#feedbackModal"
                     data-toggle="modal"
                     data-target="#feedbackModal"

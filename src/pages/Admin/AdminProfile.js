@@ -8,27 +8,27 @@ import CheckLeaveEarningTable from "../../component/Admin/AdminProfile/CheckLeav
 
 const AdminProfile = () => {
   return (
-    <div class="body">
+    <div className="body">
       <AdminLayout />
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-2">
             <AdminSideNavBar />
           </div>
-          <div class="col-md-10">
+          <div className="col-md-10">
             <div className="row mb-3">
-              <div class="col-md-12 d-flex justify-content-between pt-3">
+              <div className="col-md-12 d-flex justify-content-between pt-3">
                 <div>
                   <span>Users &#62; </span>
-                  <span class="font-weight-bold f_24">Joe Halen</span>
+                  <span className="font-weight-bold f_24">Joe Halen</span>
                 </div>
                 <div>
                   <button
-                    class="btn btn_primary"
+                    className="btn btn_primary"
                     data-toggle="modal"
                     data-target="#editProfileModal"
                   >
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                     Edit Profile
                   </button>
                 </div>

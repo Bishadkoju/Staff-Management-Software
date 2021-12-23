@@ -54,11 +54,11 @@ class App extends React.Component {
               element={<Login setUser={this.setUser} />}
             />
             <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/earning" element={<Earning />} />
-            <Route exact path="/leave" element={<Leave />} />
-            <Route exact path="/handbook" element={<Handbook />} />
-            <Route exact path="/profile" element={<Profile />} />
-            <Route exact path="/check" element={<CheckInOut />} />
+            <Route exact path="/dashboard/earning" element={<Earning />} />
+            <Route exact path="/dashboard/leave" element={<Leave />} />
+            <Route exact path="/dashboard/handbook" element={<Handbook />} />
+            <Route exact path="/dashboard/profile" element={<Profile />} />
+            <Route exact path="/dashboard/check" element={<CheckInOut />} />
 
 
             <Route exact path="/admin" element={<AdminDashboard />} />

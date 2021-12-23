@@ -6,7 +6,7 @@ const EarningLeaveInfo = (props) => {
   };
 
   return (
-    <div class="profile_summary d-flex justify-content-around">
+    <div className="profile_summary d-flex justify-content-around">
       <div>
         <img src={props.img} alt="Image" style={imgStyle} />
       </div>

@@ -45,9 +45,9 @@ export default class Reset extends Component {
             <Header />
             <div className="form-container">
                 
-            <form onSubmit={this.handleSubmit} class="login-form">
+            <form onSubmit={this.handleSubmit} className="login-form">
                            
-                <div class="reset-image-container">
+                <div className="reset-image-container">
                 <img src = {ResetHeader} className="imageReset"></ img>
                 </div>
                 <br/><br/><br/><br/><br/><br/><br/><br/>
@@ -62,7 +62,7 @@ export default class Reset extends Component {
                     <input type = "password" className="" placeholder="Confirm New Password" onChange={e => this.confirmPassword = e.target.value}/>
                 </div>
 
-                <div class="button-container">
+                <div className="button-container">
                 <button className="login-button">Submit</button>
                 <button className="login-button-2">Cancel</button>
                 </div>
