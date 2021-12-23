@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Layout from "../../HOC/Layout";
 import InfoBar from "../../component/Bar/InfoBar";
 import CheckIn from "../../component/Dashboard/CheckIn";
@@ -6,7 +6,6 @@ import Notice from "../../component/Dashboard/Notice/Notice";
 import CheckInHistory from "../../component/Dashboard/CheckInHistory";
 
 const Dashboard = () => {
-
   return (
     <div className="body">
       <Layout></Layout>

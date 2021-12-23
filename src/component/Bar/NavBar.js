@@ -62,7 +62,7 @@ function NavBar() {
                   className="dropdown-menu dropDownMenuLeft"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/profile">
+                  <a className="dropdown-item" href="/dashboard/profile">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-user" aria-hidden="true"></i>
