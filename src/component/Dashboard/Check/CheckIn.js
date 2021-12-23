@@ -1,6 +1,7 @@
 import React from "react";
 
 function Check_In() {
+
   return (
     <div className="div_format pt-3">
       <span className="heading_text">Check In</span>

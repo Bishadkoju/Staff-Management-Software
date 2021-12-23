@@ -19,7 +19,7 @@ const IncreaseSalaryModal = () => {
                   <span className="heading_text">Increase Salary</span>
                 </div>
                 <div>
-                  <a className="btn cross_button" data-dismiss="modal">
+                  <a className="btn cross_button" data-dismiss="modal" href="/#">
                     <i className="fa fa-times" aria-hidden="true"></i>
                   </a>
                 </div>

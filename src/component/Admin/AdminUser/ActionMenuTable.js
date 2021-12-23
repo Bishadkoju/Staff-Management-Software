@@ -8,7 +8,7 @@ const ActionMenuTable = () => {
       <div className="dropdown show">
         <a
           className="dropdown-toggle drop_menu_no_down_arrow"
-          href="#"
+          href="/#"
           role="button"
           id="dropdownMenuLink"
           data-toggle="dropdown"
@@ -44,7 +44,7 @@ const ActionMenuTable = () => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="/#">
             <div
               className="
                 dropdown_item_desc
@@ -61,7 +61,7 @@ const ActionMenuTable = () => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="/#">
             <div
               className="
                 dropdown_item_desc
@@ -102,7 +102,7 @@ const ActionMenuTable = () => {
             </div>
           </a>
           <hr />
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="/#">
             <div
               className="
                               dropdown_item_desc
@@ -119,7 +119,7 @@ const ActionMenuTable = () => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="/#">
             <div
               className="
                 dropdown_item_desc

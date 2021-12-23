@@ -1,6 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
+import axiosInstance from '../../../HelperFunction/Axios';
 
 const ApplyLeaveModal = () => {
+  const [formData, setFormData] = useState({
+    leave_type : "",
+    day_type : "",
+    leave_from : "",
+    leave_to : "",
+    inform_team : "",
+    inform_peers : "",
+    contact_availability : "",
+    reason : ""
+  });
+
+  const {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason} = formData;
+
+  const handleChange = (e) => {
+    setFormData((prevFormData) => {
+      return {...prevFormData, [e.target.name]: e.target.value};
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosInstance.post("/leave/request/add/", {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason})
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   return (
     <div
       className="modal fade bd-example-modal-lg"
@@ -21,7 +52,7 @@ const ApplyLeaveModal = () => {
             <hr />
           </div>
 
-          <form>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="Modalform leaveModalForm px-4">
               {/* Leave  Type and Day type   */}
               <div className="row">
@@ -36,7 +67,8 @@ const ApplyLeaveModal = () => {
                         type="radio"
                         name="leave_type"
                         id="day_type1"
-                        value="casual"
+                        value="CAS"
+                        onChange={(e) => handleChange(e)}
                       />
                       <label
                         className="form-check-label text-muted muted_text"
@@ -51,7 +83,8 @@ const ApplyLeaveModal = () => {
                         type="radio"
                         name="leave_type"
                         id="day_type2"
-                        value="sick"
+                        value="SK"
+                        onChange={(e) => handleChange(e)}
                       />
                       <label
                         className="form-check-label text-muted muted_text"
@@ -66,7 +99,8 @@ const ApplyLeaveModal = () => {
                         type="radio"
                         name="leave_type"
                         id="day_type3"
-                        value="compensation"
+                        value="COM"
+                        onChange={(e) => handleChange(e)}
                       />
                       <label
                         className="form-check-label text-muted muted_text"
@@ -84,6 +118,8 @@ const ApplyLeaveModal = () => {
                       className="form-control"
                       name="leave_from"
                       id="leave_from"
+                      value={leave_from}
+                      onChange={(e) => handleChange(e)}
                     />
                   </div>
                 </div>
@@ -98,7 +134,8 @@ const ApplyLeaveModal = () => {
                         type="radio"
                         name="day_type"
                         id="day_type_1"
-                        value="casual"
+                        value="F"
+                        onChange={(e) => handleChange(e)}
                       />
                       <label
                         className="form-check-label text-muted muted_text"
@@ -113,7 +150,8 @@ const ApplyLeaveModal = () => {
                         type="radio"
                         name="day_type"
                         id="day_type_2"
-                        value="sick"
+                        value="FH"
+                        onChange={(e) => handleChange(e)}
                       />
                       <label
                         className="form-check-label text-muted muted_text"
@@ -128,7 +166,8 @@ const ApplyLeaveModal = () => {
                         type="radio"
                         name="day_type"
                         id="day_type_3"
-                        value="compensation"
+                        value="SH"
+                        onChange={(e) => handleChange(e)}
                       />
                       <label
                         className="form-check-label text-muted muted_text"
@@ -146,6 +185,8 @@ const ApplyLeaveModal = () => {
                       className="form-control"
                       name="leave_to"
                       id="leave_to"
+                      value={leave_to}
+                      onChange={(e) => handleChange(e)}
                     />
                   </div>
                 </div>
@@ -166,7 +207,10 @@ const ApplyLeaveModal = () => {
                       type="text"
                       className="form-control"
                       id="basic-url"
+                      name="inform_team"
                       aria-describedby="basic-addon3"
+                      onChange={(e) => handleChange(e)}
+                      value={inform_team}
                     />
                   </div>
 
@@ -178,10 +222,13 @@ const ApplyLeaveModal = () => {
                     </div>
                     <input
                       type="text"
+                      name="inform_peers"
                       className="form-control"
                       id="basic-url"
                       aria-describedby="basic-addon3"
                       placeholder="Start typing your Peer's name"
+                      onChange={(e) => handleChange(e)}
+                      value={inform_peers}
                     />
                   </div>
                 </div>
@@ -194,11 +241,12 @@ const ApplyLeaveModal = () => {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="urgent_call_bool"
+                      name="contact_availability"
                       id="urgent_call"
                       value="yes"
+                      onChange={(e) => handleChange(e)}
                     />
-                    <label className="form-check-label" htmlFor="urgent_call_bool">
+                    <label className="form-check-label" htmlFor="contact_availability">
                       Yes
                     </label>
                   </div>
@@ -206,11 +254,12 @@ const ApplyLeaveModal = () => {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="urgent_call_bool"
+                      name="contact_availability"
                       id="urgent_call"
                       value="no"
+                      onChange={(e) => handleChange(e)}
                     />
-                    <label className="form-check-label" htmlFor="urgent_call_bool">
+                    <label className="form-check-label" htmlFor="contact_availability">
                       No
                     </label>
                   </div>
@@ -222,6 +271,9 @@ const ApplyLeaveModal = () => {
                       className="form-control"
                       id="reason_textarea"
                       rows="3"
+                      name="reason"
+                      onChange={(e) => handleChange(e)}
+                      value={reason}
                     ></textarea>
                   </div>
                 </div>

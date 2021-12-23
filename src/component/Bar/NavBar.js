@@ -1,6 +1,6 @@
 import React from "react";
 import header from "../../assets/header.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import {NavLink, useNavigate } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 import {logout} from '../../HelperFunction/loginHelper'
 
@@ -62,7 +62,7 @@ function NavBar() {
                   className="dropdown-menu dropDownMenuLeft"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/profile">
+                  <a className="dropdown-item" href="/dashboard/profile">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-user" aria-hidden="true"></i>
@@ -118,7 +118,7 @@ function NavBar() {
                     </div>
                   </a>
 
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/#">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-sign-out" aria-hidden="true"></i>
