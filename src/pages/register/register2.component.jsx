@@ -29,8 +29,8 @@ export default class Register extends Component {
         <Background />
         <Header />
         <div className="register-form-container">
-          <form class="register-form">
-            <div class="register-top-header">
+          <form className="register-form">
+            <div className="register-top-header">
               <h3 className="header-text bigfont marginup-lg"> Register</h3>
               <p className="login-text marginup smallfont">
                 {" "}
@@ -126,7 +126,7 @@ export default class Register extends Component {
               </div>
             </div>
 
-            <div class="button-container buttonRegister2">
+            <div className="button-container buttonRegister2">
               <button onClick={this.continue} className="login-button">
                 Next
               </button>

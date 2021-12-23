@@ -3,17 +3,17 @@ import ActionMenuTable from "./ActionMenuTable";
 
 const AdminUserTable = () => {
   return (
-    <div class="user_table div_format pt-4">
-      <div class="form-group">
+    <div className="user_table div_format pt-4">
+      <div className="form-group">
         <input
           type="text"
           name="user_search"
           id="user_search"
           placeholder="Search User here..."
-          class="user_table_search_user"
+          className="user_table_search_user"
         />
       </div>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -28,25 +28,25 @@ const AdminUserTable = () => {
         </thead>
         <tbody>
           <tr>
-            <td class="text-muted">Mark</td>
-            <td class="text-muted">Manager</td>
-            <td class="text-muted">mark@gmail.com</td>
-            <td class="text-muted">9823413123</td>
-            <td class="text-primary">$ 15.01</td>
-            <td class="text-primary">$10</td>
-            <td class="text-primary">$14</td>
+            <td className="text-muted">Mark</td>
+            <td className="text-muted">Manager</td>
+            <td className="text-muted">mark@gmail.com</td>
+            <td className="text-muted">9823413123</td>
+            <td className="text-primary">$ 15.01</td>
+            <td className="text-primary">$10</td>
+            <td className="text-primary">$14</td>
             <td>
               <ActionMenuTable />
             </td>
           </tr>
           <tr>
-            <td class="text-muted">Jacob</td>
-            <td class="text-muted">Admin</td>
-            <td class="text-muted">jacob@gmail.com</td>
-            <td class="text-muted">9823413123</td>
-            <td class="text-primary">$ 15.01</td>
-            <td class="text-primary">$10</td>
-            <td class="text-primary">$14</td>
+            <td className="text-muted">Jacob</td>
+            <td className="text-muted">Admin</td>
+            <td className="text-muted">jacob@gmail.com</td>
+            <td className="text-muted">9823413123</td>
+            <td className="text-primary">$ 15.01</td>
+            <td className="text-primary">$10</td>
+            <td className="text-primary">$14</td>
             <td>
               <ActionMenuTable />
             </td>

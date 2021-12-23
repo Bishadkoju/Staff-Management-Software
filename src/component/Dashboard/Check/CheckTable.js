@@ -1,6 +1,27 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axiosInstance from "../../../HelperFunction/Axios";
 
 function CheckTable() {
+  const [attendence, setAttendence] = useState([]);
+
+  useEffect(() => {
+    getAttendenceList();
+  }, []);
+
+  const getAttendenceList = async () => {
+    await axiosInstance.get('/attendance/list/')
+    .then(res => {
+      setAttendence(res.data);
+      console.log("successful");
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log("Error");
+      console.log(err);
+    })
+  }
+
+
     return (
         <div className="div_format mt-4 pt-3">
             <span className="heading_text">Check in/out History</span>

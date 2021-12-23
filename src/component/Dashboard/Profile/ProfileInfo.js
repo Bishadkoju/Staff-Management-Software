@@ -49,7 +49,7 @@ const ProfileInfo = () => {
     let display = [];
     for (let i = 0; i < 3; i++) {
       display.push(
-        <div class="col-md-4 px-5">
+        <div className="col-md-4 px-5">
           {profileDetailInfoArr[i * 4] ? (
             <ProfileDetailInfo
               name={profileDetailInfoArr[i * 4]}
@@ -92,27 +92,27 @@ const ProfileInfo = () => {
   };
 
   return (
-      <div class="row">
-        <div class="col-md-12">
-          <div class="profile_div bg-white">
-            <div class="cover_photo" style={coverPhotoStyle}></div>
-            <div class="profile_picture_div">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="profile_div bg-white">
+            <div className="cover_photo" style={coverPhotoStyle}></div>
+            <div className="profile_picture_div">
               <img
-                class="profile_img rounded-circle"
+                className="profile_img rounded-circle"
                 src={ProfileImage}
                 alt="Profile Image"
               />
-              <h3 class="user_name">Esther Howard</h3>
-              <div class="row">
-                <div class="offset-md-2"></div>
-                <div class="col-md-2 font_14 pl-5">
+              <h3 className="user_name">Esther Howard</h3>
+              <div className="row">
+                <div className="offset-md-2"></div>
+                <div className="col-md-2 font_14 pl-5">
                   <span className="text-muted">matt@mail.com</span>
                   <br />
-                  <span class="font-weight-bold">Employee</span>
+                  <span className="font-weight-bold">Employee</span>
                   <span> #2356</span>
                 </div>
-                <div class="col-md-8">
-                  <div class="d-flex justify-content-end">
+                <div className="col-md-8">
+                  <div className="d-flex justify-content-end">
                     {displayEarningLeaveInfo()}
                   </div>
                   <hr />
@@ -120,7 +120,7 @@ const ProfileInfo = () => {
               </div>
             </div>
 
-            <div class="row profile_info">{displayProfileDetailInfo()}</div>
+            <div className="row profile_info">{displayProfileDetailInfo()}</div>
           </div>
         </div>
       </div>

@@ -6,14 +6,14 @@ import Stores from "../../component/Admin/Stores";
 
 const AdminDashboard = () => {
   return (
-    <div class="body">
+    <div className="body">
       <AdminLayout />
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-2">
             <AdminSideNavBar />
           </div>
-          <div class="col-md-10">
+          <div className="col-md-10">
             <h2>Dashboard</h2>
             <div className="row mt-4">
               <div className="col-md-3">
@@ -30,10 +30,10 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-            <div class="row mb-3">
-              <div class="col-md-12 mt-4">
-                <div class="div_format">
-                  <span class="heading_text">Stores Details</span>
+            <div className="row mb-3">
+              <div className="col-md-12 mt-4">
+                <div className="div_format">
+                  <span className="heading_text">Stores Details</span>
                   <hr />
                   <Stores />
                   <Stores />

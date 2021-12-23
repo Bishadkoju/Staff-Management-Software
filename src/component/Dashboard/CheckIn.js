@@ -16,19 +16,23 @@ function CheckIn(props) {
   },[])
 
   const getStore = async() => {
-    const res = await axiosInstance.get("employee/")
-      if(res.status === 200) {
-        if(res.data.employee){
-          setStore(res.data.employee.store)
-        }
-      }
+    await axiosInstance.get("employee/")
+    .then(res => {
+      setStore(res.data.employee.store)
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   const getAttendance = async() => {
-    const res = await axiosInstance.get("employee/self/attendances/")
-      if(res.status === 200) {
-          setAttendances(res.data)
-      }
+    await axiosInstance.get("employee/self/attendances/")
+    .then(res =>  {
+      setAttendances(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   const checkCheckedIn =() => {
@@ -91,36 +95,36 @@ function CheckIn(props) {
   };
 
   return (
-    <div class="div_format pt-3">
-      <span class="heading_text">Check In</span>
+    <div className="div_format pt-3">
+      <span className="heading_text">Check In</span>
       <br />
-      <span class="muted_text text-muted">
+      <span className="muted_text text-muted">
         Check In/Out to make an attendance
       </span>
-      <div class="desc">
-        <div class="row">
-          <div class="col-md-3">
-          <button class="btn btn-primary check_in_background btn-xl" disabled={disableCheckIn} onClick={toggleCheckIn}>{checkInStrings[hasCheckedIn]}</button>
+      <div className="desc">
+        <div className="row">
+          <div className="col-md-3">
+          <button className="btn btn-primary check_in_background btn-xl" disabled={disableCheckIn} onClick={toggleCheckIn}>{checkInStrings[hasCheckedIn]}</button>
           </div>
-          <div class="col-md-9">
-            <div class="medium_font">
-              <span class="">29 Nov</span>
+          <div className="col-md-9">
+            <div className="medium_font">
+              <span className="">29 Nov</span>
               <br />
-              <span class="text-muted muted_text ">Check In :</span>
-              <span class="time pr-4 ">10:45 AM</span>
+              <span className="text-muted muted_text ">Check In :</span>
+              <span className="time pr-4 ">10:45 AM</span>
               <span>Check Out :</span>
-              <span class="time">03:45 PM</span>
+              <span className="time">03:45 PM</span>
             </div>
-            <div class="medium_font primary_color pt-3">
+            <div className="medium_font primary_color pt-3">
               <h5>Today</h5>
-              <div class="d-flex justify-content-between medium_font">
+              <div className="d-flex justify-content-between medium_font">
                 <div>
                   <h6>Check In </h6>
-                  <i class="fa fa-minus" aria-hidden="true"></i>
+                  <i className="fa fa-minus" aria-hidden="true"></i>
                 </div>
                 <div>
                   <h6>Check Out</h6>
-                  <i class="fa fa-minus" aria-hidden="true"></i>
+                  <i className="fa fa-minus" aria-hidden="true"></i>
                 </div>
                 <div>
                   <h6>Total</h6>

@@ -22,21 +22,21 @@ function NavBar() {
             <NavLink
               to="/dashboard"
               className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
+              activeclassname="active_nav"
             >
               Home
             </NavLink>
             <NavLink
-              to="/earning"
+              to="/dashboard/earning"
               className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
+              activeclassname="active_nav"
             >
               Earning
             </NavLink>
             <NavLink
-              to="/leave"
+              to="/dashboard/leave"
               className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
+              activeclassname="active_nav"
             >
               My Leave
             </NavLink>
@@ -97,7 +97,7 @@ function NavBar() {
                   </a>
 
                   <a
-                    class="dropdown-item"
+                    className="dropdown-item"
                     href="#feedbackModal"
                     data-toggle="modal"
                     data-target="#feedbackModal"

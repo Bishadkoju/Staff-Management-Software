@@ -16,11 +16,11 @@ export default function App() {
   }
 
   return (
-    <div class="body">
+    <div className="body">
       <AdminLayout />
       <div className="container-fluid mt-4">
         <div className="row">
-          <div class="col-md-2">
+          <div className="col-md-2">
             <AdminSideNavBar />
           </div>
           <div className="col-md-2">

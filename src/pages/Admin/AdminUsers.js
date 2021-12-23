@@ -6,14 +6,14 @@ import AdminUserTable from "../../component/Admin/AdminUser/AdminUserTable";
 
 const AdminUsers = () => {
   return (
-    <div class="body">
+    <div className="body">
       <AdminLayout />
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-2">
             <AdminSideNavBar />
           </div>
-          <div class="col-md-10">
+          <div className="col-md-10">
             <AdminUserHeading />
             <AdminUserTable />
           </div>

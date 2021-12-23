@@ -27,7 +27,7 @@ export default class ForgotPassword extends Component {
             <Header />
             <div className="form-container">
                 
-            <form onSubmit={this.handleSubmit} class="login-form">
+            <form onSubmit={this.handleSubmit} className="login-form">
 
                 <h3 className="header-text"> Reset your Password</h3>
 
@@ -38,7 +38,7 @@ export default class ForgotPassword extends Component {
                     
                 </div>
 
-                <div class="button-container">
+                <div className="button-container">
                 <button className="login-button">Request</button>
                 <button className="login-button-2">Cancel</button>
                 </div>

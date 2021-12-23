@@ -9,7 +9,7 @@ const CLEHeading = (props) => {
         <div className="pr-3">
           <span
             className={
-              props.select == 0 ? "nav_cle_head_active" : "nav_cle_head"
+              props.select === 0 ? "nav_cle_head_active" : "nav_cle_head"
             }
           >
             Check In/Out
@@ -18,7 +18,7 @@ const CLEHeading = (props) => {
         <div className="pr-3">
           <span
             className={
-              props.select == 1 ? "nav_cle_head_active" : "nav_cle_head"
+              props.select === 1 ? "nav_cle_head_active" : "nav_cle_head"
             }
           >
             Leave
@@ -27,7 +27,7 @@ const CLEHeading = (props) => {
         <div className="pr-3">
           <span
             className={
-              props.select == 2 ? "nav_cle_head_active" : "nav_cle_head"
+              props.select === 2 ? "nav_cle_head_active" : "nav_cle_head"
             }
           >
             Earning

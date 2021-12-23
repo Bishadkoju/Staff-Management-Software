@@ -9,8 +9,8 @@ const LeaveSummaryBar = () => {
   
   return (
     <div className="d-flex justify-content-start muted_text">
-      <div class="media" style={{ maxWidth: "200px" }}>
-        <img class="mr-2" src={PiggyImg} alt="Piggy Image" style={imgStyle} />
+      <div className="media" style={{ maxWidth: "200px" }}>
+        <img className="mr-2" src={PiggyImg} alt="Piggy Image" style={imgStyle} />
         <div>
           <span className="muted_text text-muted">TOTAL LEAVE</span>
           <br />
