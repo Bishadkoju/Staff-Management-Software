@@ -1,10 +1,22 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+
 
 const AdminSideNavBar = () => {
+  //assigning location variable
+  const location = useLocation();
+
+  //destructuring pathname from location
+  const { pathname } = location;
+
+  //Javascript split method to get the name of the path in array
+  const splitLocation = pathname.split("/");
+  // {splitLocation[2] === "" ? "active" : ""}
+  // mb-2 pl-2 d-flex justify-content-start admin_nav
+
   return (
     <div className="bg-white side-menu pr-3 pt-3">
-      <NavLink to="/admin">
+      <NavLink exact to="/admin">
       <div
         className="
                 mb-2
@@ -15,6 +27,7 @@ const AdminSideNavBar = () => {
                 justify-content-start
                 admin_nav
               "
+        activeClassName = "active-side-nav"
       >
         <div className="div_flex_icon">
           <i className="fa fa-user" aria-hidden="true"></i>
@@ -25,7 +38,7 @@ const AdminSideNavBar = () => {
       </div>
       </NavLink>
 
-      <NavLink to="/admin/user">
+      <NavLink exact to="/admin/user">
         <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
           <div className="div_flex_icon">
             <i className="fa fa-user" aria-hidden="true"></i>
@@ -35,7 +48,7 @@ const AdminSideNavBar = () => {
           </div>
         </div>
       </NavLink>
-      <NavLink to="/admin/earning">
+      <NavLink exact to="/admin/earning">
         <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
           <div className="div_flex_icon">
             <i className="fa fa-usd" aria-hidden="true"></i>
@@ -45,7 +58,7 @@ const AdminSideNavBar = () => {
           </div>
         </div>
       </NavLink>
-      <NavLink to="/admin/leave">
+      <NavLink exact to="/admin/leave">
         <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
           <div className="div_flex_icon">
             <i className="fa fa-sign-out" aria-hidden="true"></i>
