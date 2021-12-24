@@ -1,16 +1,17 @@
 import React from "react";
 import header from "../../assets/header.png";
-import {NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
-import {logout} from '../../HelperFunction/loginHelper'
+import { logout } from "../../HelperFunction/loginHelper";
 
 function NavBar() {
-  const navigagte = useNavigate()
+  const navigagte = useNavigate();
   const handleLogout = () => {
-    console.log('logout')
-    logout()
-    navigagte('/');
-  }
+    console.log("logout");
+    logout();
+    navigagte("/");
+  };
+
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -22,21 +23,21 @@ function NavBar() {
             <NavLink
               to="/dashboard"
               className="mr-4 font-weight-bold"
-              activeclassname="active_nav"
+              exact
             >
               Home
             </NavLink>
             <NavLink
               to="/dashboard/earning"
               className="mr-4 font-weight-bold"
-              activeclassname="active_nav"
+              exact
             >
               Earning
             </NavLink>
             <NavLink
               to="/dashboard/leave"
               className="mr-4 font-weight-bold"
-              activeclassname="active_nav"
+              exact
             >
               My Leave
             </NavLink>
@@ -125,9 +126,11 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-danger" onClick={handleLogout}>
+                          <span
+                            className="heading_text text-danger"
+                            onClick={handleLogout}
+                          >
                             Log Out
-
                           </span>
                           <br />
                         </p>
