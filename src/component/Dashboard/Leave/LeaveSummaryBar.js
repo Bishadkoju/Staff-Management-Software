@@ -1,11 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PiggyImg from "../../../assets/piggy.png";
 import NoBoxInfoBar from "../General/NoBoxInfoBar";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const LeaveSummaryBar = () => {
   const imgStyle = {
     width: "30%",
   };
+
+  const [leaveHistory, setLeaveHistory] = useState([]);
+
+  useEffect(() => {
+    const getLeaveHistory = async () => {
+      await axiosInstance.get('/leave_history/self/view/')
+      .then(res => {
+        console.log(res.data);
+        setLeaveHistory(res.data.history);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+
+    getLeaveHistory();
+  }, [])
   
   return (
     <div className="d-flex justify-content-start muted_text">
@@ -19,16 +37,16 @@ const LeaveSummaryBar = () => {
       </div>
 
       <div className="pr-4">
-        <NoBoxInfoBar title="LEAVE LEFT" value="0" />
+        <NoBoxInfoBar title="LEAVE LEFT" value={leaveHistory.leaves_taken} />
       </div>
       <div className="pr-4">
-        <NoBoxInfoBar title="PAID LEAVE" value="0" />
+        <NoBoxInfoBar title="PAID LEAVE" value={leaveHistory.paid_leaves} />
       </div>
       <div className="pr-4">
-        <NoBoxInfoBar title="UNPAID LEAVE" value="0" />
+        <NoBoxInfoBar title="UNPAID LEAVE" value={leaveHistory.unpaid_leaves} />
       </div>
       <div className="pr-4">
-        <NoBoxInfoBar title="EARNING DEDUCT LEAVE" value="0" />
+        <NoBoxInfoBar title="EARNING DEDUCT LEAVE" value={leaveHistory.leaves_taken} />
       </div>
     </div>
   );
