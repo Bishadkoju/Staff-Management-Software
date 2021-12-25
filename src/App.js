@@ -27,9 +27,11 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminEarning from "./pages/Admin/AdminEarning";
 import AdminLeave from "./pages/Admin/AdminLeave";
-import AdminHandbook from "./pages/Admin/AdminHandbook";
 import AdminProfile from "./pages/Admin/AdminProfile";
-import AdminHandbookEditor from "./pages/Admin/AdminHandbookEditor";
+
+import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
+import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
+import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 
 
 
@@ -65,9 +67,13 @@ class App extends React.Component {
             <Route exact path="/admin/user" element={<AdminUsers />} />
             <Route exact path="/admin/earning" element={<AdminEarning />} />
             <Route exact path="/admin/leave" element={<AdminLeave />} />
-            <Route exact path="/admin/handbook" element={<AdminHandbook />} />
-            <Route exact path="/admin/handbook/edit" element={<AdminHandbookEditor />} />
             <Route exact path="/admin/profile" element={<AdminProfile />} />
+
+            <Route exact path="/admin/handbook" element={<AdminHandbook />} />
+            <Route exact path="/admin/handbook/create" element={<AdminHandbookCreate />} />
+            <Route exact path="/admin/handbook/edit" element={<AdminHandbookEditor />} />
+            <Route exact path="/admin/handbook/:id" element={<AdminHandbook />} />
+
 
             <Route exact path="/register" element={<Form />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />

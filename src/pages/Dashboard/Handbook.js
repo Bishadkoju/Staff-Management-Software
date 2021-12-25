@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from '../../HOC/Layout';
 
-
 function Handbook() {
   return (
     <div className="body">

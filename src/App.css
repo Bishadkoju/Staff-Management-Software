@@ -178,9 +178,22 @@ a:hover{
 }
 
 /* handbook page */
-.active_handbook{
+.active_handbook, .create_button{
     background-color: #516bbd;
+    border-radius: 5px;
     color: white;
+}
+
+.active_handbook_div{
+    width: 100%;
+}
+
+.active_handbook a,.create_button a{
+    color: white!important;
+}
+
+.handbook_side_link a{
+    color: #000;
 }
 
 /* Earning page  */
@@ -251,7 +264,7 @@ a:hover{
 }
 
 /* Admin page  */
-.side-menu{
+.side-menu, .vh-90{
     height: 90vh;
 }
 
