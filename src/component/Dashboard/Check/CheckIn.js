@@ -1,6 +1,99 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
+import axiosInstance from "../../../HelperFunction/Axios";
 
-function Check_In() {
+function CheckIn(props) {
+
+  const [hasCheckedIn, setCheckedIn] = useState(false);
+  const [disableCheckIn, setDisableCheckIn] = useState(false)
+
+  const [store, setStore] = useState(null)
+  const [attendances, setAttendances] = useState([])
+
+  useEffect(()=> {
+    getStore()
+    getAttendance()
+    checkCheckedIn()
+  },[])
+
+  const getStore = async() => {
+    await axiosInstance.get("/user/self/view/")
+    .then(res => {
+      console.log("user list")
+      setStore(res.data.store)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  const getAttendance = async() => {
+    await axiosInstance.get("/attendance/list/")
+    .then(res =>  {
+      setAttendances(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  const checkCheckedIn =() => {
+    console.clear()
+    if (attendances.length === 0) {
+      setCheckedIn(false);
+      return
+    }
+    console.log(attendances)
+    const todayDate = new Date().toISOString().slice(0, 10)
+    if (attendances[0].date === todayDate) {
+      setDisableCheckIn(true)
+    }
+
+  }
+
+  const checkInStrings = {
+    true: "Check Out",
+    false: "Check In",
+  };
+
+
+  const checkIn = async() => {
+    console.log("check in");
+    const data = {
+      "checked_in": true,
+      "store": store
+    }
+    try {
+      const res = await axiosInstance.post("/attendance/self/check_in/",data)
+      console.log(res)
+      if(res.status === 200) {
+          console.log('ok')
+      }
+    } catch (err) {
+      console.log(err.status);
+    }
+  };
+
+  const checkOut = async () => {
+    console.log("check out");
+    const data = {
+      "checked_out": true
+    }
+    try {
+      const res = await axiosInstance.post("/attendance/self/check_out/",data)
+      console.log(res)
+      if(res.status === 200) {
+          console.log('ok')
+      }
+    } catch (err) {
+      console.log(err.data);
+    }
+  };
+
+  const toggleCheckIn = () => {
+    console.log("toggle");
+    hasCheckedIn ? checkOut() : checkIn();
+    setCheckedIn(!hasCheckedIn);
+  };
 
   return (
     <div className="div_format pt-3">
@@ -12,12 +105,7 @@ function Check_In() {
       <div className="desc">
         <div className="row">
           <div className="col-md-3">
-            <div className="check_in_background text-center">
-              <br />
-              <span className="">
-                <a href="/check">Check In</a>
-              </span>
-            </div>
+          <button className="btn btn-primary check_in_background btn-xl" disabled={disableCheckIn} onClick={toggleCheckIn}>{checkInStrings[hasCheckedIn]}</button>
           </div>
           <div className="col-md-9">
             <div className="medium_font">
@@ -53,4 +141,4 @@ function Check_In() {
   );
 }
 
-export default Check_In;
+export default CheckIn;
