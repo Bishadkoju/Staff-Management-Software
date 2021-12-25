@@ -1,36 +1,37 @@
-import React from "react";
-import AdminLayout from "../../HOC/AdminLayout";
-import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
+import React, { useState, useEffect } from "react";
+import AdminLayout from "../../../HOC/AdminLayout";
+import AdminSideNavBar from "../../../component/Bar/AdminSideNavBar";
+import axiosInstance from "../../../HelperFunction/Axios";
+import HandbookSideNav from "../../../component/Handbook/HandbookSideNav";
 
 const AdminHandbook = () => {
+  const [handbooks, setHandbooks] = useState([]);
+
+  useEffect(() => {
+    const getHandbook = async () => {
+      await axiosInstance
+        .get("/handbook/list/")
+        .then((res) => {
+          setHandbooks(res.data.handbooks);
+          console.log(res.data.handbooks);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    getHandbook();
+  }, []);
+
   return (
     <div className="body">
       <AdminLayout />
-      <div className="container mt-4">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-md-2">
             <AdminSideNavBar />
           </div>
-          <div className="col-md-2">
-            <div className="handbook_left bg-white">
-              <div className="p-2">
-                <h5>Handbook</h5>
-                <hr />
-                <span className="active_handbook py-1 pr-4">
-                  <a className>Heading 1</a>
-                </span>
-                <br />
-                <span>Heading 2</span>
-                <br />
-                <span>Heading 3</span>
-                <br />
-                <span>Heading 4</span>
-                <br />
-                <span>Heading 5</span>
-                <br />
-              </div>
-            </div>
-          </div>
+          <HandbookSideNav handbooks = {handbooks} />
           <div className="col-md-8 ">
             <div className="bg-white">
               <div className="p-2">
