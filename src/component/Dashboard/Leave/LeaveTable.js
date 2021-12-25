@@ -60,22 +60,6 @@ function Leave_table() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="text-muted muted_text">
-                15 Nov 2021 - 15 Nov 2021
-              </td>
-              <td>Paid</td>
-              <td className="text-muted muted_text">Sick</td>
-              <td className="text-muted muted_text">Headached</td>
-              <td className="text-muted muted_text">Ram</td>
-              <td>
-                <input
-                  type="checkbox"
-                  name="action_check_in"
-                  id="action_check_in"
-                />
-              </td>
-            </tr>
             {displayLeaveData()}
           </tbody>
         </table>

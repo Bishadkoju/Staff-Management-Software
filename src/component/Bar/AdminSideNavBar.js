@@ -11,23 +11,24 @@ const AdminSideNavBar = () => {
 
   //Javascript split method to get the name of the path in array
   const splitLocation = pathname.split("/");
-  // {splitLocation[2] === "" ? "active" : ""}
-  // mb-2 pl-2 d-flex justify-content-start admin_nav
+
+  const isActive = (keyWord, splitLocation) => {
+    return (splitLocation[2] === keyWord || (splitLocation.length === 2 && keyWord === "")) ? "active-side-nav" : "";
+  }
 
   return (
     <div className="bg-white side-menu pr-3 pt-3">
       <NavLink exact to="/admin">
       <div
-        className="
+        className={`
                 mb-2
-                active-side-nav
                 pl-2
                 py-1
                 d-flex
                 justify-content-start
                 admin_nav
-              "
-        activeClassName = "active-side-nav"
+                ${isActive("", splitLocation)}
+              `}
       >
         <div className="div_flex_icon">
           <i className="fa fa-user" aria-hidden="true"></i>
@@ -39,7 +40,7 @@ const AdminSideNavBar = () => {
       </NavLink>
 
       <NavLink exact to="/admin/user">
-        <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
+        <div className={`mb-2 pl-2 py-1 d-flex justify-content-start admin_nav ${isActive("user", splitLocation)}`}>
           <div className="div_flex_icon">
             <i className="fa fa-user" aria-hidden="true"></i>
           </div>
@@ -49,7 +50,7 @@ const AdminSideNavBar = () => {
         </div>
       </NavLink>
       <NavLink exact to="/admin/earning">
-        <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
+        <div className={`mb-2 pl-2 py-1 d-flex justify-content-start admin_nav ${isActive("earning", splitLocation)}`}>
           <div className="div_flex_icon">
             <i className="fa fa-usd" aria-hidden="true"></i>
           </div>
@@ -59,7 +60,7 @@ const AdminSideNavBar = () => {
         </div>
       </NavLink>
       <NavLink exact to="/admin/leave">
-        <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
+        <div className={`mb-2 pl-2 py-1 d-flex justify-content-start admin_nav ${isActive("leave", splitLocation)}`}>
           <div className="div_flex_icon">
             <i className="fa fa-sign-out" aria-hidden="true"></i>
           </div>
@@ -69,7 +70,7 @@ const AdminSideNavBar = () => {
         </div>
       </NavLink>
 
-        <div className="mb-2 pl-2 d-flex justify-content-start admin_nav">
+        <div className={`mb-2 pl-2 py-1 d-flex justify-content-start admin_nav ${isActive("store", splitLocation)}`}>
           <div className="div_flex_icon">
             <i className="fa fa-archive" aria-hidden="true"></i>
           </div>

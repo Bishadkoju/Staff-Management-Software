@@ -119,8 +119,8 @@ a:hover{
     cursor: pointer;
 }
 
-#nav .active{
-    color: #0085ff;
+#nav .active_nav_dash{
+    color: #0085ff; 
 }
 
 #nav .profile_picture{

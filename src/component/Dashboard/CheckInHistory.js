@@ -13,12 +13,10 @@ function CheckInHistory(props) {
     await axiosInstance.get('/attendance/list/')
     .then(res => {
       setAttendances(res.data);
-      console.log(res.data);
     })
     .catch(err => {
       console.log(err);
     })
-    
   };
   return (
     <div className="div_format mt-4 pt-3">

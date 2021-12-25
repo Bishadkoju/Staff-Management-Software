@@ -1,8 +1,9 @@
 import React from "react";
 import header from "../../assets/header.png";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 import { logout } from "../../HelperFunction/loginHelper";
+
 
 function NavBar() {
   const navigagte = useNavigate();
@@ -11,6 +12,20 @@ function NavBar() {
     logout();
     navigagte("/");
   };
+
+  //assigning location variable
+  const location = useLocation();
+
+  //destructuring pathname from location
+  const { pathname } = location;
+
+  //Javascript split method to get the name of the path in array
+  const splitLocation = pathname.split("/");
+
+
+  const isActive = (keyWord, splitLocation) => {
+    return (splitLocation[2] === keyWord || (splitLocation.length === 2 && keyWord === "")) ? "active_nav_dash" : "";
+  }
 
   return (
     <div className="container-fluid text-white" id="nav">
@@ -22,22 +37,19 @@ function NavBar() {
           <div className="link">
             <NavLink
               to="/dashboard"
-              className="mr-4 font-weight-bold"
-              exact
+              className={`mr-4 font-weight-bold ${isActive("", splitLocation)}`}
             >
               Home
             </NavLink>
             <NavLink
               to="/dashboard/earning"
-              className="mr-4 font-weight-bold"
-              exact
+              className={`mr-4 font-weight-bold ${isActive("earning", splitLocation)}`}
             >
               Earning
             </NavLink>
             <NavLink
               to="/dashboard/leave"
-              className="mr-4 font-weight-bold"
-              exact
+              className={`mr-4 font-weight-bold ${isActive("leave", splitLocation)}`}
             >
               My Leave
             </NavLink>
