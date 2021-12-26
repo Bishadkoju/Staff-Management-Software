@@ -1,7 +1,35 @@
-import React from 'react'
+import React, { useState } from "react";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const FeedbackModal = () => {
-    return (
+  const [formData, setFormData] = useState({
+    subject: "",
+    message: "",
+    read: true,
+  });
+
+  const { subject, message, read } = formData;
+
+  const handleChange = (e) => {
+    setFormData((prevFormData) => {
+      return { ...prevFormData, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .post(`/feedback/create/`, { subject, message, read })
+      .then((res) => {
+        console.log(res);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return (
     <div
       className="modal fade"
       id="feedbackModal"
@@ -13,21 +41,41 @@ const FeedbackModal = () => {
       <div className="modal-dialog modal-lg">
         <div className="modal-content p-4">
           <div className="heading_modal">
-            <span className="heading_text text-black">Subject</span>
+            <span className="heading_text text-black">Give Feedback</span>
             <hr />
           </div>
 
-          <form>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="form-group">
-              <textarea name="feedback_message" id="feedback_message" rows="5" className="form-control" defaultValue="Enter messege here"></textarea>
-              <button type="submit" className="btn btn_primary mt-3">Send</button>
+              <label htmlFor="subject" className="text-dark">Subject</label>
+              <input
+                className="form-control"
+                name="subject"
+                value={subject}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message" className="text-dark">Message</label>
+              <textarea
+                name="message"
+                id="feedback_message"
+                rows="5"
+                className="form-control"
+                value={message}
+                onChange={(e) => handleChange(e)}
+              >
+                Enter your message...
+              </textarea>
+              <button type="submit" className="btn btn_primary mt-3">
+                Send
+              </button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
-    );
-}
+  );
+};
 
-export default FeedbackModal
+export default FeedbackModal;

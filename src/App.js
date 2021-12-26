@@ -4,10 +4,6 @@ import React from "react";
 
 import Login from "./pages/login/login.component";
 
-// import Register1 from './pages/register/ready/register1.component';
-// import Register2 from "./pages/register/ready/register2.component"
-// import Register3 from "./pages/register/ready/register3.component"
-
 import ForgotPassword from "./pages/forgot-password/forgot-password.component";
 import Reset from "./pages/reset/reset.component";
 import Home from "./pages/Home/home.component";
@@ -29,15 +25,16 @@ import AdminEarning from "./pages/Admin/AdminEarning";
 import AdminLeave from "./pages/Admin/AdminLeave";
 import AdminProfile from "./pages/Admin/AdminProfile";
 
+// Admin Handbook
 import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
 import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
 import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 
-
+// Not found
+import NotFound from "./component/NotFound";
 
 class App extends React.Component {
   state = {};
-
 
   setUser = (user) => {
     this.setState({
@@ -62,7 +59,6 @@ class App extends React.Component {
             <Route exact path="/dashboard/profile" element={<Profile />} />
             <Route exact path="/dashboard/check" element={<CheckInOut />} />
 
-
             <Route exact path="/admin" element={<AdminDashboard />} />
             <Route exact path="/admin/user" element={<AdminUsers />} />
             <Route exact path="/admin/earning" element={<AdminEarning />} />
@@ -70,10 +66,21 @@ class App extends React.Component {
             <Route exact path="/admin/profile" element={<AdminProfile />} />
 
             <Route exact path="/admin/handbook" element={<AdminHandbook />} />
-            <Route exact path="/admin/handbook/create" element={<AdminHandbookCreate />} />
-            <Route exact path="/admin/handbook/edit/:id" element={<AdminHandbookEditor />} />
-            <Route exact path="/admin/handbook/:id" element={<AdminHandbook />} />
-
+            <Route
+              exact
+              path="/admin/handbook/create"
+              element={<AdminHandbookCreate />}
+            />
+            <Route
+              exact
+              path="/admin/handbook/edit/:id"
+              element={<AdminHandbookEditor />}
+            />
+            <Route
+              exact
+              path="/admin/handbook/:id"
+              element={<AdminHandbook />}
+            />
 
             <Route exact path="/register" element={<Form />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />
@@ -85,6 +92,9 @@ class App extends React.Component {
 
             <Route path="/reset" element={<Reset />} />
             <Route path="/test" element={<Test />} />
+
+            <Route component={NotFound} />
+
           </Routes>
         </Router>
       </div>
