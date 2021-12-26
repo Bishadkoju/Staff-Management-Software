@@ -3,14 +3,19 @@ import JoditEditor from "jodit-react";
 import AdminLayout from "../../../HOC/AdminLayout";
 import AdminSideNavBar from "../../../component/Bar/AdminSideNavBar";
 import axiosInstance from "../../../HelperFunction/Axios";
+import {Navigate} from "react-router"
+
 
 export default function App() {
+  const [created, setCreated] = useState(false); 
+  const [createdHandbookId, setCreatedHandbookId] = useState(0);
+
   const editor = useRef(null);
   const [formData, setFormData] = useState({
     topic: "",
   });
 
-  const [content, setContent] = useState("Write you handbook description");
+  const [instructions, setInstructions] = useState("Write you handbook description");
   const config = {
     readonly: false,
     height: 400,
@@ -25,21 +30,30 @@ export default function App() {
   };
 
   function edithandle(content) {
-    setContent(content);
+    setInstructions(content);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submitted");
 
     await axiosInstance
-      .post("/handbook/create/", {topic, content })
+      .post("/handbook/create/", {topic, instructions })
       .then((res) => {
         console.log(res);
+        setCreatedHandbookId(res.data.id);
+        setCreated(true);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  if(created){
+    console.log(created);
+    console.log(createdHandbookId);
+    return <Navigate to={`/admin/handbook/${createdHandbookId}`} />
+  }
 
   return (
     <div className="body">
@@ -67,7 +81,7 @@ export default function App() {
               </div>
               <JoditEditor
                 ref={editor}
-                value={content}
+                value={instructions}
                 config={config}
                 onBlur={(e) => edithandle(e)}
                 // onChange={(newContent) => {}}
@@ -75,7 +89,7 @@ export default function App() {
               <button type="submit" className="btn btn_primary mt-2 mb-2">
                 Create
               </button>
-              <div dangerouslySetInnerHTML={{ __html: content }} />
+              <div dangerouslySetInnerHTML={{ __html: instructions }} />
             </form>
           </div>
         </div>

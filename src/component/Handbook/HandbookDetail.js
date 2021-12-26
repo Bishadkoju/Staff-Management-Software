@@ -42,8 +42,14 @@ const HandbookDetail = (props) => {
                 <h1>{handBook.topic}</h1>
               </div>
               <div>
+                <a
+                  href={`/admin/handbook/edit/${handBook.id}`}
+                  className="btn btn-success mr-2"
+                >
+                  Edit
+                </a>
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger ml-2"
                   onClick={(e) => deleteHandbook(e)}
                 >
                   Delete
@@ -52,7 +58,7 @@ const HandbookDetail = (props) => {
             </div>
 
             <hr />
-            {handBook.instructions}
+            <div dangerouslySetInnerHTML={{ __html: handBook.instructions }} />
           </div>
         </div>
       </div>

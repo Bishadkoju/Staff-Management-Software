@@ -71,7 +71,7 @@ class App extends React.Component {
 
             <Route exact path="/admin/handbook" element={<AdminHandbook />} />
             <Route exact path="/admin/handbook/create" element={<AdminHandbookCreate />} />
-            <Route exact path="/admin/handbook/edit" element={<AdminHandbookEditor />} />
+            <Route exact path="/admin/handbook/edit/:id" element={<AdminHandbookEditor />} />
             <Route exact path="/admin/handbook/:id" element={<AdminHandbook />} />
 
 
