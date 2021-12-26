@@ -205,11 +205,15 @@
 
 .image3{
     display:flex;
-    margin-top: 5px;
-    margin-left: 15px;
+    margin-top: 0px;
+    margin-left: 0px;
+    input{
+        background:rgba(61, 26, 26,0);
+        padding: 0px;
+    }
     .img-wrap{
         width: 280px;
-        height: 50px;
+        height: 100px;
     }
 }
   
