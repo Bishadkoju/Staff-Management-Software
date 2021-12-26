@@ -89,7 +89,7 @@ export default class Register extends Component {
                     e.currentTarget.focus();
                   }}
                   placeholder="Date of Birth"
-                  name="date"
+                  name="date_of_birth"
                   onChange={handleChange}
                 />
               </div>
@@ -116,7 +116,7 @@ export default class Register extends Component {
                     className=""
                     placeholder="Phone Number*"
                     required
-                    name="number"
+                    name="phone_number"
                     onChange={handleChange}
                   />
                 </div>

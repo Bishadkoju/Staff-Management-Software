@@ -22,7 +22,7 @@ export default class Register extends Component {
     this.props.prevStep();
   };
   render() {
-    const { handleChange, handleImageChange, imagePreviewUrl } = this.props;
+    const { handleChange, handleImageChange, imageSource } = this.props;
 
     return (
       <>
@@ -113,14 +113,13 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-input2 col-md image3">
-                  <ImageUpload name="photo" onChange={handleImageChange} />
+                  <ImageUpload name="photo" src={imageSource['photo']} label="Photo" onChange={handleImageChange} />
 
-                  <ImageUpload name="valid_document" onChange={handleImageChange} />
+                  <ImageUpload name="valid_document" src={imageSource['valid_document']} label="Valid Document" onChange={handleImageChange} />
                 </div>
                 <div className="form-input2 col-md image3">
-                  <ImageUpload name="pan" onChange={handleImageChange} />
 
-                  <ImageUpload name="contract_document" onChange={handleImageChange} />
+                  <ImageUpload name="contract_paper" src={imageSource['contract_paper']} label="Contract" onChange={handleImageChange} />
                 </div>
 
               </div>

@@ -26,7 +26,6 @@ function NavBar() {
   const isActive = (keyWord, splitLocation) => {
     return (splitLocation[2] === keyWord || (splitLocation.length === 2 && keyWord === "")) ? "active_nav_dash" : "";
   }
-
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -138,6 +137,7 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
+
                           <span
                             className="heading_text text-danger"
                             onClick={handleLogout}
