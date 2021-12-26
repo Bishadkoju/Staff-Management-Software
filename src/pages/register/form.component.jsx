@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Register1 from "./register1.component";
 import Register2 from "./register2.component";
 import Register3 from "./register3.component";
@@ -7,12 +8,14 @@ import image2 from "../../assets/contract.svg";
 import image3 from "../../assets/citizenship.svg";
 import { baseURL } from "../../HelperFunction/Axios";
 import axios from "axios";
+import axiosInstance from "../../HelperFunction/Axios";
 
 const Form = () => {
   const [step, setStep] = useState(1);
   const [inputs, setInputs] = useState({});
-  const [imageInputs, setImageInputs] = useState(null);
-  const [imageSource, setImageSource] = useState(null);
+  const [imageInputs, setImageInputs] = useState({});
+  const [imageSource, setImageSource] = useState({});
+  const navigate = useNavigate();
 
   const nextStep = () => {
     setStep((currentStep) => currentStep + 1);
@@ -37,51 +40,50 @@ const Form = () => {
     var reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onloadend = function (e) {
-      setImageSource({ [imageName]: reader.result });
+      setImageSource((prev)=>({...prev, [imageName]: reader.result }));
+      };
     };
-  };
 
   // On file upload (click the upload button)
-  const formSubmit = (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      email: "user@example.com",
-      first_name: "string",
-      middle_name: "string",
-      last_name: "string",
-      password1: "hello@ccount",
-      password2: "hello@ccount",
-      father_name: "string",
-      mother_name: "string",
-      phone_number: 0,
-      address: "string",
-      pan_number: 0,
-      gender: "M",
-      date_of_birth: "2021-12-07",
-      joined_date: "2021-12-07",
-      termination_date: "2021-12-07",
-      marital_status: "S",
-      store: 1,
-      educational_status: "string",
-      account: "54645",
-      emergency_full_name: "",
-      emergency_phone_number: "",
-      emergency_relation: "",
-    };
+    
+    // const data = {
+    //   email: "user@example.com",
+    //   first_name: "string",
+    //   middle_name: "string",
+    //   last_name: "string",
+    //   father_name: "string",
+    //   mother_name: "string",
+    //   phone_number: 0,
+    //   address: "string",
+    //   pan_number: 0,
+    //   gender: "M",
+    //   date_of_birth: "2021-12-07",
+    //   joined_date: "2021-12-07",
+    //   termination_date: "2021-12-07",
+    //   marital_status: "S",
+    //   store: 1,
+    //   educational_status: "string",
+    //   account: "54645",
+    //   emergency_full_name: "afwefwef",
+    //   emergency_phone_number: "98448",
+    //   emergency_relation: "wfwewef",
+    //   user_type: 4,
+    //   account_number: 987897,
+    //   photo: null,
+    //   valid_document: null,
+    //   contract_paper: null,
+    //   emergency_email: "emergency@ene.com",
+    //   emergency_address: "afwefwefwf",
+    // };
 
     // Create an object of formData
     const formData = new FormData();
 
-    // Update the formData object
-    // formData.append(
-    //   "citizenship",
-    //   this.state.selectedFile,
-    //   this.state.selectedFile.name
-    // );
-
-    Object.keys(data).map((key, index) => {
-      formData.append(key, data[key]);
-    });
+    // Object.keys(data).map((key, index) => {
+    //   formData.append(key, data[key]);
+    // });
     Object.keys(inputs).map((key, index) => {
       formData.append(key, inputs[key]);
     });
@@ -96,8 +98,22 @@ const Form = () => {
 
     // Request made to the backend api
     // Send formData object
-    axios.post(baseURL + "/auth/register/employee/", formData);
+    // axios.post(baseURL + "/auth/register/", formData);
+    
+    try {
+      const res = await axiosInstance.post("/auth/register/", formData)
+      console.log(res)
+      if(res.status === 201) {
+          navigate('/')
+          alert("User successfully created")
+          console.log('ok')
+      }
+    } catch (err) {
+      console.log(err);
+        alert("Something went wrong")
+    }
   };
+
   const commonProps = {
     nextStep,
     prevStep,

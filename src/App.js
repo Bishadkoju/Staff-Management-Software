@@ -30,7 +30,6 @@ import AdminLeave from "./pages/Admin/AdminLeave";
 import AdminHandbook from "./pages/Admin/AdminHandbook";
 import AdminProfile from "./pages/Admin/AdminProfile";
 
-import Test from "./pages/test/test";
 
 
 class App extends React.Component {

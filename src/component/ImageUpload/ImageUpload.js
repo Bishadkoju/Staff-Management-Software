@@ -1,17 +1,8 @@
-
-const ImageUpload = ({ name, onChange, src }) => (
-    <label htmlFor="photo-upload" className="custom-file-upload fas">
-      <div className="img-wrap img-upload">
-        <img for="photo-upload" src={src} />
-      </div>
-      <input name={name} type="file" onChange={onChange} />
-    </label>
-  );
-
-  const ImgUpload = ({ name, onChange, src }) => (
+  const ImgUpload = ({ name, label, onChange, src }) => (
     <div>
-      {name}
+      {label}
     <input name={name} type="file" onChange={onChange} />
+    <img src={src} className="img-wrap"  />
     </div>
   );
 

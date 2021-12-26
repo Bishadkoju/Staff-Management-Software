@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axiosInstance from "../../HelperFunction/Axios";
 
 import Background from "../../component/background/background.component";
 import Header from "../../component/header/header.compoent";
@@ -10,6 +10,24 @@ import register3 from "../../assets/registration3.svg";
 import "./register.styles.scss";
 
 export default class Register extends Component {
+
+  constructor(props) {
+    super(props);
+    // Don't call this.setState() here!
+    this.state = { stores: [] };
+  }
+
+  componentDidMount = async () => {
+    const res = await axiosInstance.get("store/list");
+    if(res.status === 200) {
+      this.setState({
+        stores: res.data
+      })
+      console.log(res.data)
+    }
+    
+  }
+
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -51,27 +69,32 @@ export default class Register extends Component {
             </div>
             <div className="form-wrapper">
               <div className="form-input2 col-big">
-                <select
-                  name="role"
-                  onChange={handleChange}
-                >
+                <select name="user_type" onChange={handleChange}>
                   <option value="">Roles</option>
-                  <option value="general-manager" disabled>General Manager</option>
-                  <option value="store-manager" disabled>Store Manager</option>
-                  <option value="employee" >Employee</option>
+                  <option value="2" >
+                    General Manager
+                  </option>
+                  <option value="3" >
+                    Store Manager
+                  </option>
+                  <option value="4">Employee</option>
                 </select>
               </div>
+              {
+                console.log(this.state)
+              }
 
               <div className="form-input2 col-big">
-                <input
-                  type="text"
-                  className=""
-                  placeholder="Store*"
+                <select
                   name="store"
-                  onChange={handleChange}
-                />
+                  onClick={handleChange}
+                >
+                  <option value="0">Store</option>
+                  {this.state.stores.map((store, index) => (
+                    <option key={index} value={store.id}>{store.name}</option>
+                  ))}
+                </select>
               </div>
-
               <div className="form-input2 col-md">
                 <input
                   type="password"
@@ -118,7 +141,7 @@ export default class Register extends Component {
             </div>
 
             <div class="button-container">
-            <button onClick={this.props.formSubmit} className="login-button">
+              <button onClick={this.props.formSubmit} className="login-button">
                 Finish
               </button>
               <button onClick={this.props.prevStep} className="login-button-2">
