@@ -24,18 +24,14 @@ import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminEarning from "./pages/Admin/AdminEarning";
 import AdminLeave from "./pages/Admin/AdminLeave";
 import AdminProfile from "./pages/Admin/AdminProfile";
-handbookBackendConnection
 
 // Admin Handbook
-main
 import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
 import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
 import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 
-handbookBackendConnection
 // Not found
 import NotFound from "./component/NotFound";
-main
 
 class App extends React.Component {
   state = {};
