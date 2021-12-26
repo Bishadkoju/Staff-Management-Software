@@ -19,8 +19,8 @@ const AssignNewStore = () => {
                   <span className="heading_text">New Store</span>
                 </div>
                 <div>
-                  <a className="btn cross_button" data-dismiss="modal">
-                    <i class="fa fa-times" aria-hidden="true"></i>
+                  <a className="btn cross_button" data-dismiss="modal" href="/#">
+                    <i className="fa fa-times" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
@@ -30,13 +30,13 @@ const AssignNewStore = () => {
           <form>
             <div className="row">
               <div className="col-md-6">
-                <div class="form-group">
+                <div className="form-group">
                   <label for="current_store">Current Store</label>
                   <br />
-                  <span class="f_24 text-primary">SMJ STORE</span>
+                  <span className="f_24 text-primary">SMJ STORE</span>
                   <br />
-                  <span class="f_14 text-primary">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <span className="f_14 text-primary">
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
                     &nbsp;Jawlakhel
                   </span>
                 </div>
@@ -112,8 +112,8 @@ const AssignNewStore = () => {
             <hr />
             <div className="row">
               <div className="col-md-12">
-                <button class="btn btn_primary mr-3">Submit</button>
-                <button class="btn btn-secondary" data-dismiss="modal">
+                <button className="btn btn_primary mr-3">Submit</button>
+                <button className="btn btn-secondary" data-dismiss="modal">
                   Cancel
                 </button>
               </div>

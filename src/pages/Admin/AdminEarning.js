@@ -6,14 +6,14 @@ import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryB
 
 const AdminEarning = () => {
   return (
-    <div class="body">
+    <div className="body">
       <AdminLayout />
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-2">
             <AdminSideNavBar />
           </div>
-          <div class="col-md-10">
+          <div className="col-md-10">
             <h2 className="pt-4">My Earning</h2>
             <div className="row">
               <div className="col-md-9">

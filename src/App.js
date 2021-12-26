@@ -27,9 +27,10 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminEarning from "./pages/Admin/AdminEarning";
 import AdminLeave from "./pages/Admin/AdminLeave";
-import AdminHandbook from "./pages/Admin/AdminHandbook";
 import AdminProfile from "./pages/Admin/AdminProfile";
-
+import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
+import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
+import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 
 
 class App extends React.Component {
@@ -53,19 +54,24 @@ class App extends React.Component {
               element={<Login setUser={this.setUser} />}
             />
             <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/earning" element={<Earning />} />
-            <Route exact path="/leave" element={<Leave />} />
-            <Route exact path="/handbook" element={<Handbook />} />
-            <Route exact path="/profile" element={<Profile />} />
-            <Route exact path="/check" element={<CheckInOut />} />
+            <Route exact path="/dashboard/earning" element={<Earning />} />
+            <Route exact path="/dashboard/leave" element={<Leave />} />
+            <Route exact path="/dashboard/handbook" element={<Handbook />} />
+            <Route exact path="/dashboard/profile" element={<Profile />} />
+            <Route exact path="/dashboard/check" element={<CheckInOut />} />
 
 
             <Route exact path="/admin" element={<AdminDashboard />} />
             <Route exact path="/admin/user" element={<AdminUsers />} />
             <Route exact path="/admin/earning" element={<AdminEarning />} />
             <Route exact path="/admin/leave" element={<AdminLeave />} />
-            <Route exact path="/admin/handbook" element={<AdminHandbook />} />
             <Route exact path="/admin/profile" element={<AdminProfile />} />
+
+            <Route exact path="/admin/handbook" element={<AdminHandbook />} />
+            <Route exact path="/admin/handbook/create" element={<AdminHandbookCreate />} />
+            <Route exact path="/admin/handbook/edit/:id" element={<AdminHandbookEditor />} />
+            <Route exact path="/admin/handbook/:id" element={<AdminHandbook />} />
+
 
             <Route exact path="/register" element={<Form />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />

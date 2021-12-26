@@ -1,13 +1,43 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axiosInstance from '../../../HelperFunction/Axios'
 
 const ProfileModal = () => {
+  const [formData, setFormData] = useState({
+    emergency_contact : "",
+    is_active : true,
+    first_name : "",
+    middle_name : "",
+    last_name : "",
+    phone_number : "",
+    father_name : "",
+    mother_name : "",
+    address : "",
+    pan_number : "",
+    gender : "",
+    date_of_birth : "",
+    marital_status : "",
+    joined_date : "",
+    termination_date : "",
+    educational_status : "",
+    account_number : "",
+    store : ""
+  })
+
+  const {emergency_contact, is_active, first_name, middle_name, last_name, phone_number, father_name, mother_name, address, pan_number, gender, date_of_birth, marital_status, joined_date, termination_date, educational_status, account_number, store} = formData;
+
+  const handleChange = (e) => {
+    setFormData((prevFormData) => {
+      return { ...prevFormData, [e.target.name]: e.target.value };
+    });
+  };
+
   return (
     <React.Fragment>
       {/* beginning of modal  */}
       <div
         className="modal fade"
         id="editProfileModal"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="myLargeModalLabel"
         aria-hidden="true"
@@ -26,7 +56,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="full_name">Full Name</label>
+                        <label htmlFor="full_name">Full Name</label>
                         <input
                           type="text"
                           name="full_name"
@@ -48,7 +78,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="gender">Gender</label>
+                        <label htmlFor="gender">Gender</label>
                         <br />
                         <div className="form-check form-check-inline">
                           <input
@@ -58,7 +88,7 @@ const ProfileModal = () => {
                             id="gender1"
                             value="male"
                           />
-                          <label className="form-check-label" for="gender1">
+                          <label className="form-check-label" htmlFor="gender1">
                             Male
                           </label>
                         </div>
@@ -70,7 +100,7 @@ const ProfileModal = () => {
                             id="gender2"
                             value="female"
                           />
-                          <label className="form-check-label" for="gender2">
+                          <label className="form-check-label" htmlFor="gender2">
                             Female
                           </label>
                         </div>
@@ -78,7 +108,7 @@ const ProfileModal = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="date_birth">Date of Birth</label>
+                        <label htmlFor="date_birth">Date of Birth</label>
                         <input
                           type="date"
                           name="date_birth"
@@ -91,7 +121,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="contact_number">Contact Number</label>
+                        <label htmlFor="contact_number">Contact Number</label>
                         <input
                           type="text"
                           className="form-control"
@@ -102,7 +132,7 @@ const ProfileModal = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="address">Address</label>
+                        <label htmlFor="address">Address</label>
                         <input
                           type="text"
                           className="form-control"
@@ -115,7 +145,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="emergency_number">Emergency Number</label>
+                        <label htmlFor="emergency_number">Emergency Number</label>
                         <input
                           type="text"
                           className="form-control"
@@ -126,7 +156,7 @@ const ProfileModal = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="relation">Relation</label>
+                        <label htmlFor="relation">Relation</label>
                         <input
                           type="text"
                           className="form-control"
@@ -187,7 +217,7 @@ const ProfileModal = () => {
       <div
         className="modal fade"
         id="editProfileModalPage2"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="myLargeModalLabel"
         aria-hidden="true"
@@ -206,7 +236,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="father_name">Father's Name</label>
+                        <label htmlFor="father_name">Father's Name</label>
                         <input
                           type="text"
                           name="father_name"
@@ -218,7 +248,7 @@ const ProfileModal = () => {
                     <div className="col-md-6">
                       <div className="form-group">
                         <div className="form-group">
-                          <label for="mother_name">Mother's Name</label>
+                          <label htmlFor="mother_name">Mother's Name</label>
                           <input
                             type="text"
                             name="mother_name"
@@ -232,7 +262,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="marital_status">Marital Status</label>
+                        <label htmlFor="marital_status">Marital Status</label>
                         <br />
                         <div className="form-check form-check-inline">
                           <input
@@ -244,7 +274,7 @@ const ProfileModal = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="marital_status1"
+                            htmlFor="marital_status1"
                           >
                             Married
                           </label>
@@ -259,7 +289,7 @@ const ProfileModal = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="marital_status2"
+                            htmlFor="marital_status2"
                           >
                             Single
                           </label>
@@ -274,7 +304,7 @@ const ProfileModal = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="marital_status2"
+                            htmlFor="marital_status2"
                           >
                             Divorced
                           </label>
@@ -283,7 +313,7 @@ const ProfileModal = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="educational_status">
+                        <label htmlFor="educational_status">
                           Educational Status
                         </label>
                         <input
@@ -298,7 +328,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="pan_number">PAN No.</label>
+                        <label htmlFor="pan_number">PAN No.</label>
                         <input
                           type="text"
                           className="form-control"
@@ -309,7 +339,7 @@ const ProfileModal = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="store_name">Store Name</label>
+                        <label htmlFor="store_name">Store Name</label>
                         <input
                           type="text"
                           className="form-control"
@@ -322,7 +352,7 @@ const ProfileModal = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="starting_date">Starting Date</label>
+                        <label htmlFor="starting_date">Starting Date</label>
                         <input
                           type="date"
                           className="form-control"
@@ -333,7 +363,7 @@ const ProfileModal = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="Termination Date">Termination Date</label>
+                        <label htmlFor="Termination Date">Termination Date</label>
                         <input
                           type="date"
                           className="form-control"

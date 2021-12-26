@@ -53,8 +53,8 @@ export default class Register extends Component {
         <Header />
 
         <div className="register-form-container">
-          <form class="register-form">
-            <div class="register-top-header">
+          <form className="register-form">
+            <div className="register-top-header">
               <h3 className="header-text bigfont"> Register</h3>
               <p className="login-text marginup smallfont">
                 {" "}
@@ -139,9 +139,8 @@ export default class Register extends Component {
                 />
               </div>
             </div>
-
-            <div class="button-container">
-              <button onClick={this.props.formSubmit} className="login-button">
+            <div className="button-container">
+            <button onClick={this.props.formSubmit} className="login-button">
                 Finish
               </button>
               <button onClick={this.props.prevStep} className="login-button-2">

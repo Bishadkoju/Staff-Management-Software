@@ -1,15 +1,30 @@
 import React from "react";
 import header from "../../assets/header.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
-import {logout} from '../../HelperFunction/loginHelper'
+import { logout } from "../../HelperFunction/loginHelper";
+
 
 function NavBar() {
-  const navigagte = useNavigate()
+  const navigagte = useNavigate();
   const handleLogout = () => {
-    console.log('logout')
-    logout()
-    navigagte('/');
+    console.log("logout");
+    logout();
+    navigagte("/");
+  };
+
+  //assigning location variable
+  const location = useLocation();
+
+  //destructuring pathname from location
+  const { pathname } = location;
+
+  //Javascript split method to get the name of the path in array
+  const splitLocation = pathname.split("/");
+
+
+  const isActive = (keyWord, splitLocation) => {
+    return (splitLocation[2] === keyWord || (splitLocation.length === 2 && keyWord === "")) ? "active_nav_dash" : "";
   }
   return (
     <div className="container-fluid text-white" id="nav">
@@ -21,22 +36,19 @@ function NavBar() {
           <div className="link">
             <NavLink
               to="/dashboard"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
+              className={`mr-4 font-weight-bold ${isActive("", splitLocation)}`}
             >
               Home
             </NavLink>
             <NavLink
-              to="/earning"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
+              to="/dashboard/earning"
+              className={`mr-4 font-weight-bold ${isActive("earning", splitLocation)}`}
             >
               Earning
             </NavLink>
             <NavLink
-              to="/leave"
-              className="mr-4 font-weight-bold"
-              activeClassName="active_nav"
+              to="/dashboard/leave"
+              className={`mr-4 font-weight-bold ${isActive("leave", splitLocation)}`}
             >
               My Leave
             </NavLink>
@@ -62,7 +74,7 @@ function NavBar() {
                   className="dropdown-menu dropDownMenuLeft"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/profile">
+                  <a className="dropdown-item" href="/dashboard/profile">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-user" aria-hidden="true"></i>
@@ -97,7 +109,7 @@ function NavBar() {
                   </a>
 
                   <a
-                    class="dropdown-item"
+                    className="dropdown-item"
                     href="#feedbackModal"
                     data-toggle="modal"
                     data-target="#feedbackModal"
@@ -118,16 +130,19 @@ function NavBar() {
                     </div>
                   </a>
 
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/#">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-sign-out" aria-hidden="true"></i>
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-danger" onClick={handleLogout}>
-                            Log Out
 
+                          <span
+                            className="heading_text text-danger"
+                            onClick={handleLogout}
+                          >
+                            Log Out
                           </span>
                           <br />
                         </p>

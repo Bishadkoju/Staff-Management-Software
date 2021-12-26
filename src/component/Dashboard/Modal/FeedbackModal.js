@@ -5,7 +5,7 @@ const FeedbackModal = () => {
     <div
       className="modal fade"
       id="feedbackModal"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
       aria-hidden="true"
@@ -19,7 +19,7 @@ const FeedbackModal = () => {
 
           <form>
             <div className="form-group">
-              <textarea name="feedback_message" id="feedback_message" rows="5" className="form-control">Enter message here</textarea>
+              <textarea name="feedback_message" id="feedback_message" rows="5" className="form-control" defaultValue="Enter messege here"></textarea>
               <button type="submit" className="btn btn_primary mt-3">Send</button>
             </div>
           </form>

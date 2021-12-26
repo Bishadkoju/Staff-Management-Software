@@ -15,20 +15,34 @@ const ProfileInfo = () => {
   };
 
   const [userInfo, setUserInfo] = useState([]);
+  const [requiredUserInfo, setRequiredUserInfo] = useState([]);
 
   useEffect(() => {
     getUserInfo();
   }, []);
 
   const getUserInfo = async () => {
-    await axiosInstance.get("/employee/")
-    .then(res => {
-      console.log(res.data);
-      setUserInfo(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    await axiosInstance
+      .get("/user/self/view/")
+      .then((res) => {
+        setUserInfo(res.data);
+        setRequiredUserInfo([
+          res.data.email,
+          res.data.address,
+          res.data.phone_number,
+          res.data.emergency_contact.full_name,
+          res.data.father_name,
+          res.data.mother_name,
+          res.data.marital_status,
+          res.data.educational_status,
+          res.data.store,
+          res.data.joined_date,
+          res.data.termination_date,
+        ]);
+      })
+      .catch((err) => {
+        //console.log(err);
+      });
   };
 
   const profileDetailInfoArr = [
@@ -49,29 +63,33 @@ const ProfileInfo = () => {
     let display = [];
     for (let i = 0; i < 3; i++) {
       display.push(
-        <div class="col-md-4 px-5">
+        <div className="col-md-4 px-5">
           {profileDetailInfoArr[i * 4] ? (
             <ProfileDetailInfo
+              key={i * 4}
               name={profileDetailInfoArr[i * 4]}
-              value="matt@mail.com"
+              value={requiredUserInfo[i * 4]}
             />
           ) : null}
           {profileDetailInfoArr[i * 4 + 1] ? (
             <ProfileDetailInfo
+              key={i * 4 + 1}
               name={profileDetailInfoArr[i * 4 + 1]}
-              value="Melbourne"
+              value={requiredUserInfo[i * 4 + 1]}
             />
           ) : null}
           {profileDetailInfoArr[i * 4 + 2] ? (
             <ProfileDetailInfo
+              key={i * 4 + 2}
               name={profileDetailInfoArr[i * 4 + 2]}
-              value="44(76)34251231"
+              value={requiredUserInfo[i * 4 + 2]}
             />
           ) : null}
           {profileDetailInfoArr[i * 4 + 3] ? (
             <ProfileDetailInfo
+              key={i * 4 + 3}
               name={profileDetailInfoArr[i * 4 + 3]}
-              value="44(76)34251231"
+              value={requiredUserInfo[i * 4 + 3]}
             />
           ) : null}
         </div>
@@ -92,38 +110,38 @@ const ProfileInfo = () => {
   };
 
   return (
-      <div class="row">
-        <div class="col-md-12">
-          <div class="profile_div bg-white">
-            <div class="cover_photo" style={coverPhotoStyle}></div>
-            <div class="profile_picture_div">
-              <img
-                class="profile_img rounded-circle"
-                src={ProfileImage}
-                alt="Profile Image"
-              />
-              <h3 class="user_name">Esther Howard</h3>
-              <div class="row">
-                <div class="offset-md-2"></div>
-                <div class="col-md-2 font_14 pl-5">
-                  <span className="text-muted">matt@mail.com</span>
-                  <br />
-                  <span class="font-weight-bold">Employee</span>
-                  <span> #2356</span>
+    <div className="row">
+      <div className="col-md-12">
+        <div className="profile_div bg-white">
+          <div className="cover_photo" style={coverPhotoStyle}></div>
+          <div className="profile_picture_div">
+            <img
+              className="profile_img rounded-circle"
+              src={ProfileImage}
+              alt="Profile Image"
+            />
+            <h3 className="user_name">Esther Howard</h3>
+            <div className="row">
+              <div className="offset-md-2"></div>
+              <div className="col-md-2 font_14 pl-5">
+                <span className="text-muted">matt@mail.com</span>
+                <br />
+                <span className="font-weight-bold">Employee</span>
+                <span> #2356</span>
+              </div>
+              <div className="col-md-8">
+                <div className="d-flex justify-content-end">
+                  {displayEarningLeaveInfo()}
                 </div>
-                <div class="col-md-8">
-                  <div class="d-flex justify-content-end">
-                    {displayEarningLeaveInfo()}
-                  </div>
-                  <hr />
-                </div>
+                <hr />
               </div>
             </div>
-
-            <div class="row profile_info">{displayProfileDetailInfo()}</div>
           </div>
+
+          <div className="row profile_info">{displayProfileDetailInfo()}</div>
         </div>
       </div>
+    </div>
   );
 };
 

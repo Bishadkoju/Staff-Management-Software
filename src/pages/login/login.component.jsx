@@ -29,7 +29,6 @@ export default class Login extends Component {
           } catch (err) {
             console.log(err);
           }
-
     }
     render() {
         if (this.state.loggedIn){
@@ -41,7 +40,7 @@ export default class Login extends Component {
             <Header/>
             <div className="form-container">
                 
-            <form onSubmit={this.handleSubmit} class="login-form">
+            <form onSubmit={this.handleSubmit} className="login-form">
                 <h3 className="header-text"> Log In</h3>
                 <p className="login-text"> Get access to the management <br/> tool by loggin in</p>
                 <div className="form-input">
@@ -57,7 +56,7 @@ export default class Login extends Component {
                     <Link  className="forgot-text"to ={"/register"}>Register</Link>
                 </p>
                 
-                <div class="button-container">
+                <div className="button-container">
                 <button onChange={this.handleSubmit} className="login-button">Login</button>
                 </div>
                 

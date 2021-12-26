@@ -1,13 +1,11 @@
-import React, {useState, useEffect} from "react";
-import axiosInstance from "../../HelperFunction/Axios";
+import React from "react";
 import Layout from "../../HOC/Layout";
 import InfoBar from "../../component/Bar/InfoBar";
-import CheckIn from "../../component/Dashboard/CheckIn";
+import CheckIn from "../../component/Dashboard/Check/CheckIn";
 import Notice from "../../component/Dashboard/Notice/Notice";
-import CheckInHistory from "../../component/Dashboard/CheckInHistory";
+import CheckInHistory from "../../component/Dashboard/Check/CheckInHistory";
 
-function Dashboard() {
-
+const Dashboard = () => {
   return (
     <div className="body">
       <Layout></Layout>
@@ -40,9 +38,9 @@ function Dashboard() {
       </div>
 
       {/* Check In or Checkout History */}
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
             <CheckInHistory />
           </div>
         </div>
