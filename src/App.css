@@ -265,7 +265,7 @@ a:hover{
 
 /* Admin page  */
 .side-menu, .vh-90{
-    height: 90vh;
+    min-height: 90vh;
 }
 
 .side-menu .active-side-nav{

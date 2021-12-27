@@ -50,8 +50,6 @@ export default function App() {
   };
 
   if(created){
-    console.log(created);
-    console.log(createdHandbookId);
     return <Navigate to={`/admin/handbook/${createdHandbookId}`} />
   }
 

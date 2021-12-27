@@ -66,7 +66,7 @@ function CheckInHistory(props) {
         </table>
         <div className="see_more_check_in_table d-flex justify-content-end">
           <div>
-            <a href="" className="btn btn-primary">
+            <a href="/dashboard/check" className="btn btn-primary">
               See More...
             </a>
           </div>

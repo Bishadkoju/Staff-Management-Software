@@ -4,7 +4,6 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 import { logout } from "../../HelperFunction/loginHelper";
 
-
 function NavBar() {
   const navigagte = useNavigate();
   const handleLogout = () => {

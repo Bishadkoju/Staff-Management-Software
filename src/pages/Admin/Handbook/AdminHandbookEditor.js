@@ -62,13 +62,14 @@ export default function App() {
     console.log("Submitted");
 
     await axiosInstance
-      .put(`/handbook/${params.id}/edit`, { topic, instructions })
+      .put(`/handbook/${params.id}/edit/`, { topic, instructions })
       .then((res) => {
         console.log(res);
         setCreatedHandbookId(res.data.id);
         setCreated(true);
       })
       .catch((err) => {
+        console.log("error submitted");
         console.log(err);
       });
   };

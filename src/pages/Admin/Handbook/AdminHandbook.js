@@ -4,6 +4,7 @@ import AdminSideNavBar from "../../../component/Bar/AdminSideNavBar";
 import axiosInstance from "../../../HelperFunction/Axios";
 import HandbookSideNav from "../../../component/Handbook/HandbookSideNav";
 import HandbookDetail from "../../../component/Handbook/HandbookDetail";
+import HandbookBasicInfo from "../../../component/Handbook/HandbookBasicInfo";
 
 import { useLocation } from "react-router-dom";
 
@@ -45,7 +46,8 @@ const AdminHandbook = () => {
             <AdminSideNavBar />
           </div>
           <HandbookSideNav handbooks = {handbooks} splitLocation = {splitLocation} />
-          <HandbookDetail splitLocation = {splitLocation}/>
+          {/* <HandbookDetail splitLocation = {splitLocation}/> */}
+          <HandbookBasicInfo />
         </div>
       </div>
     </div>
