@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../HelperFunction/Axios";
+import { useParams } from "react-router-dom";
+import { Navigate } from "react-router";
 
-const HandbookDetail = (props) => {
+const HandbookDetail = () => {
+  const [del, setDel] = useState(false);
+
   const [handBook, setHandBook] = useState([]);
-  const id = props.splitLocation[3] ? props.splitLocation[3] : 1;
+
+  // Get ID from URL
+  const params = useParams();
+  const id = params.id;
 
   useEffect(() => {
     const getHandbookDetail = async () => {
@@ -22,15 +29,24 @@ const HandbookDetail = (props) => {
 
   const deleteHandbook = async (e) => {
     e.preventDefault();
-    await axiosInstance
-      .delete(`/handbook/${id}/delete/`, { id })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let confirm = window.confirm("Are you sure you want to delete?");
+    if (confirm === true) {
+      await axiosInstance
+        .delete(`/handbook/${id}/delete`, { id })
+        .then((res) => {
+          console.log(res.data);
+          setDel(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
+
+  if (del) {
+    console.log("del");
+    return <Navigate to={`/admin/handbook/`} />;
+  }
 
   return (
     <React.Fragment>
@@ -39,7 +55,9 @@ const HandbookDetail = (props) => {
           <div className="p-2">
             <div className="d-flex justify-content-between">
               <div>
-                <h1>{handBook.topic}</h1>
+                <h1>
+                  {handBook.topic ? handBook.topic : "404 Handbook Not Found"}
+                </h1>
               </div>
               <div>
                 <a

@@ -1,88 +1,92 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
 
 function CheckIn(props) {
-
   const [hasCheckedIn, setCheckedIn] = useState(false);
-  const [disableCheckIn, setDisableCheckIn] = useState(false)
+  const [disableCheckIn, setDisableCheckIn] = useState(false);
 
-  const [store, setStore] = useState(null)
-  const [attendances, setAttendances] = useState([])
+  const [store, setStore] = useState(null);
+  const [attendances, setAttendances] = useState([]);
 
-  useEffect(()=> {
-    getStore()
-    getAttendance()
-    checkCheckedIn()
-  },[])
+  const [checkedInTime, setCheckedInTime] = useState("");
+  const [checkedOutTime, setCheckedOutTime] = useState("");
 
-  const getStore = async() => {
-    await axiosInstance.get("/user/self/view/")
-    .then(res => {
-      console.log("user list")
-      setStore(res.data.store)
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
+  useEffect(() => {
+    getStore();
+    getAttendance();
+  }, []);
 
-  const getAttendance = async() => {
-    await axiosInstance.get("/attendance/list/")
-    .then(res =>  {
-      setAttendances(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
+  const getStore = async () => {
+    await axiosInstance
+      .get("/user/self/view/")
+      .then((res) => {
+        setStore(res.data.store);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  const checkCheckedIn =() => {
-    console.clear()
+  const getAttendance = async () => {
+    await axiosInstance
+      .get("/attendance/list/")
+      .then((res) => {
+        setAttendances(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const checkCheckedIn = () => {
     if (attendances.length === 0) {
+      console.log("no attendences");
       setCheckedIn(false);
-      return
+    } else {
+      const todayDate = new Date().toISOString().slice(0, 10);
+      console.log(attendances);
+      if (attendances[0].date === todayDate) {
+        console.log("Checked");
+        setCheckedInTime(attendances[0].checked_in_time);
+        setCheckedOutTime(attendances[0].checked_out_time);
+        setDisableCheckIn(true);
+      }
     }
-    console.log(attendances)
-    const todayDate = new Date().toISOString().slice(0, 10)
-    if (attendances[0].date === todayDate) {
-      setDisableCheckIn(true)
-    }
-
-  }
+  };
 
   const checkInStrings = {
     true: "Check Out",
     false: "Check In",
   };
 
-
-  const checkIn = async() => {
+  const checkIn = async () => {
     console.log("check in");
     const data = {
-      "checked_in": true,
-      "store": store
-    }
-    try {
-      const res = await axiosInstance.post("/attendance/self/check_in/",data)
-      console.log(res)
-      if(res.status === 200) {
-          console.log('ok')
-      }
-    } catch (err) {
-      console.log(err.status);
-    }
+      checked_in: true,
+      store: store,
+    };
+    await axiosInstance
+      .post("/attendance/self/check_in/", data)
+      .then((res) => {
+        console.log(res.data);
+        setCheckedInTime(res.data.time);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const checkOut = async () => {
     console.log("check out");
     const data = {
-      "checked_out": true
-    }
+      checked_out: true,
+    };
     try {
-      const res = await axiosInstance.post("/attendance/self/check_out/",data)
-      console.log(res)
-      if(res.status === 200) {
-          console.log('ok')
+      const res = await axiosInstance.post("/attendance/self/check_out/", data);
+      console.log(res);
+      if (res.status === 200) {
+        console.log("ok");
       }
     } catch (err) {
       console.log(err.data);
@@ -105,7 +109,13 @@ function CheckIn(props) {
       <div className="desc">
         <div className="row">
           <div className="col-md-3">
-          <button className="btn btn-primary check_in_background btn-xl" disabled={disableCheckIn} onClick={toggleCheckIn}>{checkInStrings[hasCheckedIn]}</button>
+            <button
+              className="btn btn-primary check_in_background btn-xl"
+              disabled={disableCheckIn}
+              onClick={toggleCheckIn}
+            >
+              {checkInStrings[hasCheckedIn]}
+            </button>
           </div>
           <div className="col-md-9">
             <div className="medium_font">
@@ -121,7 +131,11 @@ function CheckIn(props) {
               <div className="d-flex justify-content-between medium_font">
                 <div>
                   <h6>Check In </h6>
-                  <i className="fa fa-minus" aria-hidden="true"></i>
+                  {checkedInTime === "" ? (
+                    <i className="fa fa-minus" aria-hidden="true"></i>
+                  ) : (
+                    checkedInTime
+                  )}
                 </div>
                 <div>
                   <h6>Check Out</h6>

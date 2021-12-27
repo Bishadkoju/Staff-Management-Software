@@ -13,7 +13,6 @@ import Form from "./pages/register/form.component";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Earning from "./pages/Dashboard/Earning";
 import Leave from "./pages/Dashboard/Leave";
-import Handbook from "./pages/Dashboard/Handbook";
 import Profile from "./pages/Dashboard/Profile";
 import CheckInOut from "./pages/Dashboard/CheckInOut";
 import Test from "./pages/test/test";
@@ -27,6 +26,7 @@ import AdminProfile from "./pages/Admin/AdminProfile";
 
 // Admin Handbook
 import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
+import AdminHandbookDetail from "./pages/Admin/Handbook/AdminHandbookDetail";
 import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
 import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 
@@ -55,7 +55,6 @@ class App extends React.Component {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/dashboard/earning" element={<Earning />} />
             <Route exact path="/dashboard/leave" element={<Leave />} />
-            <Route exact path="/dashboard/handbook" element={<Handbook />} />
             <Route exact path="/dashboard/profile" element={<Profile />} />
             <Route exact path="/dashboard/check" element={<CheckInOut />} />
 
@@ -79,7 +78,7 @@ class App extends React.Component {
             <Route
               exact
               path="/admin/handbook/:id"
-              element={<AdminHandbook />}
+              element={<AdminHandbookDetail />}
             />
 
             <Route exact path="/register" element={<Form />} />
