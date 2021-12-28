@@ -17,22 +17,20 @@ const CheckInOut = () => {
     await axiosInstance
       .get(`/attendance/self/list/${date}/`)
       .then((res) => {
-        setAttendence(res.data);
+        setAttendence(res.data.results);
         console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
   
-
   useEffect(() => {
     const getAttendenceList = async () => {
       await axiosInstance
         .get("/attendance/list/")
         .then((res) => {
-          setAttendence(res.data);
+          setAttendence(res.data.results);
         })
         .catch((err) => {
           // error handling
