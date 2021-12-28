@@ -3,6 +3,7 @@ import axiosInstance from "../../../HelperFunction/Axios";
 
 function CheckInHistory(props) {
   const [attendances, setAttendances] = useState([]);
+
   const { limit } = props;
   useEffect(() => {
     getAttendance();
@@ -12,7 +13,8 @@ function CheckInHistory(props) {
     await axiosInstance
       .get("/attendance/list/")
       .then((res) => {
-        setAttendances(res.data);
+        setAttendances(res.data.results);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -22,7 +24,7 @@ function CheckInHistory(props) {
   const attendanceData = () => {
     let result = [];
 
-    attendances.map((attendance) =>
+    attendances.map(attendance =>
       result.push(
         <tr key={attendance.date}>
           <td className="text-muted muted_text">{attendance.date}</td>
