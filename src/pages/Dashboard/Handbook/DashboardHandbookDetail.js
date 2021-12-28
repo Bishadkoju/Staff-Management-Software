@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import AdminLayout from "../../../HOC/AdminLayout";
-import AdminSideNavBar from "../../../component/Bar/AdminSideNavBar";
-import axiosInstance from "../../../HelperFunction/Axios";
-import HandbookSideNav from "../../../component/Handbook/HandbookSideNav";
-import HandbookBasicInfo from "../../../component/Handbook/HandbookBasicInfo";
+import Layout from "../../../HOC/Layout";
 
+import HandbookSideNav from "../../../component/Handbook/Dashboard/HandbookSideNav";
+import HandbookDetail from "../../../component/Handbook/Dashboard/HandbookDetail";
+
+import axiosInstance from "../../../HelperFunction/Axios";
 import { useLocation } from "react-router-dom";
 
-
-const AdminHandbook = () => {
+const DashboardHandbookDetail = () => {
   const [handbooks, setHandbooks] = useState([]);
 
   //assigning location variable
@@ -38,18 +37,15 @@ const AdminHandbook = () => {
 
   return (
     <div className="body">
-      <AdminLayout />
-      <div className="container-fluid">
+      <Layout />
+      <div className="container">
         <div className="row">
-          <div className="col-md-2">
-            <AdminSideNavBar />
-          </div>
           <HandbookSideNav handbooks = {handbooks} splitLocation = {splitLocation} />
-          <HandbookBasicInfo />
+          <HandbookDetail splitLocation = {splitLocation}/>
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminHandbook;
+export default DashboardHandbookDetail;
