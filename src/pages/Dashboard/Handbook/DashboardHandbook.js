@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import AdminLayout from "../../../HOC/AdminLayout";
-import AdminSideNavBar from "../../../component/Bar/AdminSideNavBar";
-import axiosInstance from "../../../HelperFunction/Axios";
-import HandbookSideNav from "../../../component/Handbook/HandbookSideNav";
+import Layout from "../../../HOC/AdminLayout";
+
+import HandbookSideNav from "../../../component/Handbook/Dashboard/HandbookSideNav";
 import HandbookBasicInfo from "../../../component/Handbook/HandbookBasicInfo";
 
+import axiosInstance from "../../../HelperFunction/Axios";
 import { useLocation } from "react-router-dom";
 
-
-const AdminHandbook = () => {
+const Handbook = () => {
   const [handbooks, setHandbooks] = useState([]);
 
   //assigning location variable
@@ -38,12 +37,9 @@ const AdminHandbook = () => {
 
   return (
     <div className="body">
-      <AdminLayout />
-      <div className="container-fluid">
+      <Layout />
+      <div className="container">
         <div className="row">
-          <div className="col-md-2">
-            <AdminSideNavBar />
-          </div>
           <HandbookSideNav handbooks = {handbooks} splitLocation = {splitLocation} />
           <HandbookBasicInfo />
         </div>
@@ -52,4 +48,4 @@ const AdminHandbook = () => {
   );
 };
 
-export default AdminHandbook;
+export default Handbook;

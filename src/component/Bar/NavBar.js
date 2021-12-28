@@ -90,7 +90,7 @@ function NavBar() {
                     </div>
                   </a>
 
-                  <a className="dropdown-item" href="/handbook">
+                  <a className="dropdown-item" href="/dashboard/handbook">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-user" aria-hidden="true"></i>

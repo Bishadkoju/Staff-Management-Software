@@ -15,6 +15,9 @@ import Earning from "./pages/Dashboard/Earning";
 import Leave from "./pages/Dashboard/Leave";
 import Profile from "./pages/Dashboard/Profile";
 import CheckInOut from "./pages/Dashboard/CheckInOut";
+import DashboardHandbook from "./pages/Dashboard/Handbook/DashboardHandbook";
+import DashboardHandbookDetail from "./pages/Dashboard/Handbook/DashboardHandbookDetail";
+
 import Test from "./pages/test/test";
 
 // Admin Pages
@@ -57,6 +60,9 @@ class App extends React.Component {
             <Route exact path="/dashboard/leave" element={<Leave />} />
             <Route exact path="/dashboard/profile" element={<Profile />} />
             <Route exact path="/dashboard/check" element={<CheckInOut />} />
+
+            <Route exact path="/dashboard/handbook" element={<DashboardHandbook />} />
+            <Route exact path="/dashboard/handbook/:id" element={<DashboardHandbookDetail />} />
 
             <Route exact path="/admin" element={<AdminDashboard />} />
             <Route exact path="/admin/user" element={<AdminUsers />} />
