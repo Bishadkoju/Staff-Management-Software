@@ -1,11 +1,30 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Layout from "../../HOC/Layout";
-import Leave_table from "../../component/Dashboard/Leave/LeaveTable";
+import LeaveSummaryBar from "../../component/Dashboard/Leave/LeaveSummaryBar";
+import LeaveTable from "../../component/Dashboard/Leave/LeaveTable";
 import ApplyLeaveModal from "../../component/Dashboard/Modal/ApplyLeaveModal";
 
-import LeaveSummaryBar from "../../component/Dashboard/Leave/LeaveSummaryBar";
+import axiosInstance from "../../HelperFunction/Axios";
+
 
 function Earning() {
+  const [leaveHistory, setLeaveHistory] = useState([]);
+
+  useEffect(() => {
+    const getLeaveHistory = async () => {
+      await axiosInstance.get('/leave_history/self/view/')
+      .then(res => {
+        console.log(res.data);
+        setLeaveHistory(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+
+    getLeaveHistory();
+  }, [])
+
   return (
     <div className="body">
       <Layout></Layout>
@@ -32,7 +51,7 @@ function Earning() {
       <div className="container bg-white p-4 mt-4 rounded-div">
         <div className="row">
           <div className="col-md-9">
-            <LeaveSummaryBar />
+            <LeaveSummaryBar history = {leaveHistory.history} />
           </div>
           <div className="col-md-3 d-flex justify-content-end">
             <div className="dropdown">
@@ -65,7 +84,7 @@ function Earning() {
           </div>
 
           <div className="col-md-12">
-            <Leave_table />
+            <LeaveTable leaveDetail = {leaveHistory.leaves} />
           </div>
         </div>
       </div>

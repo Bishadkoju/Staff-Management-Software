@@ -10,6 +10,7 @@ function CheckIn(props) {
 
   const [checkedInTime, setCheckedInTime] = useState("");
   const [checkedOutTime, setCheckedOutTime] = useState("");
+  const [duration, setDuration] = useState("");
 
   useEffect(() => {
     getStore();
@@ -32,28 +33,61 @@ function CheckIn(props) {
       .get("/attendance/list/")
       .then((res) => {
         setAttendances(res.data);
-        console.log(res.data);
+
+        // Check Attendences
+        // check if there is no attendence data
+        if (res.data.count === 0) {
+          console.log("no attendences");
+          // if there is no attendence data the Checked in is false
+          setCheckedIn(false);
+        } 
+        // if there is attendence data then check if we have checked in today
+        else {
+          // Get the today date
+          const todayDate = new Date().toISOString().slice(0, 10);
+          // Get the latest checkIn data (Attendence data)
+          const today_checked_data = res.data.results[0];
+          console.log(today_checked_data)
+
+          // Compare if the latest checked in date and today date match??
+          if (today_checked_data.date === todayDate) {
+            console.log("Checked");
+            // Set the checked in time
+            setCheckedInTime(today_checked_data.checked_in_time);
+            setCheckedIn(true);
+
+            // Check if we have checked out today
+            if(today_checked_data.checked_out_time != null){
+              console.log("checked out")
+              setCheckedOutTime(today_checked_data.checked_out_time);
+              setDisableCheckIn(true);
+              // set the duration time if we have checked out
+              setDuration(today_checked_data.duration);
+            }
+          }
+        }
+        // end of check attendence
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const checkCheckedIn = () => {
-    if (attendances.length === 0) {
-      console.log("no attendences");
-      setCheckedIn(false);
-    } else {
-      const todayDate = new Date().toISOString().slice(0, 10);
-      console.log(attendances);
-      if (attendances[0].date === todayDate) {
-        console.log("Checked");
-        setCheckedInTime(attendances[0].checked_in_time);
-        setCheckedOutTime(attendances[0].checked_out_time);
-        setDisableCheckIn(true);
-      }
-    }
-  };
+  // const checkCheckedIn = () => {
+  //   if (attendances.length === 0) {
+  //     console.log("no attendences");
+  //     setCheckedIn(false);
+  //   } else {
+  //     const todayDate = new Date().toISOString().slice(0, 10);
+  //     console.log(attendances);
+  //     if (attendances[0].date === todayDate) {
+  //       console.log("Checked");
+  //       setCheckedInTime(attendances[0].checked_in_time);
+  //       setCheckedOutTime(attendances[0].checked_out_time);
+  //       setDisableCheckIn(true);
+  //     }
+  //   }
+  // };
 
   const checkInStrings = {
     true: "Check Out",
@@ -82,15 +116,16 @@ function CheckIn(props) {
     const data = {
       checked_out: true,
     };
-    try {
-      const res = await axiosInstance.post("/attendance/self/check_out/", data);
-      console.log(res);
-      if (res.status === 200) {
-        console.log("ok");
-      }
-    } catch (err) {
-      console.log(err.data);
-    }
+    await axiosInstance
+      .post("/attendance/self/check_out/", data)
+      .then((res) => {
+        // console.log(res);
+        // console.log(res.data);
+        setCheckedOutTime(res.data.time);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const toggleCheckIn = () => {
@@ -139,12 +174,19 @@ function CheckIn(props) {
                 </div>
                 <div>
                   <h6>Check Out</h6>
-                  <i className="fa fa-minus" aria-hidden="true"></i>
+                  {checkedOutTime === "" ? (
+                    <i className="fa fa-minus" aria-hidden="true"></i>
+                  ) : (
+                    checkedOutTime
+                  )}
                 </div>
                 <div>
                   <h6>Total</h6>
-                  <h5>05 Hr</h5>
-                  <h6>6mins</h6>
+                  {duration === "" ? (
+                    <i className="fa fa-minus" aria-hidden="true"></i>
+                  ) : (
+                    duration
+                  )}
                 </div>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import React from "react";
 
 const CheckTable = (props) => {
+  const attendence = props.attendence;
 
   const secondsToHms = (d) => {
     d = Number(d);
@@ -11,28 +12,39 @@ const CheckTable = (props) => {
     var hDisplay = h > 0 ? h + " hr" : "";
     var mDisplay = m > 0 ? m + " mins" : "";
     return hDisplay + " " + mDisplay;
-  }
+  };
 
   const displayAttendenceHistory = () => {
     let result = [];
-    props.attendence.map((data) => {
-      return result.push(
-        <tr key={data.duration}>
-          <td className="text-muted muted_text">{data.date}</td>
-          <td>Jawalakhel</td>
-          <td className="text-muted muted_text">{data.checked_in_time}</td>
-          <td className="text-muted muted_text">{data.checked_out_time}</td>
-          <td className="text-muted muted_text">{secondsToHms(data.duration)}</td>
-          <td>
-            <input
-              type="checkbox"
-              name="action_check_in"
-              id="action_check_in"
-            />
-          </td>
-        </tr>
-      );
-    });
+
+    console.log("child");
+    console.log("props");
+    console.log(props);
+    console.log(attendence);
+
+    if (attendence) {
+      console.log("attendence result")
+      attendence.map((data) => {
+        return result.push(
+          <tr key={data.duration}>
+            <td className="text-muted muted_text">{data.date}</td>
+            <td>Jawalakhel</td>
+            <td className="text-muted muted_text">{data.checked_in_time}</td>
+            <td className="text-muted muted_text">{data.checked_out_time}</td>
+            <td className="text-muted muted_text">
+              {secondsToHms(data.duration)}
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                name="action_check_in"
+                id="action_check_in"
+              />
+            </td>
+          </tr>
+        );
+      });
+    }
 
     return result;
   };
@@ -52,13 +64,11 @@ const CheckTable = (props) => {
               <th scope="col">Action</th>
             </tr>
           </thead>
-          <tbody>
-            {displayAttendenceHistory()}
-          </tbody>
+          <tbody>{displayAttendenceHistory()}</tbody>
         </table>
       </div>
     </div>
   );
-}
+};
 
 export default CheckTable;
