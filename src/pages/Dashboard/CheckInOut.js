@@ -18,6 +18,7 @@ const CheckInOut = () => {
       .get(`/attendance/self/list/${date}/`)
       .then((res) => {
         setAttendence(res.data.results);
+        console.log("check")
         console.log(res.data);
       })
       .catch((err) => {

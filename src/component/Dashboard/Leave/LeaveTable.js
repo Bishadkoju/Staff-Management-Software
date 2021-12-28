@@ -2,25 +2,8 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
 
 function Leave_table(props) {
-  // const [leaveTableData, setLeaveTableData] = useState([]);
 
   const leaveTableData = props.leaveDetail;
-
-  // useEffect(() => {
-  //   getLeaveTableData();
-  // }, []);
-
-  // const getLeaveTableData = async () => {
-  //   await axiosInstance
-  //     .get(`/leave/request/list/`)
-  //     .then((res) => {
-  //       setLeaveTableData(res.data);
-  //       // console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   const displayLeaveData = () => {
     let result = [];
@@ -67,13 +50,6 @@ function Leave_table(props) {
               </thead>
               <tbody>{displayLeaveData()}</tbody>
             </table>
-            <div className="see_more_check_in_table d-flex justify-content-end">
-              <div>
-                <a href="" className="btn btn-primary">
-                  See More...
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       )}
