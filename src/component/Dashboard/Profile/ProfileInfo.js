@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ProfileImage from "../../../assets/profile.jpeg";
 import CoverImage from "../../../assets/cover.png";
 import ProfileDetailInfo from "./ProfileDetailInfo";
 import EarningLeaveInfo from "./EarningLeaveInfo";
 import PiggyImage from "../../../assets/piggy.jpeg";
 
-import axiosInstance from "../../../HelperFunction/Axios";
 
 const ProfileInfo = (props) => {
   const coverPhotoStyle = {
@@ -90,7 +89,7 @@ const ProfileInfo = (props) => {
             <img
               className="profile_img rounded-circle"
               src={ProfileImage}
-              alt="Profile Image"
+              alt="Profile"
             />
             <h3 className="user_name">Esther Howard</h3>
             <div className="row">

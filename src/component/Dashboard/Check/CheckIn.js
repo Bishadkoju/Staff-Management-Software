@@ -8,7 +8,6 @@ function CheckIn(props) {
   const [disableCheckIn, setDisableCheckIn] = useState(false);
 
   const [store, setStore] = useState(null);
-  const [attendances, setAttendances] = useState([]);
 
   const [checkedInTime, setCheckedInTime] = useState("");
   const [checkedOutTime, setCheckedOutTime] = useState("");
@@ -34,8 +33,6 @@ function CheckIn(props) {
     await axiosInstance
       .get("/attendance/list/")
       .then((res) => {
-        setAttendances(res.data);
-
         // Check Attendences
         // check if there is no attendence data
         if (res.data.count === 0) {

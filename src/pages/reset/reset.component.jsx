@@ -48,7 +48,7 @@ export default class Reset extends Component {
             <form onSubmit={this.handleSubmit} className="login-form">
                            
                 <div className="reset-image-container">
-                <img src = {ResetHeader} className="imageReset"></ img>
+                <img src = {ResetHeader} className="imageReset" alt='reset'></ img>
                 </div>
                 <br/><br/><br/><br/><br/><br/><br/><br/>
                 

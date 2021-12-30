@@ -5,7 +5,6 @@ import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunct
 function CheckInHistory(props) {
   const [attendances, setAttendances] = useState([]);
 
-  const { limit } = props;
   useEffect(() => {
     getAttendance();
   }, []);

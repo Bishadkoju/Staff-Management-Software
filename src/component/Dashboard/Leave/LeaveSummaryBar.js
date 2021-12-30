@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PiggyImg from "../../../assets/piggy.png";
 import NoBoxInfoBar from "../General/NoBoxInfoBar";
 
@@ -7,8 +7,6 @@ const LeaveSummaryBar = (props) => {
     width: "30%",
   };
 
-  console.log("props data");
-  console.log(props.history);
   const leaveHistory = props.history;
 
   return (
@@ -19,7 +17,7 @@ const LeaveSummaryBar = (props) => {
             <img
               className="mr-2"
               src={PiggyImg}
-              alt="Piggy Image"
+              alt="Piggy"
               style={imgStyle}
             />
             <div>

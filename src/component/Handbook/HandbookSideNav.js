@@ -11,7 +11,7 @@ const HandbookSideNav = (props) => {
       let link = `/admin/handbook/${handbook.id}`;
 
       // Check if the current title is active or not
-      let class_name = (handbook.id == id) ? "active_handbook " : "";
+      let class_name = (handbook.id === id) ? "active_handbook " : "";
 
       result.push(
         <div className={`${class_name}`} key={handbook.id}>

@@ -1,7 +1,8 @@
 import React from "react";
 import Profile from '../../../assets/profile.jpeg'
 
-function Notice_post() {
+const Notice_post = (props) => {
+
   return (
     <div id="notice_newsfeed">
       <div className="newsfeed">
@@ -34,7 +35,7 @@ function Notice_post() {
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
-            <a href="#" className="primary_color">
+            <a href="/#" className="primary_color">
               See more
             </a>
           </p>

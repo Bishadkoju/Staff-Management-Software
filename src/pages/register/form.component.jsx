@@ -3,11 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Register1 from "./register1.component";
 import Register2 from "./register2.component";
 import Register3 from "./register3.component";
-import image1 from "../../assets/profile.svg";
-import image2 from "../../assets/contract.svg";
-import image3 from "../../assets/citizenship.svg";
-import { baseURL } from "../../HelperFunction/Axios";
-import axios from "axios";
+
 import axiosInstance from "../../HelperFunction/Axios";
 
 const Form = () => {

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import axiosInstance from '../../../HelperFunction/Axios'
 
 const ProfileModal = (props) => {
@@ -212,7 +212,7 @@ const ProfileModal = (props) => {
 
                 {/* Pagination Div */}
                 <div className="col-md-12">
-                  <a className="btn btn_primary btn-circle btn-active">
+                  <a className="btn btn_primary btn-circle btn-active" href="/#">
                       <span className="activeTextButton">1</span>
                     </a>
                   <a
@@ -479,6 +479,7 @@ const ProfileModal = (props) => {
                     </a>
                     <a
                       className="btn btn_primary btn-circle"
+                      href="/#"
                     >
                       2
                     </a>
