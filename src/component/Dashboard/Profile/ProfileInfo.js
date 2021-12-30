@@ -7,43 +7,15 @@ import PiggyImage from "../../../assets/piggy.jpeg";
 
 import axiosInstance from "../../../HelperFunction/Axios";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
   const coverPhotoStyle = {
     minHeight: "150px",
     backgroundImage: `url(${CoverImage})`,
     position: "relative",
   };
 
-  const [userInfo, setUserInfo] = useState([]);
-  const [requiredUserInfo, setRequiredUserInfo] = useState([]);
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
-  const getUserInfo = async () => {
-    await axiosInstance
-      .get("/user/self/view/")
-      .then((res) => {
-        setUserInfo(res.data);
-        setRequiredUserInfo([
-          res.data.email,
-          res.data.address,
-          res.data.phone_number,
-          res.data.emergency_contact.full_name,
-          res.data.father_name,
-          res.data.mother_name,
-          res.data.marital_status,
-          res.data.educational_status,
-          res.data.store,
-          res.data.joined_date,
-          res.data.termination_date,
-        ]);
-      })
-      .catch((err) => {
-        //console.log(err);
-      });
-  };
+  const requiredUserInfo = props.userInfo;
 
   const profileDetailInfoArr = [
     "Email",
@@ -138,7 +110,9 @@ const ProfileInfo = () => {
             </div>
           </div>
 
-          <div className="row profile_info">{displayProfileDetailInfo()}</div>
+          <div className="row profile_info">
+            {requiredUserInfo ? displayProfileDetailInfo() : ""}
+          </div>
         </div>
       </div>
     </div>

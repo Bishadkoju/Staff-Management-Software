@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
+import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunction";
+
 
 function CheckIn(props) {
   const [hasCheckedIn, setCheckedIn] = useState(false);
@@ -73,22 +75,6 @@ function CheckIn(props) {
       });
   };
 
-  // const checkCheckedIn = () => {
-  //   if (attendances.length === 0) {
-  //     console.log("no attendences");
-  //     setCheckedIn(false);
-  //   } else {
-  //     const todayDate = new Date().toISOString().slice(0, 10);
-  //     console.log(attendances);
-  //     if (attendances[0].date === todayDate) {
-  //       console.log("Checked");
-  //       setCheckedInTime(attendances[0].checked_in_time);
-  //       setCheckedOutTime(attendances[0].checked_out_time);
-  //       setDisableCheckIn(true);
-  //     }
-  //   }
-  // };
-
   const checkInStrings = {
     true: "Check Out",
     false: "Check In",
@@ -119,8 +105,6 @@ function CheckIn(props) {
     await axiosInstance
       .post("/attendance/self/check_out/", data)
       .then((res) => {
-        // console.log(res);
-        // console.log(res.data);
         setCheckedOutTime(res.data.time);
       })
       .catch((err) => {
@@ -169,7 +153,7 @@ function CheckIn(props) {
                   {checkedInTime === "" ? (
                     <i className="fa fa-minus" aria-hidden="true"></i>
                   ) : (
-                    checkedInTime
+                    timeDisplayer(checkedInTime)
                   )}
                 </div>
                 <div>
@@ -177,7 +161,7 @@ function CheckIn(props) {
                   {checkedOutTime === "" ? (
                     <i className="fa fa-minus" aria-hidden="true"></i>
                   ) : (
-                    checkedOutTime
+                    timeDisplayer(checkedOutTime)
                   )}
                 </div>
                 <div>
@@ -185,7 +169,7 @@ function CheckIn(props) {
                   {duration === "" ? (
                     <i className="fa fa-minus" aria-hidden="true"></i>
                   ) : (
-                    duration
+                    secondsToHms(duration)
                   )}
                 </div>
               </div>
