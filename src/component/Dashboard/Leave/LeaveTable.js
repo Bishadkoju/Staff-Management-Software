@@ -5,8 +5,9 @@ function Leave_table(props) {
 
   const displayLeaveData = () => {
     let result = [];
+
     leaveTableData.map((data) => {
-      result.push(() => (
+      result.push(
         <tr key={data.leave_id}>
           <td className="text-muted muted_text">
             {data.leave_from} - {data.leave_to}
@@ -23,7 +24,7 @@ function Leave_table(props) {
             />
           </td>
         </tr>
-      ));
+      );
     });
 
     return result;
