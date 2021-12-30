@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
+import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunction";
 
 function CheckInHistory(props) {
   const [attendances, setAttendances] = useState([]);
 
-  const { limit } = props;
   useEffect(() => {
     getAttendance();
   }, []);
@@ -30,12 +30,12 @@ function CheckInHistory(props) {
           <td className="text-muted muted_text">{attendance.date}</td>
           <td>Jawalakhel</td>
           <td className="text-muted muted_text">
-            {attendance.checked_in_time}
+            {timeDisplayer(attendance.checked_in_time)}
           </td>
           <td className="text-muted muted_text">
-            {attendance.checked_out_time}
+            {timeDisplayer(attendance.checked_out_time)}
           </td>
-          <td className="text-muted muted_text">{attendance.duration}</td>
+          <td className="text-muted muted_text">{secondsToHms(attendance.duration)}</td>
           <td>
             <input
               type="checkbox"

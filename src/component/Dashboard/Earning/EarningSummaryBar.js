@@ -10,7 +10,7 @@ const EarningSummaryBar = () => {
   return (
     <div className="d-flex justify-content-start muted_text">
       <div className="media" style={{ maxWidth: "200px" }}>
-        <img className="mr-2" src={PiggyImg} alt="Piggy Image" style={imgStyle} />
+        <img className="mr-2" src={PiggyImg} alt="Piggy" style={imgStyle} />
         <div>
           <span className="muted_text text-muted">TOTAL EARNING</span>
           <br />

@@ -3,8 +3,6 @@ import axiosInstance from "../../HelperFunction/Axios";
 
 import Background from "../../component/background/background.component";
 import Header from "../../component/header/header.compoent";
-import { Link } from "react-router-dom";
-import image1 from "../../assets/profile.svg";
 import register3 from "../../assets/registration3.svg";
 
 import "./register.styles.scss";

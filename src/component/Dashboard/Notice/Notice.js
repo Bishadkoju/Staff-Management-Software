@@ -1,5 +1,5 @@
 import React from "react";
-import Notice_post from "./Notice_post";
+import NoticePost from "./NoticePost";
 
 function Notice() {
   return (
@@ -15,7 +15,7 @@ function Notice() {
           <i className="fa fa-angle-right" aria-hidden="true"></i>
         </div>
       </div>
-      <Notice_post />
+      <NoticePost />
     </div>
   );
 }

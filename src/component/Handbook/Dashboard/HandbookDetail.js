@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
 import { useParams } from "react-router-dom";
-import { Navigate } from "react-router";
 
 const HandbookDetail = () => {
   const [handBook, setHandBook] = useState([]);
@@ -23,7 +22,7 @@ const HandbookDetail = () => {
     };
 
     getHandbookDetail();
-  }, []);
+  }, [id]);
 
   return (
     <React.Fragment>

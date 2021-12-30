@@ -6,13 +6,10 @@ import axiosInstance from "../../HelperFunction/Axios";
 const CheckInOut = () => {
   const [attendenceDate, setAttendenceDate] = useState("");
   const [attendence, setAttendence] = useState([]);
-  const [selecteDate, setSelectDate] = useState("");
 
   const handleChange = async (e) => {
     let date = e.target.value.slice(0, 7);
-    if(selecteDate == ""){
-
-    }
+  
     setAttendenceDate(e.target.value);
     await axiosInstance
       .get(`/attendance/self/list/${date}/`)

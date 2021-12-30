@@ -25,7 +25,7 @@ const HandbookDetail = () => {
     };
 
     getHandbookDetail();
-  }, []);
+  }, [id]);
 
   const deleteHandbook = async (e) => {
     e.preventDefault();

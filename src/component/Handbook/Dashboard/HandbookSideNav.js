@@ -1,7 +1,6 @@
 import React from "react";
 
 const HandbookSideNav = (props) => {
-
   const getHeading = () => {
     let result = [];
     const id = props.splitLocation[3] ? props.splitLocation[3] : 0;
@@ -11,15 +10,15 @@ const HandbookSideNav = (props) => {
       let link = `/dashboard/handbook/${handbook.id}`;
 
       // Check if the current title is active or not
-      let class_name = (handbook.id == id) ? "active_handbook " : "";
+      let class_name = handbook.id === id ? "active_handbook " : "";
 
-      result.push(
+      result.push(() => (
         <div className={`${class_name}`} key={handbook.id}>
           <span className="handbook_side_link px-2 py-2">
             <a href={link}>{handbook.topic}</a>
           </span>
         </div>
-      );
+      ));
     });
     return result;
   };

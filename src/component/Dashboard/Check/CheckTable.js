@@ -1,26 +1,11 @@
 import React from "react";
+import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunction";
 
 const CheckTable = (props) => {
   const attendence = props.attendence;
 
-  const secondsToHms = (d) => {
-    d = Number(d);
-    var h = Math.floor(d / 3600);
-    var m = Math.floor((d % 3600) / 60);
-    var s = Math.floor((d % 3600) % 60);
-
-    var hDisplay = h > 0 ? h + " hr" : "";
-    var mDisplay = m > 0 ? m + " mins" : "";
-    return hDisplay + " " + mDisplay;
-  };
-
   const displayAttendenceHistory = () => {
     let result = [];
-
-    console.log("child");
-    console.log("props");
-    console.log(props);
-    console.log(attendence);
 
     if (attendence) {
       console.log("attendence result")
@@ -29,8 +14,8 @@ const CheckTable = (props) => {
           <tr key={data.duration}>
             <td className="text-muted muted_text">{data.date}</td>
             <td>Jawalakhel</td>
-            <td className="text-muted muted_text">{data.checked_in_time}</td>
-            <td className="text-muted muted_text">{data.checked_out_time}</td>
+            <td className="text-muted muted_text">{timeDisplayer(data.checked_in_time)}</td>
+            <td className="text-muted muted_text">{timeDisplayer(data.checked_out_time)}</td>
             <td className="text-muted muted_text">
               {secondsToHms(data.duration)}
             </td>

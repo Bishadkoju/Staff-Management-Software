@@ -2,7 +2,7 @@ import axios from "axios";
 import { baseURL } from "../../HelperFunction/Axios";
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const  Test = () => {
   

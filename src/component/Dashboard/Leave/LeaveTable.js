@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axiosInstance from "../../../HelperFunction/Axios";
+import React from "react";
 
 function Leave_table(props) {
-
   const leaveTableData = props.leaveDetail;
 
   const displayLeaveData = () => {
     let result = [];
     leaveTableData.map((data) => {
-      result.push(
+      result.push(() => (
         <tr key={data.leave_id}>
           <td className="text-muted muted_text">
             {data.leave_from} - {data.leave_to}
           </td>
-          <td>{data.pay == "P" ? "Paid" : "Unpaid"}</td>
+          <td>{data.pay === "P" ? "Paid" : "Unpaid"}</td>
           <td className="text-muted muted_text">{data.leave_type}</td>
           <td className="text-muted muted_text">{data.reason}</td>
           <td className="text-muted muted_text">{data.inform_team}</td>
@@ -25,7 +23,7 @@ function Leave_table(props) {
             />
           </td>
         </tr>
-      );
+      ));
     });
 
     return result;

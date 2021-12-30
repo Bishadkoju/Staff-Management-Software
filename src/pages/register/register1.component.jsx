@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Background from "../../component/background/background.component";
 import Header from "../../component/header/header.compoent";
-import { Link } from "react-router-dom";
-import image1 from "../../assets/profile.svg";
+
 import register1 from "../../assets/register1.svg";
-import ImgUpload from "../../component/ImageUpload/ImageUpload";
 
 import "./register.styles.scss";
 
@@ -36,7 +33,7 @@ export default class Register extends Component {
               </p>
             </div>
             <div className="registerOrder marginup">
-              <img src={register1} className="registerImage"></img>
+              <img src={register1} className="registerImage" alt="register"></img>
             </div>
             <div className="form-title">
               <h3 className="formTitle">Personal Details</h3>

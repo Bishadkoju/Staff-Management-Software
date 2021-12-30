@@ -2,7 +2,7 @@ import React from "react";
 import AdminLayout from "../../HOC/AdminLayout";
 import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
 
-import Leave_table from "../../component/Dashboard/Leave/LeaveTable";
+import LeaveTable from "../../component/Dashboard/Leave/LeaveTable";
 import ApplyLeaveModal from "../../component/Dashboard/Modal/ApplyLeaveModal";
 
 import LeaveSummaryBar from "../../component/Dashboard/Leave/LeaveSummaryBar";
@@ -39,37 +39,11 @@ const AdminLeave = () => {
                 <LeaveSummaryBar />
               </div>
               <div className="col-md-3 d-flex justify-content-end">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-primary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i className="fa fa-calendar pr-2" aria-hidden="true"></i>
-                    December 2021
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </div>
-                </div>
+                <input type="date" />
               </div>
 
               <div className="col-md-12">
-                <Leave_table />
+                <LeaveTable />
               </div>
             </div>
           </div>
