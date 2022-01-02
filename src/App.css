@@ -121,6 +121,9 @@ a:hover{
 
 #nav .active_nav_dash{
     color: #0085ff; 
+    padding-bottom: 20px;
+    border-bottom: 3px solid #0085ff;
+    font-weight: 800!important;
 }
 
 #nav .profile_picture{

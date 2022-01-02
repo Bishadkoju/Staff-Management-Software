@@ -22,10 +22,13 @@ const ApplyLeaveModal = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log("Submitted");
+    console.log(e);
     e.preventDefault();
     axiosInstance.post("/leave/request/add/", {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason})
     .then(res => {
       console.log(res);
+      document.getElementById('close').click();
     })
     .catch(err => {
       console.log(err);
@@ -286,6 +289,7 @@ const ApplyLeaveModal = () => {
                     type="button"
                     className="btn btn-secondary"
                     data-dismiss="modal"
+                    id="close"
                   >
                     Cancel
                   </button>

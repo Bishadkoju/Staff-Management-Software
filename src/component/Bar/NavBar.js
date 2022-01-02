@@ -35,19 +35,19 @@ function NavBar() {
           <div className="link">
             <NavLink
               to="/dashboard"
-              className={`mr-4 font-weight-bold ${isActive("", splitLocation)}`}
+              className={`mr-4 px-3 font-weight-bold ${isActive("", splitLocation)}`}
             >
               Home
             </NavLink>
             <NavLink
               to="/dashboard/earning"
-              className={`mr-4 font-weight-bold ${isActive("earning", splitLocation)}`}
+              className={`mr-4 px-3 font-weight-bold ${isActive("earning", splitLocation)}`}
             >
               Earning
             </NavLink>
             <NavLink
               to="/dashboard/leave"
-              className={`mr-4 font-weight-bold ${isActive("leave", splitLocation)}`}
+              className={`mr-4 px-3 font-weight-bold ${isActive("leave", splitLocation)}`}
             >
               My Leave
             </NavLink>
