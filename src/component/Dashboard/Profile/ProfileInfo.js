@@ -15,6 +15,7 @@ const ProfileInfo = (props) => {
 
 
   const requiredUserInfo = props.userInfo;
+  const username = props.name;
 
   const profileDetailInfoArr = [
     "Email",
@@ -83,7 +84,7 @@ const ProfileInfo = (props) => {
   return (
     <div className="row">
       <div className="col-md-12">
-        <div className="profile_div bg-white">
+        <div className="profile_div bg-white rounded">
           <div className="cover_photo" style={coverPhotoStyle}></div>
           <div className="profile_picture_div">
             <img
@@ -91,11 +92,11 @@ const ProfileInfo = (props) => {
               src={ProfileImage}
               alt="Profile"
             />
-            <h3 className="user_name">Esther Howard</h3>
+            <h3 className="user_name pl-3">{username ? username : ""}</h3>
             <div className="row">
               <div className="offset-md-2"></div>
               <div className="col-md-2 font_14 pl-5">
-                <span className="text-muted">matt@mail.com</span>
+                <span className="text-muted">{requiredUserInfo.length > 0 ? requiredUserInfo[0] : ""}</span>
                 <br />
                 <span className="font-weight-bold">Employee</span>
                 <span> #2356</span>
@@ -109,7 +110,7 @@ const ProfileInfo = (props) => {
             </div>
           </div>
 
-          <div className="row profile_info">
+          <div className="row profile_info pb-5">
             {requiredUserInfo ? displayProfileDetailInfo() : ""}
           </div>
         </div>

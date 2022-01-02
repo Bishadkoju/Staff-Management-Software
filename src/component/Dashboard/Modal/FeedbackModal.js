@@ -22,7 +22,7 @@ const FeedbackModal = () => {
       .post(`/feedback/create/`, { subject, message, read })
       .then((res) => {
         console.log(res);
-        
+        document.getElementById('close').click();
       })
       .catch((err) => {
         console.log(err);
@@ -70,6 +70,14 @@ const FeedbackModal = () => {
               <button type="submit" className="btn btn_primary mt-3">
                 Send
               </button>
+              <button
+                    type="button"
+                    className="btn btn-secondary mt-3 ml-2"
+                    data-dismiss="modal"
+                    id="close"
+                  >
+                    Close
+                  </button>
             </div>
           </form>
         </div>

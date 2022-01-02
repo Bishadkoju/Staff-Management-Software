@@ -8,6 +8,7 @@ import axiosInstance from "../../HelperFunction/Axios";
 const Profile = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [requiredUserInfo, setRequiredUserInfo] = useState([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     getUserInfo();
@@ -18,6 +19,7 @@ const Profile = () => {
       .get("/user/self/view/")
       .then((res) => {
         setUserInfo(res.data);
+        setName(res.data.first_name + " " + res.data.last_name);
         setRequiredUserInfo([
           res.data.email,
           res.data.address,
@@ -62,7 +64,7 @@ const Profile = () => {
       </div>
       {/* end of Profile Heading  */}
       <div className="container">
-        <ProfileInfo userInfo =  {requiredUserInfo}/>
+        <ProfileInfo userInfo =  {requiredUserInfo} name = {name}/>
         <ProfileModal userInfo = {userInfo}/>
       </div>
     </div>
