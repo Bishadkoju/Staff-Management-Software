@@ -17,7 +17,7 @@ export default class Register extends Component {
     this.props.prevStep();
   };
   render() {
-    const { handleChange, handleImageChange, imageSource } = this.props;
+    const { inputs, handleChange, handleImageChange, imageSource } = this.props;
 
     return (
       <>
@@ -33,7 +33,11 @@ export default class Register extends Component {
               </p>
             </div>
             <div className="registerOrder marginup">
-              <img src={register1} className="registerImage" alt="register2"></img>
+              <img
+                src={register1}
+                className="registerImage"
+                alt="register2"
+              ></img>
             </div>
             <div className="form-title">
               <h3 className="formTitle">General Details</h3>
@@ -46,6 +50,7 @@ export default class Register extends Component {
                   placeholder="Father's Name*"
                   required
                   name="father_name"
+                  value={inputs["father_name"]}
                   onChange={handleChange}
                 />
               </div>
@@ -56,11 +61,16 @@ export default class Register extends Component {
                   placeholder="Mother's Name*"
                   required
                   name="mother_name"
+                  value={inputs["mother_name"]}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-input2 col-md">
-                <select name="marital_status" onChange={handleChange}>
+                <select
+                  name="marital_status"
+                  value={inputs["marital_status"]}
+                  onChange={handleChange}
+                >
                   <option value="">Marital Status</option>
                   <option value="S">Single</option>
                   <option value="M">Married</option>
@@ -77,6 +87,7 @@ export default class Register extends Component {
                   placeholder="Education Status*"
                   required
                   name="educational_status"
+                  value={inputs["educational_status"]}
                   onChange={handleChange}
                 />
               </div>
@@ -94,6 +105,7 @@ export default class Register extends Component {
                     placeholder="PAN No*"
                     required
                     name="pan_number"
+                    value={inputs["pan_number"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -103,20 +115,37 @@ export default class Register extends Component {
                     className=""
                     placeholder="Bank Account Number*"
                     name="account_number"
+                    value={inputs["account_number"]}
                     onChange={handleChange}
                   />
                 </div>
 
                 <div className="form-input2 col-md image3">
-                  <ImageUpload name="photo" src={imageSource['photo']} label="Photo" onChange={handleImageChange} />
+                  <ImageUpload
+                    name="photo"
+                    src={imageSource["photo"]}
+                    value={inputs["photo"]}
+                    label="Photo"
+                    onChange={handleImageChange}
+                  />
 
-                  <ImageUpload name="valid_document" src={imageSource['valid_document']} label="Valid Document" onChange={handleImageChange} />
+                  <ImageUpload
+                    name="valid_document"
+                    src={imageSource["valid_document"]}
+                    value={inputs["valid_document"]}
+                    label="Valid Document"
+                    onChange={handleImageChange}
+                  />
                 </div>
                 <div className="form-input2 col-md image3">
-
-                  <ImageUpload name="contract_paper" src={imageSource['contract_paper']} label="Contract" onChange={handleImageChange} />
+                  <ImageUpload
+                    name="contract_paper"
+                    src={imageSource["contract_paper"]}
+                    value={inputs["contract_paper"]}
+                    label="Contract"
+                    onChange={handleImageChange}
+                  />
                 </div>
-
               </div>
             </div>
 

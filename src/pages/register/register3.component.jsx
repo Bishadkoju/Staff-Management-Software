@@ -8,7 +8,6 @@ import register3 from "../../assets/registration3.svg";
 import "./register.styles.scss";
 
 export default class Register extends Component {
-
   constructor(props) {
     super(props);
     // Don't call this.setState() here!
@@ -17,14 +16,13 @@ export default class Register extends Component {
 
   componentDidMount = async () => {
     const res = await axiosInstance.get("store/list");
-    if(res.status === 200) {
+    if (res.status === 200) {
       this.setState({
-        stores: res.data
-      })
-      console.log(res.data)
+        stores: res.data,
+      });
+      console.log(res.data);
     }
-    
-  }
+  };
 
   continue = (e) => {
     e.preventDefault();
@@ -41,9 +39,9 @@ export default class Register extends Component {
     this.props.formSubmit();
   };
 
-
   render() {
-    const { handleChange, handleImageChange, imagePreviewUrl } = this.props;
+    const { inputs, handleChange, handleImageChange, imagePreviewUrl } =
+      this.props;
 
     return (
       <>
@@ -67,29 +65,30 @@ export default class Register extends Component {
             </div>
             <div className="form-wrapper">
               <div className="form-input2 col-big">
-                <select name="user_type" onChange={handleChange}>
+                <select
+                  name="user_type"
+                  value={inputs["user_type"]}
+                  onChange={handleChange}
+                >
                   <option value="">Roles</option>
-                  <option value="2" >
-                    General Manager
-                  </option>
-                  <option value="3" >
-                    Store Manager
-                  </option>
+                  <option value="2">General Manager</option>
+                  <option value="3">Store Manager</option>
                   <option value="4">Employee</option>
                 </select>
               </div>
-              {
-                console.log(this.state)
-              }
+              {console.log(this.state)}
 
               <div className="form-input2 col-big">
                 <select
                   name="store"
+                  value={inputs["store"]}
                   onClick={handleChange}
                 >
                   <option value="0">Store</option>
                   {this.state.stores.map((store, index) => (
-                    <option key={index} value={store.id}>{store.name}</option>
+                    <option key={index} value={store.id}>
+                      {store.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -99,6 +98,7 @@ export default class Register extends Component {
                   className=""
                   placeholder="Password*"
                   name="password1"
+                  value={inputs["password1"]}
                   onChange={handleChange}
                 />
               </div>
@@ -108,6 +108,7 @@ export default class Register extends Component {
                   className=""
                   placeholder="Confirm Password*"
                   name="password2"
+                  value={inputs["password2"]}
                   onChange={handleChange}
                 />
               </div>
@@ -121,6 +122,7 @@ export default class Register extends Component {
                   }}
                   placeholder="Starting Date*"
                   name="joined_date"
+                  value={inputs["joined_date"]}
                   onChange={handleChange}
                 />
               </div>
@@ -133,12 +135,13 @@ export default class Register extends Component {
                   }}
                   placeholder="Termination Date*"
                   name="termination_date"
+                  value={inputs["termination_date"]}
                   onChange={handleChange}
                 />
               </div>
             </div>
             <div className="button-container">
-            <button onClick={this.props.formSubmit} className="login-button">
+              <button onClick={this.props.formSubmit} className="login-button">
                 Finish
               </button>
               <button onClick={this.props.prevStep} className="login-button-2">
