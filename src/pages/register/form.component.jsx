@@ -111,6 +111,7 @@ const Form = () => {
   };
 
   const commonProps = {
+    inputs,
     nextStep,
     prevStep,
     handleChange,

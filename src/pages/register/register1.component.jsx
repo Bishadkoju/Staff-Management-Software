@@ -17,7 +17,7 @@ export default class Register extends Component {
   };
 
   render() {
-    const { handleChange, handleImageChange, imagePreviewUrl } = this.props;
+    const { inputs,handleChange, handleImageChange, imagePreviewUrl } = this.props;
 
     return (
       <>
@@ -46,6 +46,7 @@ export default class Register extends Component {
                   placeholder="Fist Name*"
                   required
                   name="first_name"
+                  value={inputs["first_name"]}
                   onChange={handleChange}
                 />
               </div>
@@ -56,6 +57,7 @@ export default class Register extends Component {
                   placeholder="Middle Name*"
                   required
                   name="middle_name"
+                  value={inputs["middle_name"]}
                   onChange={handleChange}
                 />
               </div>
@@ -66,12 +68,13 @@ export default class Register extends Component {
                   placeholder="Last Name*"
                   required
                   name="last_name"
+                  value={inputs["last_name"]}
                   onChange={handleChange}
                 />
               </div>
 
               <div className="form-input2 col-small">
-                <select name="gender" onChange={handleChange}>
+                <select name="gender" value={inputs["gender"]} onChange={handleChange}>
                   <option value="">Gender</option>
                   <option value="M">Male</option>
                   <option value="F">Female</option>
@@ -87,6 +90,7 @@ export default class Register extends Component {
                   }}
                   placeholder="Date of Birth"
                   name="date_of_birth"
+                  value={inputs["date_of_birth"]}
                   onChange={handleChange}
                 />
               </div>
@@ -104,6 +108,7 @@ export default class Register extends Component {
                     placeholder="Email Address*"
                     required
                     name="email"
+                    value={inputs["email"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -114,6 +119,7 @@ export default class Register extends Component {
                     placeholder="Phone Number*"
                     required
                     name="phone_number"
+                    value={inputs["phone_number"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -125,6 +131,7 @@ export default class Register extends Component {
                     placeholder="Address*"
                     required
                     name="address"
+                    value={inputs["address"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -143,6 +150,7 @@ export default class Register extends Component {
                     placeholder="Full Name"
                     required
                     name="emergency_full_name"
+                    value={inputs["emergency_full_name"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -154,6 +162,7 @@ export default class Register extends Component {
                     placeholder="Relation"
                     required
                     name="emergency_relation"
+                    value={inputs["emergency_relation"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -164,6 +173,7 @@ export default class Register extends Component {
                     placeholder="Contact No."
                     required
                     name="emergency_phone_number"
+                    value={inputs["emergency_phone_number"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -175,6 +185,7 @@ export default class Register extends Component {
                     placeholder="Address"
                     required
                     name="emergency_address"
+                    value={inputs["emergency_address"]}
                     onChange={handleChange}
                   />
                 </div>
