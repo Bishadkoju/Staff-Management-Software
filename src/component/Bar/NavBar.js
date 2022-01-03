@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import header from "../../assets/header.png";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 import { logout } from "../../HelperFunction/loginHelper";
+
+import axiosInstance from "../../HelperFunction/Axios";
 
 function NavBar() {
   const navigagte = useNavigate();
@@ -10,6 +12,24 @@ function NavBar() {
     console.log("logout");
     logout();
     navigagte("/");
+  };
+
+  // Get the user name
+  const [name, setName] = useState("");
+  useEffect(() => {
+    getUserName();
+  }, []);
+
+  const getUserName = async () => {
+    await axiosInstance
+      .get("/user/self/view/")
+      .then((res) => {
+        setName(res.data.first_name + " " + res.data.last_name);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //assigning location variable
@@ -21,10 +41,12 @@ function NavBar() {
   //Javascript split method to get the name of the path in array
   const splitLocation = pathname.split("/");
 
-
   const isActive = (keyWord, splitLocation) => {
-    return (splitLocation[2] === keyWord || (splitLocation.length === 2 && keyWord === "")) ? "active_nav_dash" : "";
-  }
+    return splitLocation[2] === keyWord ||
+      (splitLocation.length === 2 && keyWord === "")
+      ? "active_nav_dash"
+      : "";
+  };
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -35,19 +57,28 @@ function NavBar() {
           <div className="link">
             <NavLink
               to="/dashboard"
-              className={`mr-4 px-3 font-weight-bold ${isActive("", splitLocation)}`}
+              className={`px-3 font-weight-bold ${isActive(
+                "",
+                splitLocation
+              )}`}
             >
               Home
             </NavLink>
             <NavLink
               to="/dashboard/earning"
-              className={`mr-4 px-3 font-weight-bold ${isActive("earning", splitLocation)}`}
+              className={`px-3 font-weight-bold ${isActive(
+                "earning",
+                splitLocation
+              )}`}
             >
               Earning
             </NavLink>
             <NavLink
               to="/dashboard/leave"
-              className={`mr-4 px-3 font-weight-bold ${isActive("leave", splitLocation)}`}
+              className={`px-3 font-weight-bold ${isActive(
+                "leave",
+                splitLocation
+              )}`}
             >
               My Leave
             </NavLink>
@@ -56,7 +87,7 @@ function NavBar() {
             <div>
               <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
             </div>
-            <div className="profile_picture mr-2">EH</div>
+            <div className="profile_picture mr-2">NB</div>
             <div>
               <div className="dropdown">
                 <span
@@ -67,7 +98,7 @@ function NavBar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="profile_name">Esther Howard</span>
+                  <span className="profile_name">{name ? name : ""}</span>
                 </span>
                 <div
                   className="dropdown-menu dropDownMenuLeft"
@@ -136,7 +167,6 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
-
                           <span
                             className="heading_text text-danger"
                             onClick={handleLogout}

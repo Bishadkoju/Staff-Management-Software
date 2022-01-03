@@ -12,16 +12,16 @@ const Dashboard = () => {
       <div className="container">
         <div className="row mt-4">
           <div className="col-md-3">
-            <InfoBar />
+            <InfoBar title = "ACTIVE" value = "2048 Hours" />
           </div>
           <div className="col-md-3">
-            <InfoBar />
+            <InfoBar title = "MY EARNING" value = "29.4%"  />
           </div>
           <div className="col-md-3">
-            <InfoBar />
+            <InfoBar title = "APPEARANCE" value = "20 Days"  />
           </div>
           <div className="col-md-3">
-            <InfoBar />
+            <InfoBar title = "LEAVES REMAINING" value = "4 Days"  />
           </div>
         </div>
       </div>

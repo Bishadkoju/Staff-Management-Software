@@ -116,7 +116,7 @@ function CheckIn(props) {
   };
 
   return (
-    <div className="div_format pt-3">
+    <div className="div_format pt-3 pb-4">
       <span className="heading_text">Check In</span>
       <br />
       <span className="muted_text text-muted">
@@ -137,9 +137,9 @@ function CheckIn(props) {
             <div className="medium_font">
               <span className="">29 Nov</span>
               <br />
-              <span className="text-muted muted_text ">Check In :</span>
+              <span className="text-muted muted_text pr-3">Check In :</span>
               <span className="time pr-4 ">10:45 AM</span>
-              <span>Check Out :</span>
+              <span className="text-muted muted_text pr-3">Check Out :</span>
               <span className="time">03:45 PM</span>
             </div>
             <div className="medium_font primary_color pt-3">
