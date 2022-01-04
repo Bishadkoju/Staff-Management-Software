@@ -26,7 +26,8 @@ const AdminUserTable = () => {
     userList.map((user) => {
       result.push(
         <tr key={user.id}>
-          <td className="text-muted">{user.full_name}</td>
+          <td className="text-muted">
+            <a href={`/admin/user/${user.id}`}>{user.full_name}</a></td>
           <td className="text-muted">{user.role}</td>
           <td className="text-muted">{user.email}</td>
           <td className="text-muted">{user.phone_number}</td>
