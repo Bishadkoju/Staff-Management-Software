@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ActionMenuTable from "./ActionMenuTable";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const AdminUserTable = () => {
+  const [userList, setUserList] = useState([]);
+
+  useEffect(() => {
+    const getUserList = async () => {
+      await axiosInstance
+        .get(`/user/list/`)
+        .then((res) => {
+          console.log(res.data);
+          setUserList(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    getUserList();
+  }, []);
+
+
+  const displayUserData = () => {
+    let result = [];
+
+    
+
+    return result;
+  }
+
+
   return (
     <div className="user_table div_format pt-4">
       <div className="form-group">

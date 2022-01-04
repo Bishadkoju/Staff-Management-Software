@@ -5,14 +5,12 @@ import ProfileDetailInfo from "./ProfileDetailInfo";
 import EarningLeaveInfo from "./EarningLeaveInfo";
 import PiggyImage from "../../../assets/piggy.jpeg";
 
-
 const ProfileInfo = (props) => {
   const coverPhotoStyle = {
     minHeight: "150px",
     backgroundImage: `url(${CoverImage})`,
     position: "relative",
   };
-
 
   const requiredUserInfo = props.userInfo;
   const username = props.name;
@@ -99,7 +97,7 @@ const ProfileInfo = (props) => {
             <div className="row">
               <div className="offset-md-2"></div>
               <div className="col-md-2 font_14 pl-5">
-                <span className="text-muted">{requiredUserInfo.length > 0 ? requiredUserInfo[0] : ""}</span>
+                <span className="text-muted">{requiredUserInfo ? requiredUserInfo[0] : ""}</span>
                 <br />
                 <span className="font-weight-bold">Employee</span>
                 <span> #2356</span>

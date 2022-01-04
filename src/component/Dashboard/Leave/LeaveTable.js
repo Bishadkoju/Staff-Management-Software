@@ -1,6 +1,6 @@
 import React from "react";
 
-function Leave_table(props) {
+const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
 
   const displayLeaveData = () => {
@@ -56,4 +56,4 @@ function Leave_table(props) {
   );
 }
 
-export default Leave_table;
+export default LeaveTable;

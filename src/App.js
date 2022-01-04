@@ -23,6 +23,7 @@ import Test from "./pages/test/test";
 // Admin Pages
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminUsers from "./pages/Admin/AdminUsers";
+import AdminUserProfile from "./pages/Admin/AdminUserProfile";
 import AdminEarning from "./pages/Admin/AdminEarning";
 import AdminLeave from "./pages/Admin/AdminLeave";
 import AdminProfile from "./pages/Admin/AdminProfile";
@@ -66,6 +67,8 @@ class App extends React.Component {
 
             <Route exact path="/admin" element={<AdminDashboard />} />
             <Route exact path="/admin/user" element={<AdminUsers />} />
+            <Route exact path="/admin/user/:id" element={<AdminUserProfile />} />
+
             <Route exact path="/admin/earning" element={<AdminEarning />} />
             <Route exact path="/admin/leave" element={<AdminLeave />} />
             <Route exact path="/admin/profile" element={<AdminProfile />} />

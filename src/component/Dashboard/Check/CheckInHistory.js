@@ -1,51 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axiosInstance from "../../../HelperFunction/Axios";
-import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunction";
+import React from "react";
+import {
+  timeDisplayer,
+  secondsToHms,
+} from "../../../HelperFunction/GenericFunction";
 
-function CheckInHistory(props) {
-  const [attendances, setAttendances] = useState([]);
-
-  useEffect(() => {
-    getAttendance();
-  }, []);
-
-  const getAttendance = async () => {
-    await axiosInstance
-      .get("/attendance/list/")
-      .then((res) => {
-        setAttendances(res.data.results);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+const CheckInHistory = (props) => {
+  let attendances = props.attendances;
 
   const attendanceData = () => {
     let result = [];
 
-    attendances.map(attendance =>
-      result.push(
-        <tr key={attendance.date}>
-          <td className="text-muted muted_text">{attendance.date}</td>
-          <td>Jawalakhel</td>
-          <td className="text-muted muted_text">
-            {timeDisplayer(attendance.checked_in_time)}
-          </td>
-          <td className="text-muted muted_text">
-            {timeDisplayer(attendance.checked_out_time)}
-          </td>
-          <td className="text-muted muted_text">{secondsToHms(attendance.duration)}</td>
-          <td>
-            <input
-              type="checkbox"
-              name="action_check_in"
-              id="action_check_in"
-            />
-          </td>
-        </tr>
-      )
-    );
+    if (attendances) {
+      attendances.map((attendance) =>
+        result.push(
+          <tr key={attendance.date}>
+            <td className="text-muted muted_text">{attendance.date}</td>
+            <td>Jawalakhel</td>
+            <td className="text-muted muted_text">
+              {timeDisplayer(attendance.checked_in_time)}
+            </td>
+            <td className="text-muted muted_text">
+              {timeDisplayer(attendance.checked_out_time)}
+            </td>
+            <td className="text-muted muted_text">
+              {secondsToHms(attendance.duration)}
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                name="action_check_in"
+                id="action_check_in"
+              />
+            </td>
+          </tr>
+        )
+      );
+    }
     return result;
   };
 

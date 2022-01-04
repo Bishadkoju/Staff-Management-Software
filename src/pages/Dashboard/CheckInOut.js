@@ -26,7 +26,7 @@ const CheckInOut = () => {
   useEffect(() => {
     const getAttendenceList = async () => {
       await axiosInstance
-        .get("/attendance/list/")
+        .get("/attendance/self/list/")
         .then((res) => {
           setAttendence(res.data.results);
         })

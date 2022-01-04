@@ -255,6 +255,8 @@ a:hover{
     height: 50px;
 }
 
+
+/* Admin User Profile Page */
 .nav_cle_head_active{
     color: #5d78ff;
     background-color: #f6f7fd;
@@ -264,6 +266,7 @@ a:hover{
 .nav_cle_head{
     color: #6c7293;
     padding: 5px 10px 5px 10px;
+    cursor: pointer;
 }
 
 /* Admin page  */
