@@ -2,7 +2,9 @@ import React from "react";
 import IncreaseSalaryModal from "./IncreaseSalaryModal";
 import AssignNewStore from "./AssignNewStore";
 
-const ActionMenuTable = () => {
+const ActionMenuTable = (props) => {
+  const userId = props.userId;
+
   return (
     <React.Fragment>
       <div className="dropdown show">
@@ -24,9 +26,9 @@ const ActionMenuTable = () => {
         >
           <a
             className="dropdown-item"
-            href="#increaseSalaryModal"
+            href={`#increaseSalaryModal${userId}`}
             data-toggle="modal"
-            data-target="#increaseSalaryModal"
+            data-target={`#increaseSalaryModal${userId}`}
           >
             <div
               className="
@@ -138,7 +140,7 @@ const ActionMenuTable = () => {
           </a>
         </div>
       </div>
-      <IncreaseSalaryModal />
+      <IncreaseSalaryModal userId = {userId} />
       <AssignNewStore />
     </React.Fragment>
   );
