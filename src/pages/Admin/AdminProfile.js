@@ -4,7 +4,6 @@ import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
 
 import ProfileInfo from "../../component/Dashboard/Profile/ProfileInfo";
 import ProfileModal from "../../component/Dashboard/Modal/ProfileModal";
-import CheckLeaveEarningTable from "../../component/Admin/AdminProfile/CheckLeaveEarningTable";
 
 const AdminProfile = () => {
   return (
@@ -36,9 +35,6 @@ const AdminProfile = () => {
             </div>
             <ProfileInfo />
             <ProfileModal />
-            <div>
-                <CheckLeaveEarningTable />
-            </div>
           </div>
         </div>
       </div>
