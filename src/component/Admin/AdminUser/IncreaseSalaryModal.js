@@ -1,10 +1,86 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "../../../HelperFunction/Axios";
 
-const IncreaseSalaryModal = () => {
+const IncreaseSalaryModal = (props) => {
+  const userId = props.userId;
+
+  const [salaryData, setSalaryData] = useState({});
+  const [newSalaryAmount, setNewSalaryAmount] = useState(0);
+  const [additionAmount, setAdditionAmount] = useState(0);
+
+  const [formData, setFormData] = useState({
+    increase_by: 0,
+    amount: 0,
+    valid_from: "",
+  });
+
+  const { increase_by, amount, valid_from } = formData;
+
+  const handleChange = (e) => {
+    setFormData((prevFormData) => {
+      return { ...prevFormData, [e.target.name]: e.target.value };
+    });
+    if(e.target.name === "amount"){
+      calculateNewSalary(e.target.value);
+    }
+  };
+
+  const calculateNewSalary = (amount) => {
+    if (salaryData.length > 0) {
+      if (increase_by === "percentage") {
+        increaseByPercentage(Number(amount));
+      } else {
+        increaseByFixedAmount(Number(amount));
+      }
+    }
+  };
+
+  const increaseByPercentage = (percentage) => {
+    let currentSalary = salaryData[0].amount;
+    let newSalary = currentSalary + (percentage / 100) * currentSalary;
+    console.log("percentage");
+    console.log(percentage);
+    console.log(currentSalary);
+    console.log(newSalary);
+    setNewSalaryAmount(newSalary);
+    setAdditionAmount(newSalary - currentSalary);
+  };
+
+  const increaseByFixedAmount = (fixedAmount) => {
+    let currentSalary = salaryData[0].amount;
+    let newSalary = currentSalary + fixedAmount;
+    console.log("Fixed Amount");
+    console.log(fixedAmount);
+    console.log(currentSalary);
+    console.log(newSalary);
+    setNewSalaryAmount(newSalary);
+    setAdditionAmount(newSalary - currentSalary);
+  };
+
+  useEffect(() => {
+    const getSalaryData = async () => {
+      await axiosInstance
+        .get(`/salary/employee/${userId}/list/`)
+        .then((res) => {
+          console.log(res.data.salaries);
+          setSalaryData(res.data.salaries);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    getSalaryData();
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <div
       className="modal fade bd-example-modal"
-      id="increaseSalaryModal"
+      id={`increaseSalaryModal${userId}`}
       tabindex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
@@ -19,7 +95,11 @@ const IncreaseSalaryModal = () => {
                   <span className="heading_text">Increase Salary</span>
                 </div>
                 <div>
-                  <a className="btn cross_button" data-dismiss="modal" href="/#">
+                  <a
+                    className="btn cross_button"
+                    data-dismiss="modal"
+                    href="/#"
+                  >
                     <i className="fa fa-times" aria-hidden="true"></i>
                   </a>
                 </div>
@@ -27,13 +107,15 @@ const IncreaseSalaryModal = () => {
             </div>
           </div>
           <hr />
-          <form>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
                   <label for="current_salary">Current Salary</label>
                   <br />
-                  <span className="f_24 text-primary">$15.5</span>
+                  <span className="f_24 text-primary">
+                    ${salaryData.length > 0 ? salaryData[0].amount : ""}
+                  </span>
                 </div>
               </div>
               <div className="col-md-6">
@@ -47,6 +129,7 @@ const IncreaseSalaryModal = () => {
                       name="increase_by"
                       id="inlineRadio1"
                       value="percentage"
+                      onChange={(e) => handleChange(e)}
                       selected
                     />
                     <label className="form-check-label" for="inlineRadio1">
@@ -60,6 +143,7 @@ const IncreaseSalaryModal = () => {
                       name="increase_by"
                       id="inlineRadio2"
                       value="fixed_amount"
+                      onChange={(e) => handleChange(e)}
                     />
                     <label className="form-check-label" for="inlineRadio2">
                       Fixed Amount
@@ -78,10 +162,13 @@ const IncreaseSalaryModal = () => {
                     </span>
                   </div>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
+                    name="amount"
                     id="amount"
+                    value={amount}
                     aria-describedby="basic-addon3"
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -93,6 +180,8 @@ const IncreaseSalaryModal = () => {
                     className="form-control"
                     name="valid_from"
                     id="valid_from"
+                    value={valid_from}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -100,7 +189,7 @@ const IncreaseSalaryModal = () => {
                 <div className="form-group">
                   <label for="addition_amount">Addition Amount</label>
                   <br />
-                  <span className="f_24 text-primary">+$15.5</span>
+                  <span className="f_24 text-primary">+${additionAmount}</span>
                 </div>
               </div>
               <div className="col-md-6">
@@ -108,14 +197,14 @@ const IncreaseSalaryModal = () => {
                   <label for="new_salary">New Salary</label>
                   <br />
                   <span className="f_36 text-primary">
-                    25<sup>$</sup>
+                    {newSalaryAmount}<sup>$</sup>
                   </span>
                 </div>
               </div>
             </div>
             <hr />
             <div className="col-md-12">
-              <button className="btn btn_primary mr-3">Submit</button>
+              <button className="btn btn_primary mr-3">Increase Salary</button>
               <button className="btn btn-secondary" data-dismiss="modal">
                 Cancel
               </button>
