@@ -1,5 +1,5 @@
 import React from "react";
-import PiggyImg from "../../../assets/piggy.png";
+import PiggyImg from "../../../assets/icons/pig.svg";
 import NoBoxInfoBar from "../General/NoBoxInfoBar";
 
 const EarningSummaryBar = () => {
@@ -9,7 +9,7 @@ const EarningSummaryBar = () => {
   
   return (
     <div className="d-flex justify-content-start muted_text">
-      <div className="media" style={{ maxWidth: "200px" }}>
+      <div className="media mr-5" style={{ maxWidth: "200px" }}>
         <img className="mr-2" src={PiggyImg} alt="Piggy" style={imgStyle} />
         <div>
           <span className="muted_text text-muted">TOTAL EARNING</span>

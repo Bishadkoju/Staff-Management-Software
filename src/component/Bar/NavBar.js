@@ -6,6 +6,11 @@ import { logout } from "../../HelperFunction/loginHelper";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
+import profileIcon from "../../assets/icons/profileIcon.svg";
+import groupIcon from "../../assets/icons/groupIcon.svg";
+import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
+import logOut from "../../assets/icons/logOut.svg";
+
 function NavBar() {
   const navigagte = useNavigate();
   const handleLogout = () => {
@@ -57,10 +62,7 @@ function NavBar() {
           <div className="link">
             <NavLink
               to="/dashboard"
-              className={`px-3 font-weight-bold ${isActive(
-                "",
-                splitLocation
-              )}`}
+              className={`px-3 font-weight-bold ${isActive("", splitLocation)}`}
             >
               Home
             </NavLink>
@@ -101,13 +103,36 @@ function NavBar() {
                   <span className="profile_name">{name ? name : ""}</span>
                 </span>
                 <div
-                  className="dropdown-menu dropDownMenuLeft"
+                  className="dropdown-menu dropDownMenuLeft pt-0"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/dashboard/profile">
+                  <div className="dropdown-item profile_desc_dropdown pt-3">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="mr-2 drop_profile_picture">
+                        <div className="profile_picture mr-2">
+                          <span className="firstLastLetter">NB</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="dropdown_menu">
+                          <span className="heading_text text-white">Nirajan Bekoju</span>
+                          <br />
+                          <span className="muted_text text-muted">
+                            nirajan.bekoju@gmail.com
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a className="dropdown-item" href="/dashboard/profile">
+                    <div className="dropdown_item_desc d-flex justify-content-start mt-3">
+                      <div className="icon mr-2">
+                        <img
+                          src={profileIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -120,11 +145,16 @@ function NavBar() {
                       </div>
                     </div>
                   </a>
+                  <hr className="mt-0 mb-3" />
 
                   <a className="dropdown-item" href="/dashboard/handbook">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={groupIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -137,7 +167,7 @@ function NavBar() {
                       </div>
                     </div>
                   </a>
-
+                  <hr className="mt-0 mb-3" />
                   <a
                     className="dropdown-item"
                     href="#feedbackModal"
@@ -145,8 +175,12 @@ function NavBar() {
                     data-target="#feedbackModal"
                   >
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={feedbackIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -159,16 +193,16 @@ function NavBar() {
                       </div>
                     </div>
                   </a>
-
+                  <hr className="mt-0 mb-3" />
                   <a className="dropdown-item" href="/#">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-sign-out" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img src={logOut} alt="profile user" className="icon" />
                       </div>
                       <div>
                         <p className="dropdown_menu">
                           <span
-                            className="heading_text text-danger"
+                            className="heading_text text_danger"
                             onClick={handleLogout}
                           >
                             Log Out
