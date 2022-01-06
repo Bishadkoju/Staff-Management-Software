@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import CheckInHistory from "../../../Dashboard/Check/CheckInHistory";
-import LeaveTable from "../../../Dashboard/Leave/LeaveTable";
+import CheckInHistory from "./CheckInHistory";
+import LeaveTable from "./LeaveTable";
+import EarningGraph from "./EarningGraph";
 import axiosInstance from "../../../../HelperFunction/Axios";
 
 const CheckLeaveEarningTable = (props) => {
@@ -67,6 +68,7 @@ const CheckLeaveEarningTable = (props) => {
         <div className="pr-3">
           <span
             className={select === 2 ? "nav_cle_head_active" : "nav_cle_head"}
+            onClick={() => updateSelect(2)}
           >
             Earning
           </span>
@@ -84,6 +86,9 @@ const CheckLeaveEarningTable = (props) => {
     }
     else if(select === 1){
       result.push(<LeaveTable leaveDetail = {leaveData} />)
+    }
+    else if(select == 2){
+      result.push(<EarningGraph />)
     }
     return result;
   }
