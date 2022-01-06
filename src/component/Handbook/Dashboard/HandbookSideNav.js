@@ -15,7 +15,7 @@ const HandbookSideNav = (props) => {
       console.log("id : ", id);
 
       result.push(
-        <div className={`${class_name}`} key={handbook.id}>
+        <div className={`${class_name} my-2`} key={handbook.id}>
           <span className="handbook_side_link px-2 py-2">
             <a href={link}>{handbook.topic}</a>
           </span>
@@ -30,7 +30,7 @@ const HandbookSideNav = (props) => {
       <div className="col-md-3">
         <div className="handbook_left bg-white side-menu">
           <div className="p-2">
-            <h5>Handbook</h5>
+            <h5 className="px-2">Handbook</h5>
             <hr />
             {getHeading()}
           </div>

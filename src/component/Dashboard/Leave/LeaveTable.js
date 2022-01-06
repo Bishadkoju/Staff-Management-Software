@@ -1,4 +1,5 @@
 import React from "react";
+import checkAction from "../../../assets/icons/checkAction.svg"
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
@@ -17,11 +18,7 @@ const LeaveTable = (props) => {
           <td className="text-muted muted_text">{data.reason}</td>
           <td className="text-muted muted_text">{data.inform_team}</td>
           <td>
-            <input
-              type="checkbox"
-              name="action_check_in"
-              id="action_check_in"
-            />
+            <img src={checkAction} alt="check action" />
           </td>
         </tr>
       );

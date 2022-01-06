@@ -1,5 +1,5 @@
 import React from "react";
-import PiggyImg from "../../../assets/icons/pig.svg";
+import Confetti from "../../../assets/icons/Confetti.svg";
 import NoBoxInfoBar from "../General/NoBoxInfoBar";
 
 const LeaveSummaryBar = (props) => {
@@ -17,8 +17,8 @@ const LeaveSummaryBar = (props) => {
             <div className="media" style={{ maxWidth: "400px" }}>
               <img
                 className="mr-2"
-                src={PiggyImg}
-                alt="Piggy"
+                src={Confetti}
+                alt="Confetti"
                 style={imgStyle}
               />
               <div>
