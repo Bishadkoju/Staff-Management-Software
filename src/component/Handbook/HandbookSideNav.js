@@ -4,14 +4,15 @@ const HandbookSideNav = (props) => {
 
   const getHeading = () => {
     let result = [];
+    console.log(props);
     const id = props.splitLocation[3] ? props.splitLocation[3] : 1;
-
+  
     props.handbooks.map((handbook) => {
       // Link For the detail of handbook
       let link = `/admin/handbook/${handbook.id}`;
 
       // Check if the current title is active or not
-      let class_name = (handbook.id === id) ? "active_handbook " : "";
+      let class_name = (handbook.id === Number(id)) ? "active_handbook " : "";
 
       result.push(
         <div className={`${class_name}`} key={handbook.id}>

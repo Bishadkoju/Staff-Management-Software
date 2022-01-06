@@ -105,6 +105,10 @@ a:hover{
     color: #d94f7c;
 }
 
+.cursor_pointer{
+    cursor: pointer;
+}
+
 /* Navigation Bar */
 #nav{
     background-color: #13304d;
@@ -212,9 +216,10 @@ a:hover{
 
 /* handbook page */
 .active_handbook, .create_button{
-    background-color: #516bbd;
-    border-radius: 5px;
+    background-color: #0085ff;
     color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .active_handbook_div{
