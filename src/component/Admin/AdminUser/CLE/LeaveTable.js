@@ -6,6 +6,7 @@ import axiosInstance from "../../../../HelperFunction/Axios";
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
+  console.log(leaveTableData);
 
   const approveLeave = async (id, data) => {
     let approved = data;
