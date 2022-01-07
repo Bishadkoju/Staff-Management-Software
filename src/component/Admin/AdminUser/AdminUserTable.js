@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ActionMenuTable from "./ActionMenuTable";
+import ActionMenuTable from "./UserActionMenuTable";
 import axiosInstance from "../../../HelperFunction/Axios";
 
 const AdminUserTable = () => {

@@ -325,6 +325,10 @@ a:hover{
     display: none;
 }
 
+.drop_menu_no_down_arrow{
+    cursor: pointer;
+}
+
 .dropdownMenuAdminTable{
     left: -100px!important;
 }
@@ -337,4 +341,9 @@ a:hover{
 
 .admin_nav{
     width: 100%; 
+}
+
+/* feedback */
+.feedbackActionDropdown{
+    left : -200px;
 }

@@ -33,6 +33,7 @@ import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
 import AdminHandbookDetail from "./pages/Admin/Handbook/AdminHandbookDetail";
 import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
 import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
+import AdminFeedback from "./pages/Admin/AdminFeedback";
 
 // Not found
 import NotFound from "./component/NotFound";
@@ -72,6 +73,7 @@ class App extends React.Component {
             <Route exact path="/admin/earning" element={<AdminEarning />} />
             <Route exact path="/admin/leave" element={<AdminLeave />} />
             <Route exact path="/admin/profile" element={<AdminProfile />} />
+            <Route exact path="/admin/feedback" element={<AdminFeedback />} />
 
             <Route exact path="/admin/handbook" element={<AdminHandbook />} />
             <Route
