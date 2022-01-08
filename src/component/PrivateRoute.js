@@ -19,6 +19,7 @@ import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminEarning from "../pages/Admin/AdminEarning";
 import AdminLeave from "../pages/Admin/AdminLeave";
 import AdminProfile from "../pages/Admin/AdminProfile";
+import AdminUserProfile from "../pages/Admin/AdminUserProfile";
 
 // Admin Handbook
 import AdminHandbook from "../pages/Admin/Handbook/AdminHandbook";
@@ -26,11 +27,13 @@ import AdminHandbookDetail from "../pages/Admin/Handbook/AdminHandbookDetail";
 import AdminHandbookCreate from "../pages/Admin/Handbook/AdminHandbookCreate";
 import AdminHandbookEditor from "../pages/Admin/Handbook/AdminHandbookEditor";
 
-import Register from "../pages/register/form.component"
+import Register from "../pages/register/form.component";
 
 // Not found
 import NotFound from "../component/NotFound";
 import useLocalStorage from "../hooks/useLocalStorage";
+import AdminFeedback from "../pages/Admin/AdminFeedback";
+
 
 const userPageAccess = {
   1: [
@@ -40,10 +43,12 @@ const userPageAccess = {
     AdminUsers,
     AdminLeave,
     AdminProfile,
+    AdminUserProfile,
     AdminHandbookDetail,
     AdminHandbookCreate,
     AdminHandbookEditor,
-    Register
+    AdminFeedback,
+    Register,
   ],
   2: [],
   3: [],
@@ -64,6 +69,11 @@ const PrivateRoute = ({ Target }) => {
   const navigate = useNavigate();
   console.log(authTokens);
   useEffect(() => {
+    handleAccess();
+  }, [Target]);
+
+  const handleAccess = () => {
+    setPermitted(false);
     if (!authTokens) {
       // user not logged in
       alert("you need to login first");
@@ -76,13 +86,12 @@ const PrivateRoute = ({ Target }) => {
         navigate(-1);
       }
     }
-  }, []);
+  };
 
   if (permittedd) {
     return <Target />;
-  } else {
-    return <></>;
   }
+  return <></>;
 };
 
 export default PrivateRoute;
