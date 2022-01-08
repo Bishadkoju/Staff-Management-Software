@@ -160,7 +160,7 @@ const Form = () => {
     } catch (err) {
       console.log(err.response.data);
       var errorText = "";
-      Object.keys(err.response.data).map((a)=>errorText +=`${a} - ${err.response.data[a][0]}\n`)
+      Object.keys(err.response.data).map((a)=>errorText +=`${a} - ${err.response.data[a]?.[0]}\n`)
       console.log(errorText)
       alert(JSON.stringify(errorText))
     }

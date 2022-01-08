@@ -1,8 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import Login from "./pages/login/login.component";
+import PrivateRoute from "./component/PrivateRoute";
+import { AuthContext } from "./context/auth";
 
 import ForgotPassword from "./pages/forgot-password/forgot-password.component";
 import Reset from "./pages/reset/reset.component";
@@ -35,65 +37,48 @@ import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 
 // Not found
 import NotFound from "./component/NotFound";
+import useLocalStorage from "./hooks/useLocalStorage";
 
-class App extends React.Component {
-  state = {};
-
-  setUser = (user) => {
-    this.setState({
-      user: user,
-    });
-  };
-  render() {
+const  App = () => {
+  const [authTokens, setAuthTokens] = useLocalStorage("token");
+  const [user, setUser] = useLocalStorage("user");
+  const setTokens = (key) => {
+    setAuthTokens({value:key})
+  }
     return (
-      <div>
+      <AuthContext.Provider value ={{authTokens, setAuthTokens: setTokens, user, setUser}}>
         <Router>
+          <Fragment>
           <Routes>
             <Route exact path="/" element={<Login />} />
             <Route
               exact
               path="/login"
-              element={<Login setUser={this.setUser} />}
+              element={<Login />}
             />
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/dashboard/earning" element={<Earning />} />
-            <Route exact path="/dashboard/leave" element={<Leave />} />
-            <Route exact path="/dashboard/profile" element={<Profile />} />
-            <Route exact path="/dashboard/check" element={<CheckInOut />} />
+            <Route exact path="/dashboard" element={<PrivateRoute Target={Dashboard}/>} />
+            <Route exact path="/dashboard/earning" element={<PrivateRoute Target={Earning} />} />
+            <Route exact path="/dashboard/leave" element={<PrivateRoute Target={Leave} />} />
+            <Route exact path="/dashboard/profile" element={<PrivateRoute Target={Profile} />} />
+            <Route exact path="/dashboard/check" element={<PrivateRoute Target={CheckInOut} />} />
 
-            <Route exact path="/dashboard/handbook" element={<DashboardHandbook />} />
-            <Route exact path="/dashboard/handbook/:id" element={<DashboardHandbookDetail />} />
+            <Route exact path="/dashboard/handbook" element={<PrivateRoute Target={DashboardHandbook} />} />
+            <Route exact path="/dashboard/handbook/:id" element={<PrivateRoute Target={DashboardHandbookDetail} />} />
 
-            <Route exact path="/admin" element={<AdminDashboard />} />
-            <Route exact path="/admin/user" element={<AdminUsers />} />
-            <Route exact path="/admin/earning" element={<AdminEarning />} />
-            <Route exact path="/admin/leave" element={<AdminLeave />} />
-            <Route exact path="/admin/profile" element={<AdminProfile />} />
+            <Route exact path="/admin" element={<PrivateRoute Target={AdminDashboard} />} />
+            <Route exact path="/admin/user" element={<PrivateRoute Target={AdminUsers} />} />
+            <Route exact path="/admin/earning" element={<PrivateRoute Target={AdminEarning} />} />
+            <Route exact path="/admin/leave" element={<PrivateRoute Target={AdminLeave} />} />
+            <Route exact path="/admin/profile" element={<PrivateRoute Target={AdminProfile} />} />
 
-            <Route exact path="/admin/handbook" element={<AdminHandbook />} />
-            <Route
-              exact
-              path="/admin/handbook/create"
-              element={<AdminHandbookCreate />}
-            />
-            <Route
-              exact
-              path="/admin/handbook/edit/:id"
-              element={<AdminHandbookEditor />}
-            />
-            <Route
-              exact
-              path="/admin/handbook/:id"
-              element={<AdminHandbookDetail />}
-            />
+            <Route exact path="/admin/handbook" element={<PrivateRoute Target={AdminHandbook} />} />
+            <Route exact path="/admin/handbook/create" element={<PrivateRoute Target={AdminHandbookCreate} />}/>
+            <Route exact path="/admin/handbook/edit/:id" element={<PrivateRoute Target={AdminHandbookEditor} />}/>
+            <Route exact path="/admin/handbook/:id" element={<PrivateRoute Target={AdminHandbookDetail} />} />
 
-            <Route exact path="/register" element={<Form />} />
+            <Route exact path="/register" element={<PrivateRoute Target={Form} />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />
-            <Route
-              exact
-              path="/home"
-              element={<Home user={this.state.user} />}
-            />
+            <Route exact path="/home" element={<Home />}/>
 
             <Route path="/reset" element={<Reset />} />
             <Route path="/test" element={<Test />} />
@@ -101,10 +86,10 @@ class App extends React.Component {
             <Route component={NotFound} />
 
           </Routes>
+          </Fragment>
         </Router>
-      </div>
+      </AuthContext.Provider>
     );
-  }
 }
 
 export default App;

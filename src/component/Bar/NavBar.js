@@ -5,11 +5,10 @@ import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 import { logout } from "../../HelperFunction/loginHelper";
 
 function NavBar() {
-  const navigagte = useNavigate();
+  const navigate = useNavigate()
   const handleLogout = () => {
-    console.log("logout");
     logout();
-    navigagte("/");
+    navigate('/')
   };
 
   //assigning location variable
@@ -129,7 +128,7 @@ function NavBar() {
                     </div>
                   </a>
 
-                  <a className="dropdown-item" href="/#">
+                  <div className="dropdown-item" onClick={handleLogout}>
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-sign-out" aria-hidden="true"></i>
@@ -139,7 +138,6 @@ function NavBar() {
 
                           <span
                             className="heading_text text-danger"
-                            onClick={handleLogout}
                           >
                             Log Out
                           </span>
@@ -147,7 +145,7 @@ function NavBar() {
                         </p>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>

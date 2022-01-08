@@ -1,8 +1,15 @@
 import React from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import header from "../../assets/header.png";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
+import { logout } from "../../HelperFunction/loginHelper";
 
 const AdminNavBar = () => {
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    logout();
+    navigate('/')
+  };
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -88,7 +95,7 @@ const AdminNavBar = () => {
                     </div>
                   </a>
 
-                  <a className="dropdown-item" href="/#">
+                  <div className="dropdown-item" onClick={handleLogout}>
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon pr-2">
                         <i className="fa fa-sign-out" aria-hidden="true"></i>
@@ -102,7 +109,7 @@ const AdminNavBar = () => {
                         </p>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>

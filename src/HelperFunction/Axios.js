@@ -9,9 +9,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem("token"));
     if (token) {
-      config.headers["Authorization"] = "Token " + token;
+      config.headers["Authorization"] = "Token " + token.value;
     }
     return config;
   },
@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(
   function (error) {
     console.log(error.response)
     if([401,403].indexOf(error.response.status) !== -1) {
-      logout()
+       logout()
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
