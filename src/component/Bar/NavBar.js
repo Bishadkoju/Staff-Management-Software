@@ -21,15 +21,18 @@ function NavBar() {
 
   // Get the user name
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
   useEffect(() => {
-    getUserName();
+    getUserInfo();
   }, []);
 
-  const getUserName = async () => {
+  const getUserInfo = async () => {
     await axiosInstance
       .get("/user/self/view/")
       .then((res) => {
         setName(res.data.first_name + " " + res.data.last_name);
+        setEmail(res.data.email);
         console.log(res);
       })
       .catch((err) => {
@@ -115,10 +118,10 @@ function NavBar() {
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-white">Nirajan Bekoju</span>
+                          <span className="heading_text text-white">{name}</span>
                           <br />
                           <span className="muted_text text-muted">
-                            nirajan.bekoju@gmail.com
+                            {email}
                           </span>
                         </p>
                       </div>
