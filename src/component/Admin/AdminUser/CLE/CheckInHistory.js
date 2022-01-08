@@ -2,7 +2,9 @@ import React from "react";
 import {
   timeDisplayer,
   secondsToHms,
-} from "../../../HelperFunction/GenericFunction";
+} from "../../../../HelperFunction/GenericFunction";
+
+import checkAction from "../../../../assets/icons/checkAction.svg"
 
 const CheckInHistory = (props) => {
   let attendances = props.attendances;
@@ -26,11 +28,7 @@ const CheckInHistory = (props) => {
               {secondsToHms(attendance.duration)}
             </td>
             <td>
-              <input
-                type="checkbox"
-                name="action_check_in"
-                id="action_check_in"
-              />
+              <img src={checkAction} alt = "check action"/>
             </td>
           </tr>
         )

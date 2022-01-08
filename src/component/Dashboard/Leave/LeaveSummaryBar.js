@@ -1,5 +1,5 @@
 import React from "react";
-import PiggyImg from "../../../assets/piggy.png";
+import Confetti from "../../../assets/icons/Confetti.svg";
 import NoBoxInfoBar from "../General/NoBoxInfoBar";
 
 const LeaveSummaryBar = (props) => {
@@ -10,20 +10,22 @@ const LeaveSummaryBar = (props) => {
   const leaveHistory = props.history;
 
   return (
-    <div>
+    <React.Fragment>
       {leaveHistory && (
         <div className="d-flex justify-content-start muted_text">
-          <div className="media" style={{ maxWidth: "200px" }}>
-            <img
-              className="mr-2"
-              src={PiggyImg}
-              alt="Piggy"
-              style={imgStyle}
-            />
-            <div>
-              <span className="muted_text text-muted">TOTAL LEAVE</span>
-              <br />
-              <h4>03/15</h4>
+          <div  style={{ minWidth: "200px" }}>
+            <div className="media" style={{ maxWidth: "400px" }}>
+              <img
+                className="mr-2"
+                src={Confetti}
+                alt="Confetti"
+                style={imgStyle}
+              />
+              <div>
+                <span className="muted_text text-muted">TOTAL LEAVE</span>
+                <br />
+                <h4>03/15</h4>
+              </div>
             </div>
           </div>
 
@@ -50,7 +52,7 @@ const LeaveSummaryBar = (props) => {
           </div>
         </div>
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

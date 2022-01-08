@@ -3,8 +3,6 @@ import axiosInstance from '../../../HelperFunction/Axios'
 
 const ProfileModal = (props) => {
   const currentUserData = props.userInfo; 
-  console.log("From modal")
-  console.log(currentUserData);
 
   const [formData, setFormData] = useState({
     emergency_contact : "",

@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import header from "../../assets/header.png";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
-import { logout } from "../../HelperFunction/loginHelper";
+
+import axiosInstance from "../../HelperFunction/Axios";
+
+import profileIcon from "../../assets/icons/profileIcon.svg";
+import groupIcon from "../../assets/icons/groupIcon.svg";
+import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
+import { useAuth } from "../../context/auth";
 
 function NavBar() {
   const navigate = useNavigate()
+  const {logOut} = useAuth()
   const handleLogout = () => {
-    logout();
+    logOut();
     navigate('/')
+  };
+
+  // Get the user name
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = async () => {
+    await axiosInstance
+      .get("/user/self/view/")
+      .then((res) => {
+        setName(res.data.first_name + " " + res.data.last_name);
+        setEmail(res.data.email);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //assigning location variable
@@ -20,10 +48,12 @@ function NavBar() {
   //Javascript split method to get the name of the path in array
   const splitLocation = pathname.split("/");
 
-
   const isActive = (keyWord, splitLocation) => {
-    return (splitLocation[2] === keyWord || (splitLocation.length === 2 && keyWord === "")) ? "active_nav_dash" : "";
-  }
+    return splitLocation[2] === keyWord ||
+      (splitLocation.length === 2 && keyWord === "")
+      ? "active_nav_dash"
+      : "";
+  };
   return (
     <div className="container-fluid text-white" id="nav">
       <div className="container">
@@ -34,19 +64,25 @@ function NavBar() {
           <div className="link">
             <NavLink
               to="/dashboard"
-              className={`mr-4 px-3 font-weight-bold ${isActive("", splitLocation)}`}
+              className={`px-3 font-weight-bold ${isActive("", splitLocation)}`}
             >
               Home
             </NavLink>
             <NavLink
               to="/dashboard/earning"
-              className={`mr-4 px-3 font-weight-bold ${isActive("earning", splitLocation)}`}
+              className={`px-3 font-weight-bold ${isActive(
+                "earning",
+                splitLocation
+              )}`}
             >
               Earning
             </NavLink>
             <NavLink
               to="/dashboard/leave"
-              className={`mr-4 px-3 font-weight-bold ${isActive("leave", splitLocation)}`}
+              className={`px-3 font-weight-bold ${isActive(
+                "leave",
+                splitLocation
+              )}`}
             >
               My Leave
             </NavLink>
@@ -55,7 +91,7 @@ function NavBar() {
             <div>
               <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
             </div>
-            <div className="profile_picture mr-2">EH</div>
+            <div className="profile_picture mr-2">NB</div>
             <div>
               <div className="dropdown">
                 <span
@@ -66,16 +102,39 @@ function NavBar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="profile_name">Esther Howard</span>
+                  <span className="profile_name">{name ? name : ""}</span>
                 </span>
                 <div
-                  className="dropdown-menu dropDownMenuLeft"
+                  className="dropdown-menu dropDownMenuLeft pt-0"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/dashboard/profile">
+                  <div className="dropdown-item profile_desc_dropdown pt-3">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="mr-2 drop_profile_picture">
+                        <div className="profile_picture mr-2">
+                          <span className="firstLastLetter">NB</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="dropdown_menu">
+                          <span className="heading_text text-white">{name}</span>
+                          <br />
+                          <span className="muted_text text-muted">
+                            {email}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a className="dropdown-item" href="/dashboard/profile">
+                    <div className="dropdown_item_desc d-flex justify-content-start mt-3">
+                      <div className="icon mr-2">
+                        <img
+                          src={profileIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -88,11 +147,16 @@ function NavBar() {
                       </div>
                     </div>
                   </a>
+                  <hr className="mt-0 mb-3" />
 
                   <a className="dropdown-item" href="/dashboard/handbook">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={groupIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -105,7 +169,7 @@ function NavBar() {
                       </div>
                     </div>
                   </a>
-
+                  <hr className="mt-0 mb-3" />
                   <a
                     className="dropdown-item"
                     href="#feedbackModal"
@@ -113,8 +177,12 @@ function NavBar() {
                     data-target="#feedbackModal"
                   >
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={feedbackIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -127,15 +195,14 @@ function NavBar() {
                       </div>
                     </div>
                   </a>
-
+                  <hr className="mt-0 mb-3" />
                   <div className="dropdown-item" onClick={handleLogout}>
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-sign-out" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img src={logOut} alt="profile user" className="icon" />
                       </div>
                       <div>
                         <p className="dropdown_menu">
-
                           <span
                             className="heading_text text-danger"
                           >

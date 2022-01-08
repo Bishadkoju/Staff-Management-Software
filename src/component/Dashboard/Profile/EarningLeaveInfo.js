@@ -2,12 +2,12 @@ import React from "react";
 
 const EarningLeaveInfo = (props) => {
   const imgStyle = {
-    width : props.size
+    width : "100%"
   };
 
   return (
     <div className="profile_summary d-flex justify-content-around">
-      <div>
+      <div className="mr-3">
         <img src={props.img} alt="Earning leave" style={imgStyle} />
       </div>
       <div>

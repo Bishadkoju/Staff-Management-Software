@@ -3,8 +3,11 @@ import ProfileImage from "../../../assets/profile.jpeg";
 import CoverImage from "../../../assets/cover.png";
 import ProfileDetailInfo from "./ProfileDetailInfo";
 import EarningLeaveInfo from "./EarningLeaveInfo";
-import PiggyImage from "../../../assets/piggy.jpeg";
 
+import PiggyImage from "../../../assets/icons/pig.svg";
+import Confetti from "../../../assets/icons/Confetti.svg";
+import Net from "../../../assets/icons/net.svg";
+import Tasks from "../../../assets/icons/Tasks.svg";
 
 const ProfileInfo = (props) => {
   const coverPhotoStyle = {
@@ -13,8 +16,8 @@ const ProfileInfo = (props) => {
     position: "relative",
   };
 
-
   const requiredUserInfo = props.userInfo;
+  console.log(requiredUserInfo);
   const username = props.name;
 
   const profileDetailInfoArr = [
@@ -72,10 +75,14 @@ const ProfileInfo = (props) => {
   };
 
   const displayEarningLeaveInfo = () => {
+    const title = ["Earnings", "Leave", "Net", "Task"];
+    const value = ["Rs. 249, 500", "03/15", "$84, 060", "75"]
+    const image = [PiggyImage, Confetti, Net, Tasks];
+
     let display = [];
     for (let i = 0; i < 4; i++) {
       display.push(
-        <EarningLeaveInfo img={PiggyImage} title="Earning" value="235, 457" />
+        <EarningLeaveInfo img={image[i]} title={title[i]} value={value[i]} />
       );
     }
     return display;
@@ -93,10 +100,10 @@ const ProfileInfo = (props) => {
               alt="Profile"
             />
             <h3 className="user_name pl-3">{username ? username : ""}</h3>
-            <div className="row">
+            <div className="row mt-3">
               <div className="offset-md-2"></div>
               <div className="col-md-2 font_14 pl-5">
-                <span className="text-muted">{requiredUserInfo.length > 0 ? requiredUserInfo[0] : ""}</span>
+                <span className="text-muted">{requiredUserInfo ? requiredUserInfo[0] : ""}</span>
                 <br />
                 <span className="font-weight-bold">Employee</span>
                 <span> #2356</span>

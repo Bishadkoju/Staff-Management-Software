@@ -1,8 +1,24 @@
 import React from "react";
-import checkAction from "../../../assets/icons/checkAction.svg"
+import ApproveImg from "../../../../assets/icons/check.svg";
+import UnapproveImg from "../../../../assets/icons/x.svg";
+
+import axiosInstance from "../../../../HelperFunction/Axios";
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
+  console.log(leaveTableData);
+
+  const approveLeave = async (id, data) => {
+    let approved = data;
+    await axiosInstance
+      .patch(`/leave/request/${id}/respond/`, { approved })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const displayLeaveData = () => {
     let result = [];
@@ -18,7 +34,15 @@ const LeaveTable = (props) => {
           <td className="text-muted muted_text">{data.reason}</td>
           <td className="text-muted muted_text">{data.inform_team}</td>
           <td>
-            <img src={checkAction} alt="check action" />
+            <span
+              className="mr-2 cursor_pointer"
+              onClick={() => approveLeave(data.leave_id, "A")}
+            >
+              <img src={ApproveImg} alt="approve" />
+            </span>
+            <span className="cursor_pointer" onClick={() => approveLeave(data.leave_id, "R")}>
+              <img src={UnapproveImg} alt="approve" />
+            </span>
           </td>
         </tr>
       );
@@ -40,7 +64,7 @@ const LeaveTable = (props) => {
                   <th scope="col">Paid/Unpaid</th>
                   <th scope="col">Leave Type</th>
                   <th scope="col">Reason</th>
-                  <th scope="col">Approved By</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -51,6 +75,6 @@ const LeaveTable = (props) => {
       )}
     </div>
   );
-}
+};
 
 export default LeaveTable;
