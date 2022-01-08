@@ -4,6 +4,11 @@ import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
+import profileIcon from "../../assets/icons/profileIcon.svg";
+import groupIcon from "../../assets/icons/groupIcon.svg";
+import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
+import logOut from "../../assets/icons/logOut.svg";
+
 const AdminNavBar = () => {
   // Get the user name
   const [name, setName] = useState("");
@@ -64,11 +69,11 @@ const AdminNavBar = () => {
                       <div>
                         <p className="dropdown_menu">
                           <span className="heading_text text-white">
-                            {name}
+                            {name ? name : ""}
                           </span>
                           <br />
                           <span className="muted_text text-muted">
-                            {email}
+                            {email ? email : ""}
                           </span>
                         </p>
                       </div>
@@ -77,8 +82,12 @@ const AdminNavBar = () => {
 
                   <a className="dropdown-item" href="/admin/profile">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={profileIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -96,8 +105,12 @@ const AdminNavBar = () => {
 
                   <a className="dropdown-item" href="/admin/handbook">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={groupIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -120,8 +133,12 @@ const AdminNavBar = () => {
                     data-target="#feedbackModal"
                   >
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-user" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img
+                          src={feedbackIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
@@ -139,8 +156,8 @@ const AdminNavBar = () => {
 
                   <a className="dropdown-item" href="/#">
                     <div className="dropdown_item_desc d-flex justify-content-start">
-                      <div className="icon pr-2">
-                        <i className="fa fa-sign-out" aria-hidden="true"></i>
+                      <div className="icon mr-2">
+                        <img src={logOut} alt="profile user" className="icon" />
                       </div>
                       <div>
                         <p className="dropdown_menu">

@@ -1,6 +1,12 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
+import UsersIcon from "../../assets/icons/users.svg";
+import DollarSign from "../../assets/icons/dollarSign.svg";
+import leave from "../../assets/icons/leave.svg";
+import feedbackIcon from "../../assets/icons/feedbackSide.svg";
+import DashboardIcon from "../../assets/icons/dashboardSide.svg";
+
 const AdminSideNavBar = () => {
   //assigning location variable
   const location = useLocation();
@@ -33,7 +39,7 @@ const AdminSideNavBar = () => {
               `}
         >
           <div className="div_flex_icon">
-            <i className="fa fa-user" aria-hidden="true"></i>
+            <img src={DashboardIcon} alt="user" className="icon mr-3" />
           </div>
           <div>
             <span>Dashboard</span>
@@ -49,7 +55,7 @@ const AdminSideNavBar = () => {
           )}`}
         >
           <div className="div_flex_icon">
-            <i className="fa fa-user" aria-hidden="true"></i>
+            <img src={UsersIcon} alt="user" className="icon mr-3" />
           </div>
           <div>
             <span>User</span>
@@ -64,7 +70,7 @@ const AdminSideNavBar = () => {
           )}`}
         >
           <div className="div_flex_icon">
-            <i className="fa fa-usd" aria-hidden="true"></i>
+            <img src={DollarSign} alt="user" className="icon mr-3" />
           </div>
           <div>
             <span>Earning</span>
@@ -79,7 +85,7 @@ const AdminSideNavBar = () => {
           )}`}
         >
           <div className="div_flex_icon">
-            <i className="fa fa-sign-out" aria-hidden="true"></i>
+            <img src={leave} alt="user" className="icon mr-3" />
           </div>
           <div>
             <span>My Leave</span>
@@ -95,7 +101,7 @@ const AdminSideNavBar = () => {
           )}`}
         >
           <div className="div_flex_icon">
-            <i className="fa fa-sign-out" aria-hidden="true"></i>
+            <img src={feedbackIcon} alt="user" className="icon mr-3"  />
           </div>
           <div>
             <span>Feedback</span>
