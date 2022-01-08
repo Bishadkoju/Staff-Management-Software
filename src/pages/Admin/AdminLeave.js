@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AdminLayout from "../../HOC/AdminLayout";
 import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
 
@@ -7,7 +7,27 @@ import ApplyLeaveModal from "../../component/Dashboard/Modal/ApplyLeaveModal";
 
 import LeaveSummaryBar from "../../component/Dashboard/Leave/LeaveSummaryBar";
 
+import axiosInstance from "../../HelperFunction/Axios";
+
 const AdminLeave = () => {
+  const [leaveHistory, setLeaveHistory] = useState([]);
+
+  useEffect(() => {
+    const getLeaveHistory = async () => {
+      await axiosInstance
+        .get("/leave_history/self/view/")
+        .then((res) => {
+          console.log(res.data);
+          setLeaveHistory(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    getLeaveHistory();
+  }, []);
+
   return (
     <div className="body">
       <AdminLayout />
@@ -36,14 +56,14 @@ const AdminLeave = () => {
             </div>
             <div className="row bg-white p-4 mt-4">
               <div className="col-md-9">
-                <LeaveSummaryBar />
+                <LeaveSummaryBar history = {leaveHistory.history} />
               </div>
               <div className="col-md-3 d-flex justify-content-end">
                 <input type="date" />
               </div>
 
               <div className="col-md-12">
-                <LeaveTable />
+                <LeaveTable leaveDetail={leaveHistory.leaves} />
               </div>
             </div>
           </div>
