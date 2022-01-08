@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+
 import header from "../../assets/header.png";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
 
 import axiosInstance from "../../HelperFunction/Axios";
+import { useAuth } from "../../context/auth";
 
 import profileIcon from "../../assets/icons/profileIcon.svg";
 import groupIcon from "../../assets/icons/groupIcon.svg";
@@ -10,6 +13,12 @@ import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
 import logOut from "../../assets/icons/logOut.svg";
 
 const AdminNavBar = () => {
+  const {logOut} = useAuth()
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    logOut();
+    navigate('/')
+  };
   // Get the user name
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -151,10 +160,8 @@ const AdminNavBar = () => {
                       </div>
                     </div>
                   </a>
-
+                  <a className="dropdown-item" onClick={handleLogout}>
                   <hr className="mt-0 mb-3" />
-
-                  <a className="dropdown-item" href="/#">
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
                         <img src={logOut} alt="profile user" className="icon" />

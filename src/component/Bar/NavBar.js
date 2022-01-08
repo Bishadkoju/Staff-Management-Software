@@ -2,21 +2,20 @@ import React, { useState, useEffect } from "react";
 import header from "../../assets/header.png";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import FeedbackModal from "../Dashboard/Modal/FeedbackModal";
-import { logout } from "../../HelperFunction/loginHelper";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
 import profileIcon from "../../assets/icons/profileIcon.svg";
 import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
-import logOut from "../../assets/icons/logOut.svg";
+import { useAuth } from "../../context/auth";
 
 function NavBar() {
-  const navigagte = useNavigate();
+  const navigate = useNavigate()
+  const {logOut} = useAuth()
   const handleLogout = () => {
-    console.log("logout");
-    logout();
-    navigagte("/");
+    logOut();
+    navigate('/')
   };
 
   // Get the user name
@@ -197,7 +196,7 @@ function NavBar() {
                     </div>
                   </a>
                   <hr className="mt-0 mb-3" />
-                  <a className="dropdown-item" href="/#">
+                  <div className="dropdown-item" onClick={handleLogout}>
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
                         <img src={logOut} alt="profile user" className="icon" />
@@ -205,8 +204,7 @@ function NavBar() {
                       <div>
                         <p className="dropdown_menu">
                           <span
-                            className="heading_text text_danger"
-                            onClick={handleLogout}
+                            className="heading_text text-danger"
                           >
                             Log Out
                           </span>
@@ -214,7 +212,7 @@ function NavBar() {
                         </p>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>

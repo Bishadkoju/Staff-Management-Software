@@ -23,6 +23,11 @@ background: linear-gradient(0deg, rgba(22, 143, 255, 0.25), rgba(22, 143, 255, 0
     // display: flex;
 
 }
+.error{
+    color: rgb(172, 5, 5);
+    font-size:small;
+    margin-top: 10px;
+}
 
 .form-container{
     position: absolute;
@@ -85,13 +90,6 @@ color: white;
     text-align: center;
 }
 .login-button{
-//     display: flex;
-// flex-direction: row;
-// justify-content: center;
-// align-items: center;
-// padding: 10px 30px;
-// border: none;
-
 
 width: 109px;
 height: 42px;
@@ -101,7 +99,20 @@ border-radius: 8px;
 color: white;
 text-align: center;
 cursor: pointer;
+margin: 10px
 }
+.cancel-button{
+
+    width: 109px;
+    height: 42px;
+    border: none;
+    background: #e62d15;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px
+    }
 
 .login-button-2{
     width: 109px;
