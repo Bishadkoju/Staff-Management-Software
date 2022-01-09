@@ -66,11 +66,12 @@ const Login = (props) => {
     }
   };
 
-  if (userType === 1) {
+  if ([1,2,3].indexOf(userType) !== -1) {
     return <Navigate to="/admin" />;
   } else if (userType === 4) {
     return <Navigate to={"/dashboard"} />;
-  } else {
+    
+  }  else {
     return (
       <>
         <Background />

@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../HelperFunction/Axios";
 import { useParams } from "react-router-dom";
 import { Navigate } from "react-router";
+import { useAuth } from "../../context/auth";
 
 const HandbookDetail = () => {
   const [del, setDel] = useState(false);
+  const {roleBasedPermissions} = useAuth()
+  const {isGeneralManagerOrHigher} = roleBasedPermissions()
 
   const [handBook, setHandBook] = useState([]);
 
@@ -59,7 +62,7 @@ const HandbookDetail = () => {
                   {handBook.topic ? handBook.topic : "404 Handbook Not Found"}
                 </h1>
               </div>
-              <div>
+              {isGeneralManagerOrHigher && (<div>
                 <a
                   href={`/admin/handbook/edit/${handBook.id}`}
                   className="btn btn-success mr-2"
@@ -72,7 +75,7 @@ const HandbookDetail = () => {
                 >
                   Delete
                 </button>
-              </div>
+              </div>)}
             </div>
 
             <hr />

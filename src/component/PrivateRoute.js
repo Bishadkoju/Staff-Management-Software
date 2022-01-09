@@ -30,10 +30,8 @@ import AdminHandbookEditor from "../pages/Admin/Handbook/AdminHandbookEditor";
 import Register from "../pages/register/form.component";
 
 // Not found
-import NotFound from "../component/NotFound";
-import useLocalStorage from "../hooks/useLocalStorage";
 import AdminFeedback from "../pages/Admin/AdminFeedback";
-
+import AdminAttendance from "../pages/Admin/AdminAttendance";
 
 const userPageAccess = {
   1: [
@@ -50,8 +48,21 @@ const userPageAccess = {
     AdminFeedback,
     Register,
   ],
-  2: [],
-  3: [],
+  2: [AdminAttendance],
+  3: [
+    AdminDashboard,
+    AdminAttendance,
+    AdminEarning,
+    AdminHandbook,
+    AdminLeave,
+    AdminProfile,
+    AdminUsers,
+    AdminUserProfile,
+    AdminHandbookDetail,
+    AdminHandbookCreate,
+    AdminHandbookEditor,
+    AdminFeedback,
+    Register,],
   4: [
     Dashboard,
     Earning,

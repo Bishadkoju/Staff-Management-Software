@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 const AdminSideNavBar = () => {
   //assigning location variable
   const location = useLocation();
+  const { roleBasedPermissions } = useAuth();
+  const { isStoreManager, isGeneralManager } = roleBasedPermissions();
 
   //destructuring pathname from location
   const { pathname } = location;
@@ -40,6 +43,29 @@ const AdminSideNavBar = () => {
           </div>
         </div>
       </NavLink>
+
+      {(isStoreManager || isGeneralManager) && (
+        <NavLink exact to="/admin/attendance">
+          <div
+            className={`
+                mb-2
+                pl-2
+                py-1
+                d-flex
+                justify-content-start
+                admin_nav
+                ${isActive("attendance", splitLocation)}
+              `}
+          >
+            <div className="div_flex_icon">
+              <i className="fa fa-user" aria-hidden="true"></i>
+            </div>
+            <div>
+              <span>Attendance</span>
+            </div>
+          </div>
+        </NavLink>
+      )}
 
       <NavLink exact to="/admin/user">
         <div

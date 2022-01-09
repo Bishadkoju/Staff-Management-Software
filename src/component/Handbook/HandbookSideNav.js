@@ -1,18 +1,20 @@
 import React from "react";
+import { useAuth } from "../../context/auth";
 
 const HandbookSideNav = (props) => {
-
+  const {roleBasedPermissions} = useAuth()
+  const {isGeneralManagerOrHigher} = roleBasedPermissions()
   const getHeading = () => {
     let result = [];
     console.log(props);
     const id = props.splitLocation[3] ? props.splitLocation[3] : 1;
-  
+
     props.handbooks.map((handbook) => {
       // Link For the detail of handbook
       let link = `/admin/handbook/${handbook.id}`;
 
       // Check if the current title is active or not
-      let class_name = (handbook.id === Number(id)) ? "active_handbook " : "";
+      let class_name = handbook.id === Number(id) ? "active_handbook " : "";
 
       result.push(
         <div className={`${class_name}`} key={handbook.id}>
@@ -32,10 +34,15 @@ const HandbookSideNav = (props) => {
           <div className="p-2">
             <h5>Handbook</h5>
             <hr />
-            <span className="create_button py-1 pr-4 px-2">
-              <a href="/admin/handbook/create">Create Handbook</a>
-            </span>
-            <hr />
+            {isGeneralManagerOrHigher && (
+              <>
+                <span className="create_button py-1 pr-4 px-2">
+                  <a href="/admin/handbook/create">Create Handbook</a>
+                </span>
+                <hr />
+              </>
+            )}
+
             {getHeading()}
           </div>
         </div>

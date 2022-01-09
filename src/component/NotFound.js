@@ -1,12 +1,14 @@
 import React from "react";
-import Layout from '../HOC/Layout';
+import Background from "./background/background.component";
+import Header from "./header/header.compoent";
 
 const NotFound = () => {
   return (
-    <div className="body">
-      <Layout></Layout>
+    <div >
+      <Background />
+        <Header />
       <div className="text-center not_found">
-        <h1>404 Page Not Found</h1>
+        <h1 className="not_found_text">404 Page Not Found</h1>
       </div>
     </div>
   );
