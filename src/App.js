@@ -36,6 +36,7 @@ import AdminHandbookDetail from "./pages/Admin/Handbook/AdminHandbookDetail";
 import AdminHandbookCreate from "./pages/Admin/Handbook/AdminHandbookCreate";
 import AdminHandbookEditor from "./pages/Admin/Handbook/AdminHandbookEditor";
 import AdminFeedback from "./pages/Admin/AdminFeedback";
+import AdminAttendance from "./pages/Admin/AdminAttendance";
 
 // Not found
 import NotFound from "./component/NotFound";
@@ -52,8 +53,28 @@ const  App = () => {
   const setTokens = (key) => {
     setAuthTokens({value:key})
   }
+
+  const roleBasedPermissions = () => {
+    const {user_type} = user
+    const isAdmin = user_type === 1;
+    const isGeneralManager = user_type === 2;
+    const isStoreManager = user_type === 3;
+    const isEmployee = user_type === 4;
+    
+    const isStoreManagerOrHigher = user_type <=3 && user_type >0
+    const isGeneralManagerOrHigher = user_type <=2 && user_type >0
+
+    return {
+      isAdmin,
+      isGeneralManager,
+      isStoreManager,
+      isEmployee,
+      isStoreManagerOrHigher,
+      isGeneralManagerOrHigher
+    }
+  }
     return (
-      <AuthContext.Provider value ={{authTokens,logOut, setAuthTokens: setTokens, user, setUser}}>
+      <AuthContext.Provider value ={{authTokens,logOut, setAuthTokens: setTokens, user, setUser, roleBasedPermissions}}>
         <Router>
           <Fragment>
           <Routes>
@@ -77,6 +98,7 @@ const  App = () => {
             <Route exact path="/admin/user" element={<PrivateRoute Target={AdminUsers} />} />
             <Route exact path="/admin/user/:id" element={<PrivateRoute Target={AdminUserProfile} />} />
 
+            <Route exact path="/admin/attendance" element={<PrivateRoute Target={AdminAttendance} />} />
             <Route exact path="/admin/earning" element={<PrivateRoute Target={AdminEarning} />} />
             <Route exact path="/admin/leave" element={<PrivateRoute Target={AdminLeave} />} />
             <Route exact path="/admin/profile" element={<PrivateRoute Target={AdminProfile} />} />
@@ -94,7 +116,7 @@ const  App = () => {
             <Route path="/reset" element={<Reset />} />
             <Route path="/test" element={<Test />} />
 
-            <Route component={NotFound} />
+            <Route path ='/*' element={<NotFound/>} />
 
           </Routes>
           </Fragment>

@@ -13,10 +13,10 @@ import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
 import logOut from "../../assets/icons/logOut.svg";
 
 const AdminNavBar = () => {
-  const {logOut} = useAuth()
+  const {logOut: logout} = useAuth()
   const navigate = useNavigate()
   const handleLogout = () => {
-    logOut();
+    logout();
     navigate('/')
   };
   // Get the user name

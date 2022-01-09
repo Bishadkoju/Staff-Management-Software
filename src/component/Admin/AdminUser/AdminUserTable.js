@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ActionMenuTable from "./UserActionMenuTable";
 import axiosInstance from "../../../HelperFunction/Axios";
+import { useAuth } from "../../../context/auth";
 
 const AdminUserTable = () => {
   const [userList, setUserList] = useState([]);
-
+  const { roleBasedPermissions } = useAuth()
+  const {isGeneralManagerOrHigher} = roleBasedPermissions()
   useEffect(() => {
     const getUserList = async () => {
       await axiosInstance
@@ -34,7 +36,7 @@ const AdminUserTable = () => {
           <td className="text-primary">{user.salary}</td>
           <td className="text-primary">{user.store}</td>
           <td>
-            <ActionMenuTable userId = {user.id} />
+            {isGeneralManagerOrHigher && <ActionMenuTable userId = {user.id} />}
           </td>
         </tr>
       );

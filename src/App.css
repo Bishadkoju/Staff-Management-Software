@@ -347,3 +347,17 @@ a:hover{
 .feedbackActionDropdown{
     left : -200px;
 }
+
+.not_found{
+    
+    padding-top: 400px;
+}
+
+.not_found_text{
+
+    font-weight: 900 !important;
+    align-items: 'center';
+    justify-content: 'center';
+    color:rgb(183 166 166) !important;
+    font-size: 80px !important;
+}
