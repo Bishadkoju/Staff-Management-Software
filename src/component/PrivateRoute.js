@@ -63,6 +63,7 @@ const userPageAccess = {
     AdminHandbookEditor,
     AdminFeedback,
     Register,],
+
   4: [
     Dashboard,
     Earning,
