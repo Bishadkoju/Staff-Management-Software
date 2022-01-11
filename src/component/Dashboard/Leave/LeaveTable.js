@@ -17,9 +17,9 @@ const LeaveTable = (props) => {
           <td className="text-muted muted_text">{data.leave_type}</td>
           <td className="text-muted muted_text">{data.reason}</td>
           <td className="text-muted muted_text">{data.inform_team}</td>
-          <td>
+          {/* <td>
             <img src={checkAction} alt="check action" />
-          </td>
+          </td> */}
         </tr>
       );
     });
@@ -41,7 +41,7 @@ const LeaveTable = (props) => {
                   <th scope="col">Leave Type</th>
                   <th scope="col">Reason</th>
                   <th scope="col">Approved By</th>
-                  <th scope="col">Action</th>
+                  {/* <th scope="col">Action</th> */}
                 </tr>
               </thead>
               <tbody>{displayLeaveData()}</tbody>

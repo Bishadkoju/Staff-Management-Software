@@ -14,11 +14,24 @@ const LeaveTable = (props) => {
       .patch(`/leave/request/${id}/respond/`, { approved })
       .then((res) => {
         console.log(res);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const statusStyle = (approveStatus) => {
+    if(approveStatus == "Pending"){
+      return "text-primary";
+    }
+    else if(approveStatus == "Approved"){
+      return "text-success";
+    }
+    else{
+      return "text-danger";
+    }
+  }
 
   const displayLeaveData = () => {
     let result = [];
@@ -32,7 +45,8 @@ const LeaveTable = (props) => {
           <td>{data.pay === "P" ? "Paid" : "Unpaid"}</td>
           <td className="text-muted muted_text">{data.leave_type}</td>
           <td className="text-muted muted_text">{data.reason}</td>
-          <td className="text-muted muted_text">{data.inform_team}</td>
+          <td className={`muted_text ${statusStyle(data.approved)}`}>{data.approved}</td>
+          {data.approved === "Pending" ? 
           <td>
             <span
               className="mr-2 cursor_pointer"
@@ -40,10 +54,14 @@ const LeaveTable = (props) => {
             >
               <img src={ApproveImg} alt="approve" />
             </span>
-            <span className="cursor_pointer" onClick={() => approveLeave(data.leave_id, "R")}>
+            <span
+              className="cursor_pointer"
+              onClick={() => approveLeave(data.leave_id, "R")}
+            >
               <img src={UnapproveImg} alt="approve" />
             </span>
-          </td>
+          </td> : <td>-</td>
+          }
         </tr>
       );
     });
