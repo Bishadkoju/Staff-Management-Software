@@ -10,7 +10,7 @@ const CheckLeaveEarningTable = (props) => {
   // 2 -> Earning
   const id = props.id;
 
-  const [select, setSelect] = useState(0);
+  const [select, setSelect] = useState(1);
   const [leaveData, setLeaveData] = useState([]);
   const [checkData, setCheckData] = useState([]);
 
@@ -51,18 +51,18 @@ const CheckLeaveEarningTable = (props) => {
       <div className="d-flex justify-content-start">
         <div className="pr-3">
           <span
-            className={select === 0 ? "nav_cle_head_active" : "nav_cle_head"}
-            onClick={() => updateSelect(0)}
-          >
-            Check In/Out
-          </span>
-        </div>
-        <div className="pr-3">
-          <span
             className={select === 1 ? "nav_cle_head_active" : "nav_cle_head"}
             onClick={() => updateSelect(1)}
           >
             Leave
+          </span>
+        </div>
+        <div className="pr-3">
+          <span
+            className={select === 0 ? "nav_cle_head_active" : "nav_cle_head"}
+            onClick={() => updateSelect(0)}
+          >
+            Check In/Out
           </span>
         </div>
         <div className="pr-3">
