@@ -8,6 +8,8 @@ import axiosInstance from "../../HelperFunction/Axios";
 import profileIcon from "../../assets/icons/profileIcon.svg";
 import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
+import logOutIcon from "../../assets/icons/logOut.svg";
+
 import { useAuth } from "../../context/auth";
 
 import {getBasicUserInfo} from "../../HelperFunction/GenericFunction";
@@ -202,7 +204,7 @@ function NavBar() {
                   <div className="dropdown-item" onClick={handleLogout}>
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
-                        <img src={logOut} alt="profile user" className="icon" />
+                        <img src={logOutIcon} alt="profile user" className="icon" />
                       </div>
                       <div>
                         <p className="dropdown_menu">
