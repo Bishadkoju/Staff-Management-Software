@@ -6,7 +6,7 @@ import ApplyLeaveModal from "../../component/Dashboard/Modal/ApplyLeaveModal";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
-function Earning() {
+const Earning = () => {
   const [leaveHistory, setLeaveHistory] = useState([]);
 
   useEffect(() => {

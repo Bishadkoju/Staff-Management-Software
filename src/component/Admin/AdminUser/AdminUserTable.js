@@ -12,7 +12,6 @@ const AdminUserTable = () => {
       await axiosInstance
         .get(`/user/list/short/`)
         .then((res) => {
-          console.log(res.data);
           setUserList(res.data);
         })
         .catch((err) => {
