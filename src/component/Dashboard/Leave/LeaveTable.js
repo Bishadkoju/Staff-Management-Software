@@ -1,8 +1,10 @@
 import React from "react";
 import checkAction from "../../../assets/icons/checkAction.svg"
+import { statusStyle } from "../../../HelperFunction/GenericFunction";
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
+  console.log(leaveTableData);
 
   const displayLeaveData = () => {
     let result = [];
@@ -16,7 +18,7 @@ const LeaveTable = (props) => {
           <td>{data.pay === "P" ? "Paid" : "Unpaid"}</td>
           <td className="text-muted muted_text">{data.leave_type}</td>
           <td className="text-muted muted_text">{data.reason}</td>
-          <td className="text-muted muted_text">{data.inform_team}</td>
+          <td className={`muted_text ${statusStyle(data.approved)}`}>{data.approved}</td>
           {/* <td>
             <img src={checkAction} alt="check action" />
           </td> */}
@@ -40,7 +42,7 @@ const LeaveTable = (props) => {
                   <th scope="col">Paid/Unpaid</th>
                   <th scope="col">Leave Type</th>
                   <th scope="col">Reason</th>
-                  <th scope="col">Approved By</th>
+                  <th scope="col">Status</th>
                   {/* <th scope="col">Action</th> */}
                 </tr>
               </thead>
