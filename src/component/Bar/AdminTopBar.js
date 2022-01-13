@@ -12,6 +12,9 @@ import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
 import logOut from "../../assets/icons/logOut.svg";
 
+import {getBasicUserInfo} from "../../HelperFunction/GenericFunction";
+
+
 const AdminNavBar = () => {
   const {logOut: logout} = useAuth()
   const navigate = useNavigate()
@@ -20,8 +23,12 @@ const AdminNavBar = () => {
     navigate('/')
   };
   // Get the user name
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [basicUserInfo, setBasicUserInfo] = useState({
+    "name" : "",
+    "email" : "",
+    "shortName" : ""
+  })
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -30,9 +37,7 @@ const AdminNavBar = () => {
     await axiosInstance
       .get("/user/self/view/")
       .then((res) => {
-        setName(res.data.first_name + " " + res.data.last_name);
-        setEmail(res.data.email);
-        console.log(res);
+        setBasicUserInfo(getBasicUserInfo(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -51,7 +56,7 @@ const AdminNavBar = () => {
             <div>
               <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
             </div>
-            <div className="profile_picture mr-2">AA</div>
+            <div className="profile_picture mr-2">basicUserInfo.shortName</div>
             <div>
               <div className="dropdown">
                 <span
@@ -62,7 +67,7 @@ const AdminNavBar = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="profile_name">{name ? name : ""}</span>
+                  <span className="profile_name">{basicUserInfo.name ? basicUserInfo.name : ""}</span>
                 </span>
                 <div
                   className="dropdown-menu dropDownMenuLeft pt-0"
@@ -72,17 +77,17 @@ const AdminNavBar = () => {
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="mr-2 drop_profile_picture">
                         <div className="profile_picture mr-2">
-                          <span className="firstLastLetter">NB</span>
+                          <span className="firstLastLetter">{basicUserInfo.shortName}</span>
                         </div>
                       </div>
                       <div>
                         <p className="dropdown_menu">
                           <span className="heading_text text-white">
-                            {name ? name : ""}
+                            {basicUserInfo.name ? basicUserInfo.name : ""}
                           </span>
                           <br />
                           <span className="muted_text text-muted">
-                            {email ? email : ""}
+                            {basicUserInfo.email ? basicUserInfo.email : ""}
                           </span>
                         </p>
                       </div>

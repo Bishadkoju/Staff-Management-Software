@@ -14,3 +14,26 @@ export const secondsToHms = (d) => {
   var mDisplay = m > 0 ? m + " mins" : "";
   return hDisplay + " " + mDisplay;
 };
+
+export const statusStyle = (approveStatus) => {
+  if(approveStatus == "Pending"){
+    return "text-primary";
+  }
+  else if(approveStatus == "Approved"){
+    return "text-success";
+  }
+  else{
+    return "text-danger";
+  }
+};
+
+export const getBasicUserInfo = (data) => {
+  let name = data.first_name + " " + data.last_name;
+  let email = data.email;
+  let shortName = data.first_name.charAt(0) + data.last_name.charAt(0);
+  return {
+    "name" : name,
+    "email" : email,
+    "shortName" : shortName
+  };
+}

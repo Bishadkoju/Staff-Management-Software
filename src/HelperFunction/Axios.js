@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
   },
   function (error) {
     console.log(error.response)
-    if([401,403].indexOf(error.response.status) !== -1) {
+    if([401,403].indexOf(error.response?.status) !== -1) {
        logout()
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger

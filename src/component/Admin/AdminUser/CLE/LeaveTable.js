@@ -3,6 +3,7 @@ import ApproveImg from "../../../../assets/icons/check.svg";
 import UnapproveImg from "../../../../assets/icons/x.svg";
 
 import axiosInstance from "../../../../HelperFunction/Axios";
+import {statusStyle} from "../../../../HelperFunction/GenericFunction"
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
@@ -21,17 +22,17 @@ const LeaveTable = (props) => {
       });
   };
 
-  const statusStyle = (approveStatus) => {
-    if(approveStatus == "Pending"){
-      return "text-primary";
-    }
-    else if(approveStatus == "Approved"){
-      return "text-success";
-    }
-    else{
-      return "text-danger";
-    }
-  }
+  // const statusStyle = (approveStatus) => {
+  //   if(approveStatus == "Pending"){
+  //     return "text-primary";
+  //   }
+  //   else if(approveStatus == "Approved"){
+  //     return "text-success";
+  //   }
+  //   else{
+  //     return "text-danger";
+  //   }
+  // }
 
   const displayLeaveData = () => {
     let result = [];
