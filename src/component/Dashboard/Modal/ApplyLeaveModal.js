@@ -22,18 +22,15 @@ const ApplyLeaveModal = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log("Submitted");
-    console.log(e);
     e.preventDefault();
     axiosInstance.post("/leave/request/add/", {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason})
     .then(res => {
-      // console.log(res.data);
-      // console.log("Submitted")
       document.getElementById('closeLeaveModal').click();
+      window.alert("Leave Applied Successfully");
+      window.location.reload();
     })
     .catch(err => {
-      console.log("error");
-      console.log(err);
+      window.alert("Error!!");
     })
   }
 

@@ -21,11 +21,11 @@ const FeedbackModal = () => {
     axiosInstance
       .post(`/feedback/create/`, { subject, message, read })
       .then((res) => {
-        console.log(res);
         document.getElementById('close').click();
+        window.alert("Feedback Sent Successfully");
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("Error : Feedback Not Sent!!!");
       });
   };
 

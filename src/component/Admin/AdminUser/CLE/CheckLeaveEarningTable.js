@@ -30,6 +30,7 @@ const CheckLeaveEarningTable = (props) => {
       await axiosInstance
         .get(`/leave_history/${id}/view/`)
         .then((res) => {
+          console.log("Leave Data");
           console.log(res.data);
           setLeaveData(res.data.leaves);
         })

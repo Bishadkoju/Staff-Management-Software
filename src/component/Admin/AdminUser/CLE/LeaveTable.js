@@ -22,18 +22,6 @@ const LeaveTable = (props) => {
       });
   };
 
-  // const statusStyle = (approveStatus) => {
-  //   if(approveStatus == "Pending"){
-  //     return "text-primary";
-  //   }
-  //   else if(approveStatus == "Approved"){
-  //     return "text-success";
-  //   }
-  //   else{
-  //     return "text-danger";
-  //   }
-  // }
-
   const displayLeaveData = () => {
     let result = [];
 
