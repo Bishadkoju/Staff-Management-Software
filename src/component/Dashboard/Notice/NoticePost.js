@@ -13,14 +13,14 @@ const Notice_post = (props) => {
           <div id="notice_newsfeed" key={notification.id}>
             <div className="newsfeed">
               <div className="heading_newsfeed d-flex justify-content-start">
-                <div className="profile_picture pr-2">
+                {/* <div className="profile_picture pr-2">
                   <img
                     src={Profile}
                     className="profile_image"
                     alt="pic"
                     className="rounded-circle"
                   />
-                </div>
+                </div> */}
                 <div className="profile_desc">
                   <span className="heading_text pr-2">{notification.posted_by.first_name}</span>
                   <br />
@@ -38,10 +38,10 @@ const Notice_post = (props) => {
               </div>
               <div className="notice_desc">
                 <p className="text-justify">
-                  {notification.message.slice(0, 150)}.....
-                  <a href="/#" className="primary_color">
+                  {notification.message}
+                  {/* <a href="/#" className="primary_color">
                     See more
-                  </a>
+                  </a> */}
                 </p>
               </div>
             </div>

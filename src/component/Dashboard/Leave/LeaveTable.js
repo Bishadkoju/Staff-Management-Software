@@ -19,6 +19,7 @@ const LeaveTable = (props) => {
           <td className="text-muted muted_text">{data.leave_type}</td>
           <td className="text-muted muted_text">{data.reason}</td>
           <td className={`muted_text ${statusStyle(data.approved)}`}>{data.approved}</td>
+          <td className="text-muted muted_text">{data.approved_by ? data.approved_by : "-"}</td>
           {/* <td>
             <img src={checkAction} alt="check action" />
           </td> */}
@@ -43,6 +44,7 @@ const LeaveTable = (props) => {
                   <th scope="col">Leave Type</th>
                   <th scope="col">Reason</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Approved By</th>
                   {/* <th scope="col">Action</th> */}
                 </tr>
               </thead>

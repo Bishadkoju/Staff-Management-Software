@@ -31,7 +31,7 @@ function CheckIn(props) {
 
   const getAttendance = async () => {
     await axiosInstance
-      .get("/attendance/list/")
+      .get("/attendance/self/list/")
       .then((res) => {
         // Check Attendences
         // check if there is no attendence data
@@ -95,7 +95,7 @@ function CheckIn(props) {
   };
 
   const checkOut = async () => {
-    console.log("check out");
+    // console.log("check out");
     const data = {
       checked_out: true,
     };
@@ -103,9 +103,10 @@ function CheckIn(props) {
       .post("/attendance/self/check_out/", data)
       .then((res) => {
         setCheckedOutTime(res.data.time);
+        setDisableCheckIn(true);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
