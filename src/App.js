@@ -2,6 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 
+import "react-datepicker/dist/react-datepicker.css";
+
 import Login from "./pages/login/login.component";
 import PrivateRoute from "./component/PrivateRoute";
 import { AuthContext } from "./context/auth";

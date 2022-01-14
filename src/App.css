@@ -109,6 +109,14 @@ a:hover{
     cursor: pointer;
 }
 
+.datePickerElement{
+    width: 50%;
+}
+
+.date_input_div input{
+    width: 90%;
+}
+
 /* Navigation Bar */
 #nav{
     background-color: #13304d;

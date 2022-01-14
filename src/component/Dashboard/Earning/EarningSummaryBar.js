@@ -14,21 +14,21 @@ const EarningSummaryBar = () => {
         <div>
           <span className="muted_text text-muted">TOTAL EARNING</span>
           <br />
-          <h4>$249, 500</h4>
+          <h4>Rs. 0</h4>
         </div>
       </div>
 
       <div className="pr-4">
-        <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
+        <NoBoxInfoBar title="SALARY" value="0" />
       </div>
       <div className="pr-4">
-        <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
+        <NoBoxInfoBar title="COMMISSION" value="0" />
       </div>
       <div className="pr-4">
-        <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
+        <NoBoxInfoBar title="BONUS" value="0" />
       </div>
       <div className="pr-4">
-        <NoBoxInfoBar title="FROM SALARY" value="$495, 650" />
+        <NoBoxInfoBar title="TAX" value="0" />
       </div>
     </div>
   );

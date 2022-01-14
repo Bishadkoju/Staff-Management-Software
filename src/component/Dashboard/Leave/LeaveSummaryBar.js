@@ -24,17 +24,17 @@ const LeaveSummaryBar = (props) => {
               <div>
                 <span className="muted_text text-muted">TOTAL LEAVE</span>
                 <br />
-                <h4>03/15</h4>
+                <h4>{Number(leaveHistory.paid_leaves) + Number(leaveHistory.unpaid_leaves)}</h4>
               </div>
             </div>
           </div>
 
-          <div className="pr-4">
+          {/* <div className="pr-4">
             <NoBoxInfoBar
               title="LEAVE LEFT"
-              value={leaveHistory.leaves_taken}
+              value={leaveHistory.leaves_remaining}
             />
-          </div>
+          </div> */}
           <div className="pr-4">
             <NoBoxInfoBar title="PAID LEAVE" value={leaveHistory.paid_leaves} />
           </div>
@@ -45,10 +45,10 @@ const LeaveSummaryBar = (props) => {
             />
           </div>
           <div className="pr-4">
-            <NoBoxInfoBar
+            {/* <NoBoxInfoBar
               title="EARNING DEDUCT LEAVE"
               value={leaveHistory.leaves_taken}
-            />
+            /> */}
           </div>
         </div>
       )}

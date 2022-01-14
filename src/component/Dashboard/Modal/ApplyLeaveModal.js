@@ -7,8 +7,8 @@ const ApplyLeaveModal = () => {
     day_type : "",
     leave_from : "",
     leave_to : "",
-    inform_team : "",
-    inform_peers : "",
+    inform_team : 1,
+    inform_peers : "random peer",
     contact_availability : "",
     reason : ""
   });
@@ -195,7 +195,7 @@ const ApplyLeaveModal = () => {
               </div>
               {/* Leave  Type and Day type  */}
               <div className="row mt-3">
-                <div className="col-md-12">
+                {/* <div className="col-md-12">
                   <label htmlFor="basic-url" className="form_input_head">
                     I want to inform*
                   </label>
@@ -233,7 +233,7 @@ const ApplyLeaveModal = () => {
                       value={inform_peers}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-12 mt-3">
                   <span className="form_input_head">
                     I am available for urgent call
