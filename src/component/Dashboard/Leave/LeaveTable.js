@@ -1,10 +1,11 @@
 import React from "react";
-import checkAction from "../../../assets/icons/checkAction.svg"
 import { statusStyle } from "../../../HelperFunction/GenericFunction";
+import { getMonth } from "../../../HelperFunction/GenericFunction";
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
-  console.log(leaveTableData);
+  const month = getMonth(props.month);
+  const year = props.year;
 
   const displayLeaveData = () => {
     let result = [];
@@ -34,8 +35,8 @@ const LeaveTable = (props) => {
     <div>
       {leaveTableData && (
         <div className="div_format mt-4 pt-3">
-          <span className="heading_text">My leave History</span>
-          <div className="check_in_table">
+          <span className="heading_text">{month ? month : ""} {year ? year : ""} : Leave History</span>
+          <div className="check_in_table mt-4">
             <table className="table">
               <thead>
                 <tr>
