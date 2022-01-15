@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../HOC/Layout";
-import EarningGraph from "../../component/Dashboard/Earning/EarningGraph";
+import EarningGraph from "../../component/Dashboard/Earning/EarningGraph"
 import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryBar";
 
 import DatePicker from "react-datepicker";
