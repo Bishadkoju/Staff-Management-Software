@@ -1,6 +1,9 @@
 import React from "react";
-import IncreaseSalaryModal from "./IncreaseSalaryModal";
-import AssignNewStore from "./AssignNewStore";
+import IncreaseSalaryModal from "./Modal/IncreaseSalaryModal";
+import IncreaseCommisionModal from "./Modal/IncreaseCommisionModal";
+import IncreaseBonusModal from "./Modal/IncreaseBonusModal";
+
+import AssignNewStore from "./Modal/AssignNewStore";
 
 const ActionMenuTable = (props) => {
   const userId = props.userId;
@@ -46,7 +49,12 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="/#">
+          <a
+            className="dropdown-item"
+            href={`#IncreaseCommisionModal${userId}`}
+            data-toggle="modal"
+            data-target={`#IncreaseCommisionModal${userId}`}
+          >
             <div
               className="
                 dropdown_item_desc
@@ -63,7 +71,12 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="/#">
+          <a
+            className="dropdown-item"
+            href={`#IncreaseBonusModal${userId}`}
+            data-toggle="modal"
+            data-target={`#IncreaseBonusModal${userId}`}
+          >
             <div
               className="
                 dropdown_item_desc
@@ -140,7 +153,9 @@ const ActionMenuTable = (props) => {
           </a>
         </div>
       </div>
-      <IncreaseSalaryModal userId = {userId} />
+      <IncreaseSalaryModal userId={userId} />
+      <IncreaseCommisionModal userId = {userId} />
+      <IncreaseBonusModal userId = {userId} />
       <AssignNewStore />
     </React.Fragment>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../HOC/Layout";
-import EarningGraph from "../../component/Dashboard/Earning/EarningGraph";
+import EarningGraph from "../../component/Dashboard/Earning/EarningGraph"
 import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryBar";
 
 import DatePicker from "react-datepicker";
@@ -36,10 +36,14 @@ const Earning = () => {
             />
           </div>
         </div>
-        <EarningGraph />
+        <div className="row div_format mt-4">
+          <div className="col-md-12">
+            <EarningGraph />
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Earning;
