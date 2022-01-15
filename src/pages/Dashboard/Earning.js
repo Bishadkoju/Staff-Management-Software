@@ -36,10 +36,14 @@ const Earning = () => {
             />
           </div>
         </div>
-        <EarningGraph />
+        <div className="row div_format mt-4">
+          <div className="col-md-12">
+            <EarningGraph />
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Earning;
