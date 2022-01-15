@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../../../HelperFunction/Axios";
+import axiosInstance from "../../../../HelperFunction/Axios";
 
 const IncreaseSalaryModal = (props) => {
   const userId = props.userId;
@@ -9,25 +9,25 @@ const IncreaseSalaryModal = (props) => {
   const [additionAmount, setAdditionAmount] = useState(0);
 
   const [formData, setFormData] = useState({
-    increase_by: 0,
-    amount: 0,
+    increase_by: "percentage",
+    value: 0,
     valid_from: "",
   });
 
-  const { increase_by, amount, valid_from } = formData;
+  const { increase_by, value, valid_from } = formData;
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
       return { ...prevFormData, [e.target.name]: e.target.value };
     });
-    if(e.target.name === "amount"){
+    if(e.target.name === "value"){
       calculateNewSalary(e.target.value);
     }
   };
 
   const calculateNewSalary = (amount) => {
     if (salaryData.length > 0) {
-      if (increase_by === "percentage") {
+      if (increase_by === "P") {
         increaseByPercentage(Number(amount));
       } else {
         increaseByFixedAmount(Number(amount));
@@ -49,10 +49,6 @@ const IncreaseSalaryModal = (props) => {
   const increaseByFixedAmount = (fixedAmount) => {
     let currentSalary = salaryData[0].amount;
     let newSalary = currentSalary + fixedAmount;
-    console.log("Fixed Amount");
-    console.log(fixedAmount);
-    console.log(currentSalary);
-    console.log(newSalary);
     setNewSalaryAmount(newSalary);
     setAdditionAmount(newSalary - currentSalary);
   };
@@ -75,12 +71,13 @@ const IncreaseSalaryModal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axiosInstance.post(`/salary/employee/${userId}/update/`, {})
   }
 
   return (
     <div
       className="modal fade bd-example-modal"
-      id={`increaseSalaryModal${userId}`}
+      id={`IncreaseBonusModal${userId}`}
       tabindex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
@@ -92,7 +89,7 @@ const IncreaseSalaryModal = (props) => {
             <div className="col-md-12">
               <div className="heading_modal d-flex justify-content-between">
                 <div>
-                  <span className="heading_text">Increase Salary</span>
+                  <span className="heading_text">Increase Bonus</span>
                 </div>
                 <div>
                   <a
@@ -111,7 +108,7 @@ const IncreaseSalaryModal = (props) => {
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
-                  <label for="current_salary">Current Salary</label>
+                  <label for="current_salary">Current Bonus</label>
                   <br />
                   <span className="f_24 text-primary">
                     ${salaryData.length > 0 ? salaryData[0].amount : ""}
@@ -128,7 +125,7 @@ const IncreaseSalaryModal = (props) => {
                       type="radio"
                       name="increase_by"
                       id="inlineRadio1"
-                      value="percentage"
+                      value="P"
                       onChange={(e) => handleChange(e)}
                       selected
                     />
@@ -142,7 +139,7 @@ const IncreaseSalaryModal = (props) => {
                       type="radio"
                       name="increase_by"
                       id="inlineRadio2"
-                      value="fixed_amount"
+                      value="A"
                       onChange={(e) => handleChange(e)}
                     />
                     <label className="form-check-label" for="inlineRadio2">
@@ -164,9 +161,9 @@ const IncreaseSalaryModal = (props) => {
                   <input
                     type="number"
                     className="form-control"
-                    name="amount"
-                    id="amount"
-                    value={amount}
+                    name="value"
+                    id="value"
+                    value={value}
                     aria-describedby="basic-addon3"
                     onChange={(e) => handleChange(e)}
                   />
@@ -194,7 +191,7 @@ const IncreaseSalaryModal = (props) => {
               </div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label for="new_salary">New Salary</label>
+                  <label for="new_salary">New Bonus</label>
                   <br />
                   <span className="f_36 text-primary">
                     {newSalaryAmount}<sup>$</sup>
@@ -204,7 +201,7 @@ const IncreaseSalaryModal = (props) => {
             </div>
             <hr />
             <div className="col-md-12">
-              <button className="btn btn_primary mr-3">Increase Salary</button>
+              <button className="btn btn_primary mr-3">Increase Bonus</button>
               <button className="btn btn-secondary" data-dismiss="modal">
                 Cancel
               </button>

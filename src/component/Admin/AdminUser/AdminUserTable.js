@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ActionMenuTable from "./UserActionMenuTable";
+import UserActionMenuTable from "./UserActionMenuTable";
 import axiosInstance from "../../../HelperFunction/Axios";
 import { useAuth } from "../../../context/auth";
 
@@ -35,7 +35,7 @@ const AdminUserTable = () => {
           <td className="text-primary">{user.salary}</td>
           <td className="text-primary">{user.store}</td>
           <td>
-            {isGeneralManagerOrHigher && <ActionMenuTable userId = {user.id} />}
+            {isGeneralManagerOrHigher && <UserActionMenuTable userId = {user.id} />}
           </td>
         </tr>
       );
