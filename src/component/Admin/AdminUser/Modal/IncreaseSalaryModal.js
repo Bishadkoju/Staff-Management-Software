@@ -9,25 +9,25 @@ const IncreaseSalaryModal = (props) => {
   const [additionAmount, setAdditionAmount] = useState(0);
 
   const [formData, setFormData] = useState({
-    increase_by: "percentage",
+    increased_by: "P",
     value: 0,
     valid_from: "",
   });
 
-  const { increase_by, value, valid_from } = formData;
+  const { increased_by, value, valid_from } = formData;
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
       return { ...prevFormData, [e.target.name]: e.target.value };
     });
-    if(e.target.name === "value"){
+    if (e.target.name === "value") {
       calculateNewSalary(e.target.value);
     }
   };
 
   const calculateNewSalary = (amount) => {
     if (salaryData.length > 0) {
-      if (increase_by === "P") {
+      if (increased_by === "P") {
         increaseByPercentage(Number(amount));
       } else {
         increaseByFixedAmount(Number(amount));
@@ -71,8 +71,22 @@ const IncreaseSalaryModal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosInstance.post(`/salary/employee/${userId}/update/`, {})
-  }
+    axiosInstance
+      .post(`/salary/employee/${userId}/update/`, {
+        increased_by,
+        value,
+        valid_from,
+      })
+      .then((res) => {
+        console.log(res);
+        window.document.getElementById(`closeSalaryModal${userId}`).click();
+        window.alert("Salary Increased Successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        window.alert("Error : Salary Not Increased !!!");
+      });
+  };
 
   return (
     <div
@@ -117,13 +131,13 @@ const IncreaseSalaryModal = (props) => {
               </div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label for="increase_by">Increase By : </label>
+                  <label for="increased_by">Increase By : </label>
                   <br />
                   <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="increase_by"
+                      name="increased_by"
                       id="inlineRadio1"
                       value="P"
                       onChange={(e) => handleChange(e)}
@@ -137,7 +151,7 @@ const IncreaseSalaryModal = (props) => {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="increase_by"
+                      name="increased_by"
                       id="inlineRadio2"
                       value="A"
                       onChange={(e) => handleChange(e)}
@@ -194,7 +208,8 @@ const IncreaseSalaryModal = (props) => {
                   <label for="new_salary">New Salary</label>
                   <br />
                   <span className="f_36 text-primary">
-                    {newSalaryAmount}<sup>$</sup>
+                    {newSalaryAmount}
+                    <sup>$</sup>
                   </span>
                 </div>
               </div>
@@ -202,7 +217,7 @@ const IncreaseSalaryModal = (props) => {
             <hr />
             <div className="col-md-12">
               <button className="btn btn_primary mr-3">Increase Salary</button>
-              <button className="btn btn-secondary" data-dismiss="modal">
+              <button className="btn btn-secondary" id={`closeSalaryModal${userId}`} data-dismiss="modal">
                 Cancel
               </button>
             </div>

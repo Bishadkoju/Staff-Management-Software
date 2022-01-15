@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminLayout from "../../HOC/AdminLayout";
 import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
 import EarningGraph from "../../component/Dashboard/Earning/EarningGraph";
 import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryBar";
 
+import DatePicker from "react-datepicker";
+
 const AdminEarning = () => {
+  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div className="body">
       <AdminLayout />
@@ -19,8 +23,13 @@ const AdminEarning = () => {
               <div className="col-md-9">
                 <EarningSummaryBar />
               </div>
-              <div className="col-md-3 d-flex justify-content-end">
-                <input type="date" />
+              <div className="col-md-3 d-flex justify-content-end date_input_div">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  showYearPicker
+                  dateFormat="yyyy"
+                />
               </div>
             </div>
             <EarningGraph />

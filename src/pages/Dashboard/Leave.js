@@ -37,13 +37,19 @@ const Earning = () => {
   const displayLeaveTableHistory = () => {
     if (leaveHistory.leaves) {
       if (leaveHistory.leaves.length > 0) {
-        return <LeaveTable leaveDetail={leaveHistory.leaves} />;
+        return (
+          <LeaveTable
+            leaveDetail={leaveHistory.leaves}
+            month={startDate.getMonth()}
+            year={startDate.getFullYear()}
+          />
+        );
       } else {
         return (
           <div>
             <h4 className="pt-4">No Leave History for this month and year</h4>
           </div>
-          );
+        );
       }
     }
   };
