@@ -120,6 +120,7 @@ function CheckIn(props) {
       <span className="muted_text text-muted">
         Check In/Out to make an attendance
       </span>
+      <hr />
       <div className="desc">
         <div className="row">
           <div className="col-md-3">
@@ -133,13 +134,14 @@ function CheckIn(props) {
           </div>
           <div className="col-md-9">
             <div className="medium_font">
-              <span className="">29 Nov</span>
+              <span className="">Yesterday</span>
               <br />
               <span className="text-muted muted_text pr-3">Check In :</span>
               <span className="time pr-4 ">10:45 AM</span>
               <span className="text-muted muted_text pr-3">Check Out :</span>
               <span className="time">03:45 PM</span>
             </div>
+            <hr />
             <div className="medium_font primary_color pt-3">
               <h5>Today</h5>
               <div className="d-flex justify-content-between medium_font">
