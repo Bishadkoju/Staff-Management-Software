@@ -10,6 +10,10 @@ export const secondsToHms = (d) => {
   var m = Math.floor((d % 3600) / 60);
   // var s = Math.floor((d % 3600) % 60);
 
+  if(h === 0 && m === 0){
+    return "0 mins";
+  }
+
   var hDisplay = h > 0 ? h + " hr" : "";
   var mDisplay = m > 0 ? m + " mins" : "";
   return hDisplay + " " + mDisplay;

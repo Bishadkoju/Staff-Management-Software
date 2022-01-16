@@ -3,22 +3,47 @@ import ApproveImg from "../../../../assets/icons/check.svg";
 import UnapproveImg from "../../../../assets/icons/x.svg";
 
 import axiosInstance from "../../../../HelperFunction/Axios";
-import {statusStyle} from "../../../../HelperFunction/GenericFunction"
+import { statusStyle } from "../../../../HelperFunction/GenericFunction";
 
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
-  console.log(leaveTableData);
 
-  const approveLeave = async (id, data) => {
-    let approved = data;
+  const getMessage = (leaveData, res) => {
+    console.log("Submmiteed")
+    console.log(res.data);
+    const notification = `Leave from ${leaveData.leave_from} to ${leaveData.leave_to} has been ${res.data.approved === "A" ? "approved" : "rejected"} by ${leaveData.approved_by} for reason : ${leaveData.reason}`;
+    return notification;
+  };
+
+  const approveLeave = async (data, approved) => {
+    let id = data.leave_id;
     await axiosInstance
       .patch(`/leave/request/${id}/respond/`, { approved })
       .then((res) => {
-        console.log(res);
-        window.location.reload();
+        // Call for Notifications
+        const [datetime, message, read, posted_for] = [
+          new Date().toISOString(),
+          getMessage(data, res),
+          false,
+          data.employee.id,
+        ];
+        axiosInstance
+          .post(`/notification/create/`, {
+            datetime,
+            message,
+            read,
+            posted_for,
+          })
+          .then((res) => {
+            window.location.reload();
+          })
+          .catch((err) => {
+            window.alert("Error approving leave!!!");
+          });
+        // window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("Error approving leave!!!");
       });
   };
 
@@ -34,23 +59,27 @@ const LeaveTable = (props) => {
           <td>{data.pay === "P" ? "Paid" : "Unpaid"}</td>
           <td className="text-muted muted_text">{data.leave_type}</td>
           <td className="text-muted muted_text">{data.reason}</td>
-          <td className={`muted_text ${statusStyle(data.approved)}`}>{data.approved}</td>
-          {data.approved === "Pending" ? 
-          <td>
-            <span
-              className="mr-2 cursor_pointer"
-              onClick={() => approveLeave(data.leave_id, "A")}
-            >
-              <img src={ApproveImg} alt="approve" />
-            </span>
-            <span
-              className="cursor_pointer"
-              onClick={() => approveLeave(data.leave_id, "R")}
-            >
-              <img src={UnapproveImg} alt="approve" />
-            </span>
-          </td> : <td>-</td>
-          }
+          <td className={`muted_text ${statusStyle(data.approved)}`}>
+            {data.approved}
+          </td>
+          {data.approved === "Pending" ? (
+            <td>
+              <span
+                className="mr-2 cursor_pointer"
+                onClick={() => approveLeave(data, "A")}
+              >
+                <img src={ApproveImg} alt="approve" />
+              </span>
+              <span
+                className="cursor_pointer"
+                onClick={() => approveLeave(data, "R")}
+              >
+                <img src={UnapproveImg} alt="approve" />
+              </span>
+            </td>
+          ) : (
+            <td>-</td>
+          )}
         </tr>
       );
     });

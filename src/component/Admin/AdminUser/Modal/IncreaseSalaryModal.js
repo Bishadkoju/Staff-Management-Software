@@ -38,10 +38,6 @@ const IncreaseSalaryModal = (props) => {
   const increaseByPercentage = (percentage) => {
     let currentSalary = salaryData[0].amount;
     let newSalary = currentSalary + (percentage / 100) * currentSalary;
-    console.log("percentage");
-    console.log(percentage);
-    console.log(currentSalary);
-    console.log(newSalary);
     setNewSalaryAmount(newSalary);
     setAdditionAmount(newSalary - currentSalary);
   };
@@ -58,16 +54,20 @@ const IncreaseSalaryModal = (props) => {
       await axiosInstance
         .get(`/salary/employee/${userId}/list/`)
         .then((res) => {
-          console.log(res.data.salaries);
           setSalaryData(res.data.salaries);
         })
         .catch((err) => {
-          console.log(err);
+          // window.alert("Error!!!")
         });
     };
 
     getSalaryData();
   }, []);
+
+  const getMessage = (salaryResData) => {
+    const notification = `${salaryResData.user}, your salary has been increased from ${salaryResData.previous_salary} to ${salaryResData.new_salary} valid from ${salaryResData.valid_from}`;
+    return notification;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,10 +78,28 @@ const IncreaseSalaryModal = (props) => {
         valid_from,
       })
       .then((res) => {
-        console.log(res);
         window.document.getElementById(`closeSalaryModal${userId}`).click();
-        window.alert("Salary Increased Successfully");
-        window.location.reload();
+        // Call for Notifications
+        const [datetime, message, read, posted_for] = [
+          new Date().toISOString(),
+          getMessage(res.data),
+          false,
+          salaryData[0].employee.id,
+        ];
+        axiosInstance
+          .post(`/notification/create/`, {
+            datetime,
+            message,
+            read,
+            posted_for,
+          })
+          .then((res) => {
+            window.alert("Salary has been increased");
+            window.location.reload();
+          })
+          .catch((err) => {
+            window.alert("Error increasing salary!!!");
+          });
       })
       .catch((err) => {
         window.alert("Error : Salary Not Increased !!!");
