@@ -21,11 +21,12 @@ const Earning = () => {
     await axiosInstance
       .get(`/leave_history/${selectedDate}/self/month/view/`)
       .then((res) => {
+        console.log("Called");
         console.log(res.data);
         setLeaveHistory(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setLeaveHistory([]);
       });
   };
 
@@ -76,11 +77,15 @@ const Earning = () => {
           </div>
         </div>
       </div>
-      {/* Earning Main part */}
+      {/* Leave Main part */}
       <div className="container bg-white p-4 mt-4 rounded-div">
         <div className="row">
           <div className="col-md-9">
-            <LeaveSummaryBar history={leaveHistory.history} />
+            {leaveHistory.history ? (
+              <LeaveSummaryBar history={leaveHistory.history} />
+            ) : (
+              "No Leave in selected month and year"
+            )}
           </div>
           <div className="col-md-3 d-flex justify-content-end date_input_div">
             <DatePicker
