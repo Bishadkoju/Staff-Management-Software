@@ -45,7 +45,7 @@ const CheckInOut = () => {
         <div className="row">
           <div className="col-md-12 d-flex justify-content-between pt-3">
             <div>
-              <h2>Check In/Out</h2>
+              <h3>Check In/Out</h3>
             </div>
           </div>
         </div>
