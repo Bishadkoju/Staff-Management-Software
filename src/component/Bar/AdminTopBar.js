@@ -53,9 +53,6 @@ const AdminNavBar = () => {
           </div>
 
           <div className="user_info d-flex justify-content-md-between">
-            <div>
-              <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
-            </div>
             <div className="profile_picture mr-2">{basicUserInfo.shortName}</div>
             <div>
               <div className="dropdown">

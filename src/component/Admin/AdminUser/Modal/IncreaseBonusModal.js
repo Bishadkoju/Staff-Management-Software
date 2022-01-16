@@ -38,10 +38,6 @@ const IncreaseSalaryModal = (props) => {
   const increaseByPercentage = (percentage) => {
     let currentSalary = salaryData[0].amount;
     let newSalary = currentSalary + (percentage / 100) * currentSalary;
-    console.log("percentage");
-    console.log(percentage);
-    console.log(currentSalary);
-    console.log(newSalary);
     setNewSalaryAmount(newSalary);
     setAdditionAmount(newSalary - currentSalary);
   };
@@ -58,11 +54,9 @@ const IncreaseSalaryModal = (props) => {
       await axiosInstance
         .get(`/salary/employee/${userId}/list/`)
         .then((res) => {
-          console.log(res.data.salaries);
           setSalaryData(res.data.salaries);
         })
         .catch((err) => {
-          console.log(err);
         });
     };
 

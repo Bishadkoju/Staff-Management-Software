@@ -5,6 +5,7 @@ import { useAuth } from "../../../context/auth";
 
 const AdminUserTable = () => {
   const [userList, setUserList] = useState([]);
+  const [allUserList, setAllUserList] = useState([]);
   const { roleBasedPermissions } = useAuth()
   const {isGeneralManagerOrHigher} = roleBasedPermissions()
   useEffect(() => {
@@ -13,6 +14,7 @@ const AdminUserTable = () => {
         .get(`/user/list/short/`)
         .then((res) => {
           setUserList(res.data);
+          setAllUserList(res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -44,6 +46,19 @@ const AdminUserTable = () => {
     return result;
   };
 
+  const handleUserSearch = (e) => {
+    let keyword = e.target.value.toLowerCase();
+    let searchList = [];
+    let text = "";
+    for(let i = 0; i < allUserList.length; i++){
+      text = allUserList[i].full_name.toLowerCase();
+      if(text.search(keyword) != -1){
+        searchList.push(allUserList[i])
+      }
+    }
+    setUserList(searchList);
+  }
+
   return (
     <div className="user_table div_format pt-4">
       <div className="form-group">
@@ -53,6 +68,7 @@ const AdminUserTable = () => {
           id="user_search"
           placeholder="Search User here..."
           className="user_table_search_user"
+          onChange={(e) => handleUserSearch(e)}
         />
       </div>
       <table className="table">
