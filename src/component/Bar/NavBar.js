@@ -201,7 +201,7 @@ function NavBar() {
                     </div>
                   </a>
                   <hr className="mt-0 mb-3" />
-                  <div className="dropdown-item" onClick={handleLogout}>
+                  <div className="dropdown-item cursor_pointer" onClick={handleLogout}>
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
                         <img src={logOutIcon} alt="profile user" className="icon" />

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
-import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunction";
-
+import {
+  timeDisplayer,
+  secondsToHms,
+} from "../../../HelperFunction/GenericFunction";
 
 function CheckIn(props) {
   const [hasCheckedIn, setCheckedIn] = useState(false);
@@ -24,9 +26,7 @@ function CheckIn(props) {
       .then((res) => {
         setStore(res.data.store);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   const getAttendance = async () => {
@@ -36,28 +36,24 @@ function CheckIn(props) {
         // Check Attendences
         // check if there is no attendence data
         if (res.data.count === 0) {
-          console.log("no attendences");
           // if there is no attendence data the Checked in is false
           setCheckedIn(false);
-        } 
+        }
         // if there is attendence data then check if we have checked in today
         else {
           // Get the today date
           const todayDate = new Date().toISOString().slice(0, 10);
           // Get the latest checkIn data (Attendence data)
           const today_checked_data = res.data.results[0];
-          console.log(today_checked_data)
 
           // Compare if the latest checked in date and today date match??
           if (today_checked_data.date === todayDate) {
-            console.log("Checked");
             // Set the checked in time
             setCheckedInTime(today_checked_data.checked_in_time);
             setCheckedIn(true);
 
             // Check if we have checked out today
-            if(today_checked_data.checked_out_time != null){
-              console.log("checked out")
+            if (today_checked_data.checked_out_time != null) {
               setCheckedOutTime(today_checked_data.checked_out_time);
               setDisableCheckIn(true);
               // set the duration time if we have checked out
@@ -67,9 +63,7 @@ function CheckIn(props) {
         }
         // end of check attendence
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   const checkInStrings = {
@@ -78,7 +72,6 @@ function CheckIn(props) {
   };
 
   const checkIn = async () => {
-    console.log("check in");
     const data = {
       checked_in: true,
       store: store,
@@ -86,32 +79,36 @@ function CheckIn(props) {
     await axiosInstance
       .post("/attendance/self/check_in/", data)
       .then((res) => {
-        console.log(res.data);
         setCheckedInTime(res.data.time);
+        window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("Can't check in");
       });
   };
 
   const checkOut = async () => {
-    // console.log("check out");
     const data = {
       checked_out: true,
     };
-    await axiosInstance
-      .post("/attendance/self/check_out/", data)
-      .then((res) => {
-        setCheckedOutTime(res.data.time);
-        setDisableCheckIn(true);
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
+    const confirmCheckOut = window.confirm(
+      "Are you sure you want to checkout?"
+    );
+    if (confirmCheckOut) {
+      await axiosInstance
+        .post("/attendance/self/check_out/", data)
+        .then((res) => {
+          setCheckedOutTime(res.data.time);
+          setDisableCheckIn(true);
+          window.location.reload();
+        })
+        .catch((err) => {
+          window.alert("Error : Can't checkout");
+        });
+    }
   };
 
   const toggleCheckIn = () => {
-    console.log("toggle");
     hasCheckedIn ? checkOut() : checkIn();
     setCheckedIn(!hasCheckedIn);
   };

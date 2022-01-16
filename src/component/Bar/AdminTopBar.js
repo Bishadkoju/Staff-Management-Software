@@ -165,7 +165,8 @@ const AdminNavBar = () => {
                       </div>
                     </div>
                   </a>
-                  <a className="dropdown-item" onClick={handleLogout}>
+
+                  <a className="dropdown-item cursor_pointer" onClick={handleLogout}>
                   <hr className="mt-0 mb-3" />
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
