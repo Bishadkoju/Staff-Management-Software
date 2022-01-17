@@ -7,11 +7,23 @@ import CheckInHistory from "../../component/Dashboard/Check/CheckInHistory";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
+import { calculateDuration, secondsToHms } from "../../HelperFunction/GenericFunction"
+
 const Dashboard = () => {
   const [attendances, setAttendances] = useState([]);
+  const [lastAttendence, setLastAttendence] = useState({});
+  
+  const [appearance, setAppearance] = useState("0 ");
+  const [active, setActive] = useState("0 mins");
+  const [earning, setEarning] = useState("0 %");
+  const [leave, setLeave] = useState("0 ");
+
 
   useEffect(() => {
     getAttendance();
+    const currentDate = new Date();
+    getMonthlyAttendenceHistory(currentDate);
+    getMonthlyLeaveHistory(currentDate);
   }, []);
 
   const getAttendance = async () => {
@@ -19,10 +31,40 @@ const Dashboard = () => {
       .get("/attendance/self/list/")
       .then((res) => {
         setAttendances(res.data.results);
-        console.log(res.data);
+        if(res.data.results.length > 1){
+          setLastAttendence(res.data.results[1]);
+        }
+
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const getMonthlyLeaveHistory = async (date) => {
+    let selectedDate = date.toISOString().slice(0, 7);
+    await axiosInstance
+      .get(`/leave_history/${selectedDate}/self/month/view/`)
+      .then((res) => {
+        console.log("Called");
+        console.log(res.data);
+        setLeave(res.data.leaves.length)
+      })
+      .catch((err) => {
+      });
+  };
+
+  const getMonthlyAttendenceHistory = async (date) => {
+    let selectedDate = date.toISOString().slice(0, 7);
+    await axiosInstance
+      .get(`/attendance/self/list/${selectedDate}/`)
+      .then((res) => {
+        console.log("attendence result : ", res.data);
+        setAppearance(res.data.length);
+        setActive(secondsToHms(calculateDuration(res.data)))
+      })
+      .catch((err) => {
+
       });
   };
 
@@ -32,16 +74,16 @@ const Dashboard = () => {
       <div className="container">
         <div className="row mt-4">
           <div className="col-md-3">
-            <InfoBar title = "ACTIVE" value = "0 Hours" />
+            <InfoBar title = "ACTIVE" value = {active} />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "MY EARNING" value = "0%"  />
+            <InfoBar title = "MY EARNING" value = {earning}  />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "APPEARANCE" value = "0 Days"  />
+            <InfoBar title = "APPEARANCE" value = {appearance + " Days"} />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "LEAVES REMAINING" value = "2 Days"  />
+            <InfoBar title = "LEAVES REMAINING" value = {leave + " Days"}  />
           </div>
         </div>
       </div>
@@ -49,7 +91,7 @@ const Dashboard = () => {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-7">
-            <CheckIn/>
+            <CheckIn lastAttendence={lastAttendence}/>
           </div>
           <div className="col-md-5">
             <Notice />

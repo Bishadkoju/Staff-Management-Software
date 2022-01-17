@@ -3,9 +3,10 @@ import axiosInstance from "../../../HelperFunction/Axios";
 import {
   timeDisplayer,
   secondsToHms,
+  getMonthDayFromFullYear
 } from "../../../HelperFunction/GenericFunction";
 
-function CheckIn(props) {
+const CheckIn = (props) => {
   const [hasCheckedIn, setCheckedIn] = useState(false);
   const [disableCheckIn, setDisableCheckIn] = useState(false);
 
@@ -14,6 +15,9 @@ function CheckIn(props) {
   const [checkedInTime, setCheckedInTime] = useState("");
   const [checkedOutTime, setCheckedOutTime] = useState("");
   const [duration, setDuration] = useState("");
+
+  // last attendence
+  const lastAttendence = props.lastAttendence;
 
   useEffect(() => {
     getStore();
@@ -113,6 +117,19 @@ function CheckIn(props) {
     setCheckedIn(!hasCheckedIn);
   };
 
+  const displayDate = () => {
+    let date, month, day;
+    if(lastAttendence.date){
+      date = lastAttendence.date;
+      // console.log(date);
+      month= date.slice(5, 7)
+      // console.log(lastAttendence.date);
+      day = date.slice(8, 10);
+      return day;
+    }
+    return "";
+  }
+
   return (
     <div className="div_format pt-3 pb-4">
       <span className="heading_text">Check In</span>
@@ -134,12 +151,13 @@ function CheckIn(props) {
           </div>
           <div className="col-md-9">
             <div className="medium_font">
+              <span className="">{getMonthDayFromFullYear(lastAttendence.date)}</span>
               <span className="">Yesterday</span>
               <br />
               <span className="text-muted muted_text pr-3">Check In :</span>
-              <span className="time pr-4 ">10:45 AM</span>
+              <span className="time pr-4 ">{timeDisplayer(lastAttendence.checked_in_time)}</span>
               <span className="text-muted muted_text pr-3">Check Out :</span>
-              <span className="time">03:45 PM</span>
+              <span className="time">{timeDisplayer(lastAttendence.checked_out_time)}</span>
             </div>
             <hr />
             <div className="medium_font primary_color pt-3">
