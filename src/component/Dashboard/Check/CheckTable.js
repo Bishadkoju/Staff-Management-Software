@@ -51,7 +51,6 @@ const CheckTable = (props) => {
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
               <th scope="col">Total Hours</th>
-              {/* <th scope="col">Action</th> */}
             </tr>
           </thead>
           <tbody>{displayAttendenceHistory()}</tbody>
