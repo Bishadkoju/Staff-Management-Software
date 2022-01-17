@@ -22,7 +22,7 @@ const Notice = () => {
   }, []);
 
   return (
-    <div className="div_format pt-3">
+    <div className="div_format pt-3 scroll_div">
       <div className="heading_notice d-flex justify-content-between">
         <div>
           <span className="heading_text">Notification</span>

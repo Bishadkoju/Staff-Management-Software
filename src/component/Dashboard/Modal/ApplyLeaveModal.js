@@ -1,38 +1,81 @@
-import React, {useState} from "react";
-import axiosInstance from '../../../HelperFunction/Axios';
+import React, { useState } from "react";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const ApplyLeaveModal = () => {
   const [formData, setFormData] = useState({
-    leave_type : "",
-    day_type : "",
-    leave_from : "",
-    leave_to : "",
-    inform_team : 1,
-    inform_peers : "random peer",
-    contact_availability : "",
-    reason : ""
+    leave_type: "",
+    day_type: "",
+    leave_from: "",
+    leave_to: "",
+    inform_team: 1,
+    inform_peers: "random peer",
+    contact_availability: "",
+    reason: "",
   });
 
-  const {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason} = formData;
+  const {
+    leave_type,
+    day_type,
+    leave_from,
+    leave_to,
+    inform_team,
+    inform_peers,
+    contact_availability,
+    reason,
+  } = formData;
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
-      return {...prevFormData, [e.target.name]: e.target.value};
+      return { ...prevFormData, [e.target.name]: e.target.value };
     });
+  };
+
+  const getMessage = () => {
+    const notification = `Leave has been requested by `;
+    return notification;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosInstance.post("/leave/request/add/", {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason})
-    .then(res => {
-      document.getElementById('closeLeaveModal').click();
-      window.alert("Leave Applied Successfully");
-      window.location.reload();
-    })
-    .catch(err => {
-      window.alert("Error!!");
-    })
-  }
+    axiosInstance
+      .post("/leave/request/add/", {
+        leave_type,
+        day_type,
+        leave_from,
+        leave_to,
+        inform_team,
+        inform_peers,
+        contact_availability,
+        reason,
+      })
+      .then((res) => {
+        // Call for Notifications
+        // const [datetime, message, read, posted_for] = [
+        //   new Date().toISOString(),
+        //   getMessage(),
+        //   false,
+        //   1,
+        // ];
+        // axiosInstance
+        //   .post(`/notification/create/`, {
+        //     datetime,
+        //     message,
+        //     read,
+        //     posted_for,
+        //   })
+        //   .then((res) => {
+        document.getElementById("closeLeaveModal").click();
+        window.alert("Leave Applied Successfully");
+        window.location.reload();
+        //   })
+        //   .catch((err) => {
+        //     window.alert("Error applying leave!!!");
+        //   });
+      })
+      .catch((err) => {
+        window.alert("Error applying leave!!!");
+      });
+  };
 
   return (
     <div
@@ -248,7 +291,10 @@ const ApplyLeaveModal = () => {
                       value="yes"
                       onChange={(e) => handleChange(e)}
                     />
-                    <label className="form-check-label" htmlFor="contact_availability">
+                    <label
+                      className="form-check-label"
+                      htmlFor="contact_availability"
+                    >
                       Yes
                     </label>
                   </div>
@@ -261,7 +307,10 @@ const ApplyLeaveModal = () => {
                       value="no"
                       onChange={(e) => handleChange(e)}
                     />
-                    <label className="form-check-label" htmlFor="contact_availability">
+                    <label
+                      className="form-check-label"
+                      htmlFor="contact_availability"
+                    >
                       No
                     </label>
                   </div>
