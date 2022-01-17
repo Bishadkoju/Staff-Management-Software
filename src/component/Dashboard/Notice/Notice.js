@@ -26,14 +26,15 @@ const Notice = () => {
       <div className="heading_notice d-flex justify-content-between">
         <div>
           <span className="heading_text">Notification</span>
+          {/* <span className="text-muted muted_text medium_font">Today</span> */}
           <br />
-          <span className="text-muted muted_text medium_font">Today</span>
         </div>
-        <div className="primary_color">
+        {/* <div className="primary_color">
           <span className="pr-2">View All</span>
           <i className="fa fa-angle-right" aria-hidden="true"></i>
-        </div>
+        </div> */}
       </div>
+      <hr />
       <NoticePost notifications = {notifications}/>
     </div>
   );

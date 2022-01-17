@@ -28,13 +28,13 @@ const Notice_post = (props) => {
                     {notification.datetime}
                   </span>
                 </div>
-                <div>
+                {/* <div>
                   <i
                     className="fa fa-circle small_font online_color"
                     aria-hidden="true"
                   ></i>
                   <span> Admin </span>
-                </div>
+                </div> */}
               </div>
               <div className="notice_desc">
                 <p className="text-justify">
