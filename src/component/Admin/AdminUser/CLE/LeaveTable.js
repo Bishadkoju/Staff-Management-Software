@@ -9,8 +9,6 @@ const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
 
   const getMessage = (leaveData, res) => {
-    console.log("Submmiteed")
-    console.log(res.data);
     const notification = `Leave from ${leaveData.leave_from} to ${leaveData.leave_to} has been ${res.data.approved === "A" ? "approved" : "rejected"} by ${leaveData.approved_by} for reason : ${leaveData.reason}`;
     return notification;
   };

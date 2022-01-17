@@ -209,6 +209,11 @@ a:hover{
 }
 
 /* notice */
+.scroll_div{
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
 .notice_desc{
     font-size: 12px;
 }
