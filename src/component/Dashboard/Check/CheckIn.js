@@ -142,7 +142,7 @@ const CheckIn = (props) => {
         <div className="row">
           <div className="col-md-3">
             <button
-              className="btn btn-primary check_in_background btn-xl"
+              className="btn btn-primary check_in_background btn-xl pl-1"
               disabled={disableCheckIn}
               onClick={toggleCheckIn}
             >

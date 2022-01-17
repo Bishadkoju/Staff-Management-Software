@@ -9,7 +9,7 @@ const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
 
   const getMessage = (leaveData, res) => {
-    const notification = `Leave from ${leaveData.leave_from} to ${leaveData.leave_to} has been ${res.data.approved === "A" ? "approved" : "rejected"} by ${leaveData.approved_by} for reason : ${leaveData.reason}`;
+    const notification = `Leave from ${leaveData.leave_from} to ${leaveData.leave_to} has been ${res.data.approved === "A" ? "approved" : "rejected"} for reason : ${leaveData.reason}`;
     return notification;
   };
 
