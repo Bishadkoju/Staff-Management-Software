@@ -23,13 +23,13 @@ const CheckTable = (props) => {
             <td className="text-muted muted_text">
               {secondsToHms(data.duration)}
             </td>
-            <td>
+            {/* <td>
               <input
                 type="checkbox"
                 name="action_check_in"
                 id="action_check_in"
               />
-            </td>
+            </td> */}
           </tr>
         );
       });
@@ -51,7 +51,7 @@ const CheckTable = (props) => {
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
               <th scope="col">Total Hours</th>
-              <th scope="col">Action</th>
+              {/* <th scope="col">Action</th> */}
             </tr>
           </thead>
           <tbody>{displayAttendenceHistory()}</tbody>
