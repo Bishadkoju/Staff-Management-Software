@@ -67,7 +67,7 @@ export const getMonthDayFromFullYear = (date) => {
     let year = date.slice(0, 4);
     let month = date.slice(5, 7);
     let day = date.slice(8, 10);
-    let m = getMonth(month);
+    let m = getMonth(month - 1);
     return m + " " + day + ", " + year;
   }
   return "";
@@ -83,3 +83,17 @@ export const calculateDuration = (attendences) => {
   }
   return "";
 };
+
+export const getDaysFromDate = (date1, date2) => {
+  if(date1 != "" && date2 != ""){
+    let d1 = new Date(date1);
+    let d2 = new Date(date2);
+  
+    let difference_time = d2.getTime() - d1.getTime();
+    console.log("from function : ")
+    console.log(difference_time, date1, date2);
+    let days = difference_time / (1000 * 3600 * 24);
+    return days + 1;
+  }
+  return "";
+}

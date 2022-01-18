@@ -152,7 +152,6 @@ const CheckIn = (props) => {
           <div className="col-md-9">
             <div className="medium_font">
               <span className="">{getMonthDayFromFullYear(lastAttendence.date)}</span>
-              <span className="">Yesterday</span>
               <br />
               <span className="text-muted muted_text pr-3">Check In :</span>
               <span className="time pr-4 ">{timeDisplayer(lastAttendence.checked_in_time)}</span>

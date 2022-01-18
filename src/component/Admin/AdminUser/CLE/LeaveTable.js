@@ -38,7 +38,6 @@ const LeaveTable = (props) => {
           .catch((err) => {
             window.alert("Error approving leave!!!");
           });
-        // window.location.reload();
       })
       .catch((err) => {
         window.alert("Error approving leave!!!");
@@ -90,7 +89,7 @@ const LeaveTable = (props) => {
       {leaveTableData && (
         <div className="div_format mt-4 pt-3">
           <span className="heading_text">My leave History</span>
-          <div className="check_in_table">
+          <div className="check_in_table mt-3">
             <table className="table">
               <thead>
                 <tr>

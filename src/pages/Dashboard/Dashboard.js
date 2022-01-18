@@ -7,7 +7,7 @@ import CheckInHistory from "../../component/Dashboard/Check/CheckInHistory";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
-import { calculateDuration, secondsToHms } from "../../HelperFunction/GenericFunction"
+import { calculateDuration, secondsToHms, getDaysFromDate } from "../../HelperFunction/GenericFunction"
 
 const Dashboard = () => {
   const [attendances, setAttendances] = useState([]);
@@ -46,9 +46,11 @@ const Dashboard = () => {
     await axiosInstance
       .get(`/leave_history/${selectedDate}/self/month/view/`)
       .then((res) => {
-        console.log("Called");
-        console.log(res.data);
-        setLeave(res.data.leaves.length)
+        let days = 0
+        for(let i = 0; i < res.data.leaves.length; i++){
+          days += getDaysFromDate(res.data.leaves[i].leave_from, res.data.leaves[i].leave_to)
+        }
+        setLeave(days);
       })
       .catch((err) => {
       });
