@@ -17,7 +17,8 @@ const CheckInHistory = (props) => {
         result.push(
           <tr key={attendance.date}>
             <td className="text-muted muted_text">{attendance.date}</td>
-            <td>Jawalakhel</td>
+            <td>{attendance.store.name}</td>
+            <td>{attendance.store.address}</td>
             <td className="text-muted muted_text">
               {timeDisplayer(attendance.checked_in_time)}
             </td>
@@ -27,9 +28,9 @@ const CheckInHistory = (props) => {
             <td className="text-muted muted_text">
               {secondsToHms(attendance.duration)}
             </td>
-            <td>
+            {/* <td>
               <img src={checkAction} alt = "check action"/>
-            </td>
+            </td> */}
           </tr>
         )
       );
@@ -40,12 +41,13 @@ const CheckInHistory = (props) => {
   return (
     <div className="div_format mt-4 pt-3">
       <span className="heading_text">Check in/out History</span>
-      <div className="check_in_table">
+      <div className="check_in_table mt-3">
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Date</th>
-              <th scope="col">Branch</th>
+              <th scope="col">Store</th>
+              <th scope="col">Address</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
               <th scope="col">Total Hours</th>
@@ -53,13 +55,6 @@ const CheckInHistory = (props) => {
           </thead>
           <tbody>{attendanceData()}</tbody>
         </table>
-        <div className="see_more_check_in_table d-flex justify-content-end">
-          <div>
-            <a href="/dashboard/check" className="btn btn-primary">
-              See More...
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
