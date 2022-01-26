@@ -64,11 +64,6 @@ const IncreaseSalaryModal = (props) => {
     getSalaryData();
   }, []);
 
-  const getMessage = (salaryResData) => {
-    const notification = `${salaryResData.user}, your salary has been increased from ${salaryResData.previous_salary} to ${salaryResData.new_salary} valid from ${salaryResData.valid_from}`;
-    return notification;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance
@@ -79,27 +74,7 @@ const IncreaseSalaryModal = (props) => {
       })
       .then((res) => {
         window.document.getElementById(`closeSalaryModal${userId}`).click();
-        // Call for Notifications
-        const [datetime, message, read, posted_for] = [
-          new Date().toISOString(),
-          getMessage(res.data),
-          false,
-          salaryData[0].employee.id,
-        ];
-        axiosInstance
-          .post(`/notification/create/`, {
-            datetime,
-            message,
-            read,
-            posted_for,
-          })
-          .then((res) => {
-            window.alert("Salary has been increased");
-            window.location.reload();
-          })
-          .catch((err) => {
-            window.alert("Error increasing salary!!!");
-          });
+        window.location.reload();
       })
       .catch((err) => {
         window.alert("Error : Salary Not Increased !!!");

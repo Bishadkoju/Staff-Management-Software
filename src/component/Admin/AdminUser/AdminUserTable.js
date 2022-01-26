@@ -14,6 +14,7 @@ const AdminUserTable = () => {
         .get(`/user/list/short/`)
         .then((res) => {
           setUserList(res.data);
+          console.log("user list : ", res.data);
           setAllUserList(res.data);
         })
         .catch((err) => {
@@ -32,8 +33,8 @@ const AdminUserTable = () => {
           <td className="text-muted">
             <a href={`/admin/user/${user.id}`}>{user.full_name}</a></td>
           <td className="text-muted">{user.role}</td>
-          <td className="text-muted">{user.email}</td>
           <td className="text-muted">{user.phone_number}</td>
+          <td className="text-primary">{user.salary}</td>
           <td className="text-primary">{user.salary}</td>
           <td className="text-primary">{user.store}</td>
           <td>
@@ -76,9 +77,9 @@ const AdminUserTable = () => {
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Role</th>
-            <th scope="col">Email</th>
             <th scope="col">Contact No.</th>
             <th scope="col">Salary</th>
+            <th scope="col">Last Updated</th>
             <th scope="col">Store</th>
             <th scope="col">Action</th>
           </tr>

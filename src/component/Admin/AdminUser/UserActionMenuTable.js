@@ -2,6 +2,7 @@ import React from "react";
 import IncreaseSalaryModal from "./Modal/IncreaseSalaryModal";
 import IncreaseCommisionModal from "./Modal/IncreaseCommisionModal";
 import IncreaseBonusModal from "./Modal/IncreaseBonusModal";
+import SendMessage from "./Modal/SendMessage";
 
 import AssignNewStore from "./Modal/AssignNewStore";
 
@@ -116,6 +117,30 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
+          {/* Send message modal */}
+          <a
+            className="dropdown-item"
+            href="#sendMessageModal"
+            data-toggle="modal"
+            data-target="#sendMessageModal"
+          >
+            <div
+              className="
+                dropdown_item_desc
+                d-flex
+                justify-content-start
+              "
+            >
+              <div className="icon div_flex_icon">
+              <i class="fa fa-comments" aria-hidden="true"></i>
+              </div>
+              <div>
+                <span className="heading_text">Send Message</span>
+                <br />
+              </div>
+            </div>
+          </a>
+          {/* end of send message modal */}
           <hr />
           <a className="dropdown-item" href="/#">
             <div
@@ -157,6 +182,7 @@ const ActionMenuTable = (props) => {
       <IncreaseCommisionModal userId = {userId} />
       <IncreaseBonusModal userId = {userId} />
       <AssignNewStore />
+      <SendMessage />
     </React.Fragment>
   );
 };
