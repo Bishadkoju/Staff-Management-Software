@@ -49,28 +49,9 @@ const ApplyLeaveModal = () => {
         reason,
       })
       .then((res) => {
-        // Call for Notifications
-        // const [datetime, message, read, posted_for] = [
-        //   new Date().toISOString(),
-        //   getMessage(),
-        //   false,
-        //   1,
-        // ];
-        // axiosInstance
-        //   .post(`/notification/create/`, {
-        //     datetime,
-        //     message,
-        //     read,
-        //     posted_for,
-        //   })
-        //   .then((res) => {
         document.getElementById("closeLeaveModal").click();
         window.alert("Leave Applied Successfully");
         window.location.reload();
-        //   })
-        //   .catch((err) => {
-        //     window.alert("Error applying leave!!!");
-        //   });
       })
       .catch((err) => {
         window.alert("Error applying leave!!!");

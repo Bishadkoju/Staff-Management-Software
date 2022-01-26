@@ -9,25 +9,28 @@ import profileIcon from "../../assets/icons/profileIcon.svg";
 import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
 import logOutIcon from "../../assets/icons/logOut.svg";
+import messageIcon from "../../assets/icons/message.svg";
 
 import { useAuth } from "../../context/auth";
 
-import {getBasicUserInfo} from "../../HelperFunction/GenericFunction";
+import { getBasicUserInfo } from "../../HelperFunction/GenericFunction";
+
+import ViewMessageModal from "./Modal/ViewMessageModal";
 
 function NavBar() {
-  const navigate = useNavigate()
-  const {logOut} = useAuth()
+  const navigate = useNavigate();
+  const { logOut } = useAuth();
   const handleLogout = () => {
     logOut();
-    navigate('/')
+    navigate("/");
   };
 
   // Get the user name
   const [basicUserInfo, setBasicUserInfo] = useState({
-    "name" : "",
-    "email" : "",
-    "shortName" : ""
-  })
+    name: "",
+    email: "",
+    shortName: "",
+  });
 
   useEffect(() => {
     getUserInfo();
@@ -93,7 +96,14 @@ function NavBar() {
             </NavLink>
           </div>
           <div className="user_info d-flex justify-content-md-between">
-            <div className="profile_picture mr-2">{basicUserInfo.shortName}</div>
+            <div className="pr-2">
+              <div className="cursor_pointer" data-toggle="modal" data-target="#viewMessageModal">
+                <img src={messageIcon} alt="message" />
+              </div>
+            </div>
+            <div className="profile_picture mr-2">
+              {basicUserInfo.shortName}
+            </div>
             <div>
               <div className="dropdown">
                 <span
@@ -104,7 +114,9 @@ function NavBar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="profile_name">{basicUserInfo.name ? basicUserInfo.name : ""}</span>
+                  <span className="profile_name">
+                    {basicUserInfo.name ? basicUserInfo.name : ""}
+                  </span>
                 </span>
                 <div
                   className="dropdown-menu dropDownMenuLeft pt-0"
@@ -114,12 +126,16 @@ function NavBar() {
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="mr-2 drop_profile_picture">
                         <div className="profile_picture mr-2">
-                          <span className="firstLastLetter">{basicUserInfo.shortName}</span>
+                          <span className="firstLastLetter">
+                            {basicUserInfo.shortName}
+                          </span>
                         </div>
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-white">{basicUserInfo.name}</span>
+                          <span className="heading_text text-white">
+                            {basicUserInfo.name}
+                          </span>
                           <br />
                           <span className="muted_text text-muted">
                             {basicUserInfo.email}
@@ -198,16 +214,21 @@ function NavBar() {
                     </div>
                   </a>
                   <hr className="mt-0 mb-3" />
-                  <div className="dropdown-item cursor_pointer" onClick={handleLogout}>
+                  <div
+                    className="dropdown-item cursor_pointer"
+                    onClick={handleLogout}
+                  >
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
-                        <img src={logOutIcon} alt="profile user" className="icon" />
+                        <img
+                          src={logOutIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span
-                            className="heading_text text-danger"
-                          >
+                          <span className="heading_text text-danger">
                             Log Out
                           </span>
                           <br />
@@ -222,6 +243,7 @@ function NavBar() {
         </div>
       </div>
       <FeedbackModal />
+      <ViewMessageModal />
     </div>
   );
 }

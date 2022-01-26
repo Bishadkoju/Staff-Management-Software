@@ -132,7 +132,7 @@ const ActionMenuTable = (props) => {
               "
             >
               <div className="icon div_flex_icon">
-              <i class="fa fa-comments" aria-hidden="true"></i>
+              <i className="fa fa-comments" aria-hidden="true"></i>
               </div>
               <div>
                 <span className="heading_text">Send Message</span>
