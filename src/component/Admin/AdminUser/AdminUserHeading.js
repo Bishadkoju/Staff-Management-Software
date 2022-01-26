@@ -12,7 +12,7 @@ const AdminUserHeading = () => {
       {isGeneralManagerOrHigher && (
         <div>
           <a href="/register">
-            <div class="btn btn_primary">+ Register a user</div>
+            <div className="btn btn_primary">+ Register a user</div>
           </a>
         </div>
       )}
