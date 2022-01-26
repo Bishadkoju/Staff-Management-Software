@@ -8,36 +8,12 @@ import { statusStyle } from "../../../../HelperFunction/GenericFunction";
 const LeaveTable = (props) => {
   const leaveTableData = props.leaveDetail;
 
-  const getMessage = (leaveData, res) => {
-    const notification = `Leave from ${leaveData.leave_from} to ${leaveData.leave_to} has been ${res.data.approved === "A" ? "approved" : "rejected"} for reason : ${leaveData.reason}`;
-    return notification;
-  };
-
   const approveLeave = async (data, approved) => {
     let id = data.leave_id;
     await axiosInstance
       .patch(`/leave/request/${id}/respond/`, { approved })
       .then((res) => {
-        // Call for Notifications
-        const [datetime, message, read, posted_for] = [
-          new Date().toISOString(),
-          getMessage(data, res),
-          false,
-          data.employee.id,
-        ];
-        axiosInstance
-          .post(`/notification/create/`, {
-            datetime,
-            message,
-            read,
-            posted_for,
-          })
-          .then((res) => {
-            window.location.reload();
-          })
-          .catch((err) => {
-            window.alert("Error approving leave!!!");
-          });
+        window.location.reload();
       })
       .catch((err) => {
         window.alert("Error approving leave!!!");
