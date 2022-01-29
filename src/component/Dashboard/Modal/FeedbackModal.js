@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
 
 const FeedbackModal = () => {
@@ -9,6 +9,15 @@ const FeedbackModal = () => {
   });
 
   const { subject, message, read } = formData;
+  useEffect(()=>{
+    setStore()
+  },[])
+  const setStore = async()=> {
+    const res = await axiosInstance.get('/user/self/view/')
+    if(res.status === 200) {
+      setFormData((prevFormData)=>({...prevFormData,"store": res.data.store}))
+    }
+  }
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
@@ -19,7 +28,7 @@ const FeedbackModal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post(`/feedback/create/`, { subject, message, read })
+      .post(`/feedback/create/`, formData)
       .then((res) => {
         document.getElementById('close').click();
         window.alert("Feedback Sent Successfully");
