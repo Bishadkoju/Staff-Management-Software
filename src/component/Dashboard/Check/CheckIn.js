@@ -5,6 +5,7 @@ import {
   secondsToHms,
   getMonthDayFromFullYear
 } from "../../../HelperFunction/GenericFunction";
+import moment from 'moment'
 
 const CheckIn = (props) => {
   const [hasCheckedIn, setCheckedIn] = useState(false);
@@ -46,7 +47,7 @@ const CheckIn = (props) => {
         // if there is attendence data then check if we have checked in today
         else {
           // Get the today date
-          const todayDate = new Date().toISOString().slice(0, 10);
+          const todayDate = moment().format("YYYY-MM-DD");
           // Get the latest checkIn data (Attendence data)
           const today_checked_data = res.data.results[0];
 

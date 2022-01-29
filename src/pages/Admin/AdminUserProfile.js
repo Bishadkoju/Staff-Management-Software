@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams} from "react-router-dom";
 import AdminLayout from "../../HOC/AdminLayout";
 import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
+import { useAuth } from "../../context/auth";
 
 import ProfileInfo from "../../component/Dashboard/Profile/ProfileInfo";
 import CheckLeaveEarningTable from "../../component/Admin/AdminUser/CLE/CheckLeaveEarningTable"
@@ -13,6 +14,9 @@ const AdminProfile = () => {
   const params = useParams();
   const id = params.id;
   const navigate = useNavigate();
+
+  const { roleBasedPermissions } = useAuth();
+  const { isGeneralManagerOrHigher } = roleBasedPermissions();
 
   const [name, setName] = useState("");
   const [requiredUserInfo, setRequiredUserInfo] = useState([]);
@@ -60,15 +64,16 @@ const AdminProfile = () => {
                   <span>Users &#62; </span>
                   <span className="font-weight-bold f_24">{name ? name : ""}</span>
                 </div>
-                <div>
-                  <button
-                    className="btn btn_primary"
-                    onClick={()=>{navigate(`/edit/${id}/`)}}
-                  >
-                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Edit Profile
-                  </button>
-                </div>
+                {isGeneralManagerOrHigher &&
+                  <div>
+                    <button
+                      className="btn btn_primary"
+                      onClick={()=>{navigate(`/edit/${id}/`)}}
+                    >
+                      <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      Edit Profile
+                    </button>
+                  </div>}
               </div>
             </div>
             <ProfileInfo userInfo = {requiredUserInfo} name = {name}/>
