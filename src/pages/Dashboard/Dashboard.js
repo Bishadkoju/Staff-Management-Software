@@ -18,7 +18,6 @@ const Dashboard = () => {
   const [earning, setEarning] = useState("0 %");
   const [leave, setLeave] = useState("0 ");
 
-
   useEffect(() => {
     getAttendance();
     const currentDate = new Date();
@@ -46,11 +45,7 @@ const Dashboard = () => {
     await axiosInstance
       .get(`/leave_history/${selectedDate}/self/month/view/`)
       .then((res) => {
-        let days = 0
-        for(let i = 0; i < res.data.leaves.length; i++){
-          days += getDaysFromDate(res.data.leaves[i].leave_from, res.data.leaves[i].leave_to)
-        }
-        setLeave(days);
+        setLeave(res.data.history.leaves_taken);
       })
       .catch((err) => {
       });
@@ -61,7 +56,6 @@ const Dashboard = () => {
     await axiosInstance
       .get(`/attendance/self/list/${selectedDate}/`)
       .then((res) => {
-        console.log("attendence result : ", res.data);
         setAppearance(res.data.length);
         setActive(secondsToHms(calculateDuration(res.data)))
       })
@@ -85,7 +79,7 @@ const Dashboard = () => {
             <InfoBar title = "APPEARANCE" value = {appearance + " Days"} />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "LEAVES REMAINING" value = {leave + " Days"}  />
+            <InfoBar title = "TOTAL LEAVES" value = {leave + " Days"}  />
           </div>
         </div>
       </div>

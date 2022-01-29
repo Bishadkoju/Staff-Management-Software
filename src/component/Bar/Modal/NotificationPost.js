@@ -1,19 +1,16 @@
 import React from "react";
 
-const MessagePost = () => {
+const NotificationPost = (props) => {
+  const notification = props.notification;
   return (
     <>
       <hr />
-      <div className="messagePost">
-        <h6>Topic</h6>
-        <span>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
-        </span>
+      <div className="notificationPost">
+        <span>{notification.message}</span><br /> 
+        <span className="text-muted muted_text">{notification.datetime}</span>
       </div>
     </>
   );
 };
 
-export default MessagePost;
+export default NotificationPost;
