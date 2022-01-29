@@ -48,8 +48,7 @@ const userPageAccess = {
     AdminFeedback,
     Register,
   ],
-  2: [AdminAttendance],
-  3: [
+  2: [
     AdminDashboard,
     AdminAttendance,
     AdminEarning,
@@ -63,6 +62,18 @@ const userPageAccess = {
     AdminHandbookEditor,
     AdminFeedback,
     Register,],
+  3: [
+    AdminDashboard,
+    AdminAttendance,
+    AdminEarning,
+    AdminHandbook,
+    AdminLeave,
+    AdminProfile,
+    AdminUsers,
+    AdminUserProfile,
+    AdminHandbookDetail,
+    AdminFeedback,
+    ],
 
   4: [
     Dashboard,

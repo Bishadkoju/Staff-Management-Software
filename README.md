@@ -4,5 +4,5 @@
 2. yarn add | npm install
 3. yarn start | npm run start
 
-Deployed on https://staff-management-software.netlify.app/
+Deployed on https://smsoftware.netlify.app/
 
