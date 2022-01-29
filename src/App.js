@@ -112,6 +112,7 @@ const  App = () => {
             <Route exact path="/admin/handbook/:id" element={<PrivateRoute Target={AdminHandbookDetail} />} />
 
             <Route exact path="/register" element={<PrivateRoute Target={Register} />} />
+            <Route exact path="/edit/:id" element={<PrivateRoute Target={Register} />} />
             <Route exact path="/forgot" element={<ForgotPassword />} />
             <Route exact path="/home" element={<Home />}/>
 

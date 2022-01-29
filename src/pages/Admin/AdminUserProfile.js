@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams} from "react-router-dom";
 import AdminLayout from "../../HOC/AdminLayout";
 import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
 
 import ProfileInfo from "../../component/Dashboard/Profile/ProfileInfo";
-import ProfileModal from "../../component/Dashboard/Modal/ProfileModal";
 import CheckLeaveEarningTable from "../../component/Admin/AdminUser/CLE/CheckLeaveEarningTable"
 
-import { useParams } from "react-router-dom";
 import axiosInstance from "../../HelperFunction/Axios";
 
 const AdminProfile = () => {
   // Get ID from URL
   const params = useParams();
   const id = params.id;
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [requiredUserInfo, setRequiredUserInfo] = useState([]);
@@ -63,8 +63,7 @@ const AdminProfile = () => {
                 <div>
                   <button
                     className="btn btn_primary"
-                    data-toggle="modal"
-                    data-target="#editProfileModal"
+                    onClick={()=>{navigate(`/edit/${id}/`)}}
                   >
                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                     Edit Profile
@@ -73,7 +72,6 @@ const AdminProfile = () => {
               </div>
             </div>
             <ProfileInfo userInfo = {requiredUserInfo} name = {name}/>
-            <ProfileModal />
             <div>
               <CheckLeaveEarningTable id = {id}/>
             </div>

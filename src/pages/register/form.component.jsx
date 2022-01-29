@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import _ from "lodash"
 
 import ImageUpload from "../../component/ImageUpload/ImageUpload";
 
 import Background from "../../component/background/background.component";
 import Header from "../../component/header/header.compoent";
 import register1 from "../../assets/register1.svg";
+import register2 from "../../assets/registration2.svg";
+import register3 from "../../assets/registration3.svg";
 
 import "./register.styles.scss";
 
-import axiosInstance from "../../HelperFunction/Axios";
+import axiosInstance, { baseURL } from "../../HelperFunction/Axios";
+import { urlToFile, toDataURL, dataURLtoFile } from "../../HelperFunction/image";
 
 const Form = () => {
   const [step, setStep] = useState(1);
   const [stores, setStores] = useState([]);
+  const [edit, setEdit] = useState(false)
   const [imageInputs, setImageInputs] = useState({});
   const [imageSource, setImageSource] = useState({});
+  const {id} = useParams()
   const navigate = useNavigate();
+  const location = useLocation()
+  const registerImage = [register1, register2, register3]
 
   const validationSchema = Yup.object().shape({
     first_name: Yup.string().required("First Name is required"),
@@ -45,6 +53,7 @@ const Form = () => {
     //   length: Yup.number().min(1).required(),
     // }),
     store: Yup.number().required(" Field is required"),
+    salary: Yup.number().required(" Field is required"),
     user_type: Yup.string().required(" Field is required"),
     // valid_document: Yup.mixed().required(" File is required"),
   });
@@ -53,13 +62,73 @@ const Form = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     trigger,
     formState: { errors },
   } = useForm(formOptions);
 
   useEffect(() => {
     fetchStores();
+    console.log("id", id)
+    let url = "https://cdn.shopify.com/s/files/1/0234/8017/2591/products/yc39.jpg"
+    if (id) {
+      setEdit(true)
+      setValues(id)
+    }
   }, []);
+
+  const setUrlToFile = (url, name)=> {
+    toDataURL(url)
+    .then(dataUrl => {
+       var fileData = dataURLtoFile(dataUrl, name);
+      setValue(name, fileData)
+       return fileData
+     })
+  }
+
+  const setValues = async (id) => {
+    const res = await axiosInstance.get(`user/${id}/view`);
+    if (res.status === 200) {
+      console.log(res.data);
+      const selectedFields = [
+        'email', 'first_name', 'middle_name', 'last_name', 'father_name', 'mother_name', 'phone_number', 'address',
+        'pan_number', 'gender', 'date_of_birth', 'joined_date', 'termination_date', 'marital_status', 'store',
+        'educational_status', 'user_type', 'account_number']
+      var a = _.pick(res.data, selectedFields)
+      console.log(a)
+      Object.keys(a).map((key) => {
+        setValue(key, a[key], {shouldValidate: false})
+      })
+      const imageFields = ['photo','valid_document', 'contract_paper']
+      imageFields.map((name) => {
+        // if (res.data[name]) {
+          const url = baseURL + res.data[name]
+          setImageSource((prev) => ({ ...prev, [name]: url }));
+          setUrlToFile(url, name)
+          console.log(name)
+        // }
+      })
+      
+      const { emergency_contact } = res.data
+      if (emergency_contact) {
+        setValue('emergency_email', emergency_contact.email)
+        setValue('emergency_full_name', emergency_contact.full_name)
+        setValue('emergency_phone_number', emergency_contact.contact_number)
+        setValue('emergency_address', emergency_contact.address)
+        setValue('emergency_relation', emergency_contact.relation)
+      }
+      // set dummy values to bypass validation
+      setValue('password1', "ddummy")
+      setValue('password2', "dddummy")
+      setValue('salary', 12345)
+
+      
+      // emergency_email: "emergency@ene.com",
+      // emergency_address: "afwefwefwf",
+      // emergency_full_name: "afwefwef",
+      // emergency_phone_number: "98448",
+    }
+  }
 
   const fetchStores = async () => {
     const res = await axiosInstance.get("store/list");
@@ -98,6 +167,7 @@ const Form = () => {
   // On file upload (click the upload button)
   const formSubmit = async (inputs) => {
     console.log(inputs);
+    
 
     // const data = {
     //   email: "user@example2.com",
@@ -145,26 +215,49 @@ const Form = () => {
         formData.append(key, imageInputs[key], imageInputs[key].name);
       });
     }
+    console.log(formData)
 
     // Details of the uploaded file
-    console.log(imageInputs);
+    console.log(imageInputs, "hello");
 
-    try {
-      const res = await axiosInstance.post("/auth/register/", formData);
-      console.log(res);
-      if (res.status === 201) {
-        navigate("/");
-        alert("User successfully created");
-        console.log("ok");
+    if (edit) {
+      formData.append("emergency_contact.full_name", inputs['emergency_full_name'])
+      formData.append("emergency_contact.contact_number", inputs['emergency_phone_number'])
+      formData.append("emergency_contact.relation", inputs['emergency_relation'])
+      formData.append("emergency_contact.email", inputs['emergency_email'])
+      formData.append("emergency_contact.address", inputs['emergency_address'])
+      formData.append("is_active", true)
+      
+      /* ................
+
+        TEMPORARY SOLUTION
+
+      */
+        const res = await axiosInstance.put(`user/${id}/update/`, formData);
+        console.log(res);
+        navigate(`/admin/user/${id}/`);
+        alert("User updated successfully");
+
+    } else {
+      try {
+        const res = await axiosInstance.post("/auth/register/", formData);
+        console.log(res);
+        if (res.status === 201) {
+          navigate("/");
+          alert("User successfully created");
+          console.log("ok");
+        }
+      } catch (err) {
+        console.log(err.response.data);
+        alertError(err);
       }
-    } catch (err) {
-      console.log(err.response.data);
-      var errorText = "";
-      Object.keys(err.response.data).map((a)=>errorText +=`${a} - ${err.response.data[a]?.[0]}\n`)
-      console.log(errorText)
-      alert(JSON.stringify(errorText))
     }
   };
+  const alertError = (err) => {
+    var errorText = "";
+      Object.keys(err.response.data).map((a)=>errorText +=`${a} - ${err.response.data[a]?.[0]}\n`)
+      alert(errorText)
+  }
 
   return (
     <>
@@ -184,7 +277,7 @@ const Form = () => {
             </p>
           </div>
           <div className="registerOrder marginup">
-            <img src={register1} className="registerImage" alt="register"></img>
+            <img src={registerImage[step-1]} className="registerImage" alt="register"></img>
           </div>
 
           {step === 1 && (
@@ -196,7 +289,7 @@ const Form = () => {
                 <div className="form-input2 col-small">
                   <input
                     type="text"
-                    placeholder="Fist Name*"
+                    placeholder="First Name*"
                     {...register("first_name")}
                   />
                   <div className="error">{errors.first_name?.message}</div>
@@ -204,8 +297,8 @@ const Form = () => {
                 <div className="form-input2 col-small">
                   <input
                     type="text"
-                    placeholder="Middle Name*"
-                    {...register("midddle_name")}
+                    placeholder="Middle Name"
+                    {...register("middle_name")}
                   />
                   <div className="error">{errors.middle_name?.message}</div>
                 </div>
@@ -328,6 +421,14 @@ const Form = () => {
                     <div className="error">
                       {errors.emergency_address?.message}
                     </div>
+                  </div>
+                  <div className="form-input2 col-big">
+                    <input
+                      placeholder="Email Address*"
+                      name="emergency_email"
+                      {...register("emergency_email")}
+                    />
+                    <div className="error">{errors.emergency_email?.message}</div>
                   </div>
                 </div>
               </div>
@@ -477,22 +578,33 @@ const Form = () => {
                   </select>
                   <div className="error">{errors.store?.message}</div>
                 </div>
+                {!edit &&  
+                  <div className="form-input2 col-md">
+                    <input
+                      type="password"
+                      placeholder="Password*"
+                      {...register("password1")}
+                    />
+                    <div className="error">{errors.password1?.message}</div>
+                  </div>}
+               { !edit &&
                 <div className="form-input2 col-md">
-                  <input
-                    type="password"
-                    placeholder="Password*"
-                    {...register("password1")}
-                  />
-                  <div className="error">{errors.password1?.message}</div>
-                </div>
-                <div className="form-input2 col-md">
-                  <input
-                    type="password"
-                    placeholder="Confirm Password*"
-                    {...register("password2")}
-                  />
-                  <div className="error">{errors.password2?.message}</div>
-                </div>
+                    <input
+                      type="password"
+                      placeholder="Confirm Password*"
+                      {...register("password2")}
+                    />
+                    <div className="error">{errors.password2?.message}</div>
+                  </div>}
+                {!edit &&
+                  <div className="form-input2 col-big">
+                    <input
+                      type="text"
+                      placeholder="Salary*"
+                      {...register("salary")}
+                    />
+                    <div className="error">{errors.salary?.message}</div>
+                  </div>}
 
                 <div className="form-input2 col-big">
                   <input

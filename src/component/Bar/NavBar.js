@@ -14,6 +14,7 @@ import notificationIcon from "../../assets/icons/Notification.svg";
 
 
 import { useAuth } from "../../context/auth";
+import logout from "../../assets/icons/logOut.svg";
 
 import { getBasicUserInfo } from "../../HelperFunction/GenericFunction";
 

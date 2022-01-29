@@ -102,9 +102,6 @@ const Login = (props) => {
                 Forgot Password ?
               </Link>
               <br />
-              <Link className="forgot-text" to={"/register"}>
-                Register
-              </Link>
             </p>
 
             <div className="button-container">
