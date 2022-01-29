@@ -75,12 +75,12 @@ const ProfileInfo = (props) => {
   };
 
   const displayEarningLeaveInfo = () => {
-    const title = ["Earnings", "Leave", "Net", "Task"];
-    const value = ["Rs. 249, 500", "03/15", "$84, 060", "75"]
-    const image = [PiggyImage, Confetti, Net, Tasks];
+    const title = ["Earnings", "Leave"];
+    const value = ["Rs. 000", "02"]
+    const image = [PiggyImage, Confetti];
 
     let display = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 2; i++) {
       display.push(
         <EarningLeaveInfo img={image[i]} title={title[i]} value={value[i]} />
       );

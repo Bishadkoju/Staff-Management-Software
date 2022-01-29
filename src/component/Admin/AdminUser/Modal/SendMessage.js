@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axiosInstance from "../../../HelperFunction/Axios";
+import axiosInstance from "../../../../HelperFunction/Axios";
 
-const FeedbackModal = () => {
+const SendMessage = () => {
   const [formData, setFormData] = useState({
     subject: "",
     message: "",
@@ -21,7 +21,7 @@ const FeedbackModal = () => {
     axiosInstance
       .post(`/feedback/create/`, { subject, message, read })
       .then((res) => {
-        document.getElementById('close').click();
+        document.getElementById("close").click();
         window.alert("Feedback Sent Successfully");
       })
       .catch((err) => {
@@ -32,7 +32,7 @@ const FeedbackModal = () => {
   return (
     <div
       className="modal fade"
-      id="feedbackModal"
+      id="sendMessageModal"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
@@ -41,13 +41,15 @@ const FeedbackModal = () => {
       <div className="modal-dialog modal-lg">
         <div className="modal-content p-4">
           <div className="heading_modal">
-            <span className="heading_text text-black">Give Feedback</span>
+            <span className="heading_text text-black">Send Message</span>
             <hr />
           </div>
 
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="form-group">
-              <label htmlFor="subject" className="text-dark">Subject</label>
+              <label htmlFor="subject" className="text-dark">
+                Subject
+              </label>
               <input
                 className="form-control"
                 name="subject"
@@ -56,7 +58,14 @@ const FeedbackModal = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="message" className="text-dark">Message</label>
+              <label htmlFor="messageFile">File</label>
+              <br />
+              <input type="file" name="messageFile" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message" className="text-dark">
+                Message
+              </label>
               <textarea
                 name="message"
                 id="feedback_message"
@@ -68,16 +77,16 @@ const FeedbackModal = () => {
                 Enter your message...
               </textarea>
               <button type="submit" className="btn btn_primary mt-3">
-                Send
+                Send Message
               </button>
               <button
-                    type="button"
-                    className="btn btn-secondary mt-3 ml-2"
-                    data-dismiss="modal"
-                    id="close"
-                  >
-                    Close
-                  </button>
+                type="button"
+                className="btn btn-secondary mt-3 ml-2"
+                data-dismiss="modal"
+                id="close"
+              >
+                Close
+              </button>
             </div>
           </form>
         </div>
@@ -86,4 +95,4 @@ const FeedbackModal = () => {
   );
 };
 
-export default FeedbackModal;
+export default SendMessage;

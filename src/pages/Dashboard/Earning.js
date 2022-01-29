@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../HOC/Layout";
 import EarningGraph from "../../component/Dashboard/Earning/EarningGraph";
 import EarningSummaryBar from "../../component/Dashboard/Earning/EarningSummaryBar";
 
-function Earning() {
+import DatePicker from "react-datepicker";
+import axiosInstance from "../../HelperFunction/Axios";
+
+const Earning = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [salary, setSalary] = useState("");
+  const [commission, setCommission] = useState("");
+  const [bonus, setBonus] = useState("");
+
+  useEffect(() => {
+    const getSCBData = async () => {
+      await axiosInstance
+        .get(`/salary/list/`)
+        .then((res) => {
+          setSalary(res.data.amount);
+        })
+        .catch((err) => {});
+
+        await axiosInstance
+        .get(`/commission/list/`)
+        .then((res) => {
+          setCommission(res.data.amount);
+        })
+        .catch((err) => {});
+
+        await axiosInstance
+        .get(`/bonus/list/`)
+        .then((res) => {
+          setBonus(res.data.amount);
+        })
+        .catch((err) => {});
+    };
+    getSCBData();
+  }, []);
+
   return (
     <div className="body">
       <Layout></Layout>
@@ -22,16 +56,24 @@ function Earning() {
         <div className="row">
           <div className="col-md-9">
             <EarningSummaryBar />
-
           </div>
-          <div className="col-md-3 d-flex justify-content-end">
-            <input type="date" />
+          <div className="col-md-3 d-flex justify-content-end date_input_div">
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              showYearPicker
+              dateFormat="yyyy"
+            />
           </div>
         </div>
-        <EarningGraph />
+        <div className="row div_format mt-4">
+          <div className="col-md-12">
+            <EarningGraph />
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Earning;

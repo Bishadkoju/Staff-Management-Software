@@ -2,41 +2,50 @@ import React, { useState, useEffect } from "react";
 import CheckTable from "../../component/Dashboard/Check/CheckTable";
 import Layout from "../../HOC/Layout";
 import axiosInstance from "../../HelperFunction/Axios";
+import DatePicker from "react-datepicker";
 
 const CheckInOut = () => {
-  const [attendenceDate, setAttendenceDate] = useState("");
   const [attendence, setAttendence] = useState([]);
+  const [attendenceDate, setAttendenceDate] = useState(new Date());
 
-  const handleChange = async (e) => {
-    let date = e.target.value.slice(0, 7);
-  
-    setAttendenceDate(e.target.value);
+  useEffect(() => {
+    const currentDate = new Date();
+    getMonthlyAttendenceHistory(currentDate);
+  }, []);
+
+  const getMonthlyAttendenceHistory = async (date) => {
+    let selectedDate = date.toISOString().slice(0, 7);
     await axiosInstance
-      .get(`/attendance/self/list/${date}/`)
+      .get(`/attendance/self/list/${selectedDate}/`)
       .then((res) => {
-        setAttendence(res.data.results);
-        console.log("check")
-        console.log(res.data);
+        console.log("attendence result : ", res.data);
+        setAttendence(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setAttendence([]);
       });
   };
-  
-  useEffect(() => {
-    const getAttendenceList = async () => {
-      await axiosInstance
-        .get("/attendance/self/list/")
-        .then((res) => {
-          setAttendence(res.data.results);
-        })
-        .catch((err) => {
-          // error handling
-        });
-    };
 
-    getAttendenceList();
-  }, []);
+  const getDateData = (date) => {
+    getMonthlyAttendenceHistory(date);
+    setAttendenceDate(date);
+  };
+
+  const displayAttendenceTable = () => {
+    console.log("from function", attendence);
+    if (attendence.length > 0) {
+      console.log("inside");
+      return (
+        <CheckTable
+          attendence={attendence}
+          month={attendenceDate.getMonth()}
+          year={attendenceDate.getFullYear()}
+        />
+      );
+    } else {
+      return <h4 className="mt-3">No data for selected month and year</h4>;
+    }
+  };
 
   return (
     <div className="body">
@@ -45,7 +54,7 @@ const CheckInOut = () => {
         <div className="row">
           <div className="col-md-12 d-flex justify-content-between pt-3">
             <div>
-              <h2>Check In/Out</h2>
+              <h3>Check In/Out</h3>
             </div>
           </div>
         </div>
@@ -55,12 +64,11 @@ const CheckInOut = () => {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-12">
-            <input
-              type="date"
-              className="attendence_date date_input"
-              name="attendence_date"
-              value={attendenceDate}
-              onChange={(e) => handleChange(e)}
+            <DatePicker
+              selected={attendenceDate}
+              onChange={(date) => getDateData(date)}
+              dateFormat="yyyy-MM"
+              showMonthYearPicker
             />
           </div>
         </div>
@@ -68,9 +76,7 @@ const CheckInOut = () => {
       {/* end of calendar */}
       <div className="container">
         <div className="row">
-          <div className="col-md-12">
-            <CheckTable attendence={attendence} />
-          </div>
+          <div className="col-md-12">{displayAttendenceTable()}</div>
         </div>
       </div>
     </div>

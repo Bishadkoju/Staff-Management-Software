@@ -6,7 +6,7 @@ import UsersIcon from "../../assets/icons/users.svg";
 import DollarSign from "../../assets/icons/dollarSign.svg";
 import leave from "../../assets/icons/leave.svg";
 import feedbackIcon from "../../assets/icons/feedbackSide.svg";
-import DashboardIcon from "../../assets/icons/dashboardSide.svg";
+import DashboardIcon from "../../assets/icons/Dashboard.svg";
 
 const AdminSideNavBar = () => {
   //assigning location variable

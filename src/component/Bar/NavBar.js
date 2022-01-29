@@ -8,20 +8,33 @@ import axiosInstance from "../../HelperFunction/Axios";
 import profileIcon from "../../assets/icons/profileIcon.svg";
 import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
+import logOutIcon from "../../assets/icons/logOut.svg";
+import messageIcon from "../../assets/icons/message.svg";
+import notificationIcon from "../../assets/icons/Notification.svg";
+
+
 import { useAuth } from "../../context/auth";
 import logout from "../../assets/icons/logOut.svg";
 
+import { getBasicUserInfo } from "../../HelperFunction/GenericFunction";
+
+import ViewMessageModal from "./Modal/ViewMessageModal";
+import ViewNotificationModal from "./Modal/ViewNotificationModal"
+
 function NavBar() {
-  const navigate = useNavigate()
-  const {logOut} = useAuth()
+  const navigate = useNavigate();
+  const { logOut } = useAuth();
   const handleLogout = () => {
     logOut();
-    navigate('/')
+    navigate("/");
   };
 
   // Get the user name
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [basicUserInfo, setBasicUserInfo] = useState({
+    name: "",
+    email: "",
+    shortName: "",
+  });
 
   useEffect(() => {
     getUserInfo();
@@ -31,9 +44,7 @@ function NavBar() {
     await axiosInstance
       .get("/user/self/view/")
       .then((res) => {
-        setName(res.data.first_name + " " + res.data.last_name);
-        setEmail(res.data.email);
-        console.log(res);
+        setBasicUserInfo(getBasicUserInfo(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -89,10 +100,19 @@ function NavBar() {
             </NavLink>
           </div>
           <div className="user_info d-flex justify-content-md-between">
-            <div>
-              <i className="fa fa-bell-o pr-3" aria-hidden="true"></i>
+            <div className="pr-2">
+              <div className="cursor_pointer" data-toggle="modal" data-target="#viewMessageModal">
+                <img src={messageIcon} alt="message" />
+              </div>
             </div>
-            <div className="profile_picture mr-2">NB</div>
+            <div className="pr-2">
+              <div className="cursor_pointer" data-toggle="modal" data-target="#viewNotificationModal">
+                <img src={notificationIcon} alt="notification" />
+              </div>
+            </div>
+            <div className="profile_picture mr-2">
+              {basicUserInfo.shortName}
+            </div>
             <div>
               <div className="dropdown">
                 <span
@@ -103,7 +123,9 @@ function NavBar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="profile_name">{name ? name : ""}</span>
+                  <span className="profile_name">
+                    {basicUserInfo.name ? basicUserInfo.name : ""}
+                  </span>
                 </span>
                 <div
                   className="dropdown-menu dropDownMenuLeft pt-0"
@@ -113,15 +135,19 @@ function NavBar() {
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="mr-2 drop_profile_picture">
                         <div className="profile_picture mr-2">
-                          <span className="firstLastLetter">NB</span>
+                          <span className="firstLastLetter">
+                            {basicUserInfo.shortName}
+                          </span>
                         </div>
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span className="heading_text text-white">{name}</span>
+                          <span className="heading_text text-white">
+                            {basicUserInfo.name}
+                          </span>
                           <br />
                           <span className="muted_text text-muted">
-                            {email}
+                            {basicUserInfo.email}
                           </span>
                         </p>
                       </div>
@@ -197,16 +223,21 @@ function NavBar() {
                     </div>
                   </a>
                   <hr className="mt-0 mb-3" />
-                  <div className="dropdown-item" onClick={handleLogout}>
+                  <div
+                    className="dropdown-item cursor_pointer"
+                    onClick={handleLogout}
+                  >
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
-                        <img src={logout} alt="profile user" className="icon" />
+                        <img
+                          src={logOutIcon}
+                          alt="profile user"
+                          className="icon"
+                        />
                       </div>
                       <div>
                         <p className="dropdown_menu">
-                          <span
-                            className="heading_text text-danger"
-                          >
+                          <span className="heading_text text-danger">
                             Log Out
                           </span>
                           <br />
@@ -221,6 +252,8 @@ function NavBar() {
         </div>
       </div>
       <FeedbackModal />
+      <ViewMessageModal />
+      <ViewNotificationModal />
     </div>
   );
 }

@@ -1,41 +1,62 @@
-import React, {useState} from "react";
-import axiosInstance from '../../../HelperFunction/Axios';
+import React, { useState } from "react";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const ApplyLeaveModal = () => {
   const [formData, setFormData] = useState({
-    leave_type : "",
-    day_type : "",
-    leave_from : "",
-    leave_to : "",
-    inform_team : "",
-    inform_peers : "",
-    contact_availability : "",
-    reason : ""
+    leave_type: "",
+    day_type: "",
+    leave_from: "",
+    leave_to: "",
+    inform_team: 1,
+    inform_peers: "random peer",
+    contact_availability: "",
+    reason: "",
   });
 
-  const {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason} = formData;
+  const {
+    leave_type,
+    day_type,
+    leave_from,
+    leave_to,
+    inform_team,
+    inform_peers,
+    contact_availability,
+    reason,
+  } = formData;
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
-      return {...prevFormData, [e.target.name]: e.target.value};
+      return { ...prevFormData, [e.target.name]: e.target.value };
     });
   };
 
+  const getMessage = () => {
+    const notification = `Leave has been requested by `;
+    return notification;
+  };
+
   const handleSubmit = (e) => {
-    console.log("Submitted");
-    console.log(e);
     e.preventDefault();
-    axiosInstance.post("/leave/request/add/", {leave_type, day_type, leave_from, leave_to, inform_team, inform_peers, contact_availability, reason})
-    .then(res => {
-      // console.log(res.data);
-      // console.log("Submitted")
-      document.getElementById('closeLeaveModal').click();
-    })
-    .catch(err => {
-      console.log("error");
-      console.log(err);
-    })
-  }
+    axiosInstance
+      .post("/leave/request/add/", {
+        leave_type,
+        day_type,
+        leave_from,
+        leave_to,
+        inform_team,
+        inform_peers,
+        contact_availability,
+        reason,
+      })
+      .then((res) => {
+        document.getElementById("closeLeaveModal").click();
+        window.alert("Leave Applied Successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        window.alert("Error applying leave!!!");
+      });
+  };
 
   return (
     <div
@@ -198,7 +219,7 @@ const ApplyLeaveModal = () => {
               </div>
               {/* Leave  Type and Day type  */}
               <div className="row mt-3">
-                <div className="col-md-12">
+                {/* <div className="col-md-12">
                   <label htmlFor="basic-url" className="form_input_head">
                     I want to inform*
                   </label>
@@ -236,7 +257,7 @@ const ApplyLeaveModal = () => {
                       value={inform_peers}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-12 mt-3">
                   <span className="form_input_head">
                     I am available for urgent call
@@ -251,7 +272,10 @@ const ApplyLeaveModal = () => {
                       value="yes"
                       onChange={(e) => handleChange(e)}
                     />
-                    <label className="form-check-label" htmlFor="contact_availability">
+                    <label
+                      className="form-check-label"
+                      htmlFor="contact_availability"
+                    >
                       Yes
                     </label>
                   </div>
@@ -264,7 +288,10 @@ const ApplyLeaveModal = () => {
                       value="no"
                       onChange={(e) => handleChange(e)}
                     />
-                    <label className="form-check-label" htmlFor="contact_availability">
+                    <label
+                      className="form-check-label"
+                      htmlFor="contact_availability"
+                    >
                       No
                     </label>
                   </div>

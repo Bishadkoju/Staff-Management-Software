@@ -7,11 +7,22 @@ import CheckInHistory from "../../component/Dashboard/Check/CheckInHistory";
 
 import axiosInstance from "../../HelperFunction/Axios";
 
+import { calculateDuration, secondsToHms, getDaysFromDate } from "../../HelperFunction/GenericFunction"
+
 const Dashboard = () => {
   const [attendances, setAttendances] = useState([]);
+  const [lastAttendence, setLastAttendence] = useState({});
+  
+  const [appearance, setAppearance] = useState("0 ");
+  const [active, setActive] = useState("0 mins");
+  const [earning, setEarning] = useState("0 %");
+  const [leave, setLeave] = useState("0 ");
 
   useEffect(() => {
     getAttendance();
+    const currentDate = new Date();
+    getMonthlyAttendenceHistory(currentDate);
+    getMonthlyLeaveHistory(currentDate);
   }, []);
 
   const getAttendance = async () => {
@@ -19,10 +30,37 @@ const Dashboard = () => {
       .get("/attendance/self/list/")
       .then((res) => {
         setAttendances(res.data.results);
-        console.log(res.data);
+        if(res.data.results.length > 1){
+          setLastAttendence(res.data.results[1]);
+        }
+
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const getMonthlyLeaveHistory = async (date) => {
+    let selectedDate = date.toISOString().slice(0, 7);
+    await axiosInstance
+      .get(`/leave_history/${selectedDate}/self/month/view/`)
+      .then((res) => {
+        setLeave(res.data.history.leaves_taken);
+      })
+      .catch((err) => {
+      });
+  };
+
+  const getMonthlyAttendenceHistory = async (date) => {
+    let selectedDate = date.toISOString().slice(0, 7);
+    await axiosInstance
+      .get(`/attendance/self/list/${selectedDate}/`)
+      .then((res) => {
+        setAppearance(res.data.length);
+        setActive(secondsToHms(calculateDuration(res.data)))
+      })
+      .catch((err) => {
+
       });
   };
 
@@ -32,16 +70,16 @@ const Dashboard = () => {
       <div className="container">
         <div className="row mt-4">
           <div className="col-md-3">
-            <InfoBar title = "ACTIVE" value = "2048 Hours" />
+            <InfoBar title = "ACTIVE" value = {active} />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "MY EARNING" value = "29.4%"  />
+            <InfoBar title = "MY EARNING" value = {earning}  />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "APPEARANCE" value = "20 Days"  />
+            <InfoBar title = "APPEARANCE" value = {appearance + " Days"} />
           </div>
           <div className="col-md-3">
-            <InfoBar title = "LEAVES REMAINING" value = "4 Days"  />
+            <InfoBar title = "TOTAL LEAVES" value = {leave + " Days"}  />
           </div>
         </div>
       </div>
@@ -49,7 +87,7 @@ const Dashboard = () => {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-7">
-            <CheckIn/>
+            <CheckIn lastAttendence={lastAttendence}/>
           </div>
           <div className="col-md-5">
             <Notice />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../../HOC/AdminLayout";
+import Layout from "../../../HOC/Layout";
 
 import HandbookSideNav from "../../../component/Handbook/Dashboard/HandbookSideNav";
 import HandbookBasicInfo from "../../../component/Handbook/HandbookBasicInfo";

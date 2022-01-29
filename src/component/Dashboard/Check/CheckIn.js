@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../HelperFunction/Axios";
-import { timeDisplayer,secondsToHms } from "../../../HelperFunction/GenericFunction";
+import {
+  timeDisplayer,
+  secondsToHms,
+  getMonthDayFromFullYear
+} from "../../../HelperFunction/GenericFunction";
 
-
-function CheckIn(props) {
+const CheckIn = (props) => {
   const [hasCheckedIn, setCheckedIn] = useState(false);
   const [disableCheckIn, setDisableCheckIn] = useState(false);
 
@@ -12,6 +15,9 @@ function CheckIn(props) {
   const [checkedInTime, setCheckedInTime] = useState("");
   const [checkedOutTime, setCheckedOutTime] = useState("");
   const [duration, setDuration] = useState("");
+
+  // last attendence
+  const lastAttendence = props.lastAttendence;
 
   useEffect(() => {
     getStore();
@@ -24,40 +30,34 @@ function CheckIn(props) {
       .then((res) => {
         setStore(res.data.store);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   const getAttendance = async () => {
     await axiosInstance
-      .get("/attendance/list/")
+      .get("/attendance/self/list/")
       .then((res) => {
         // Check Attendences
         // check if there is no attendence data
         if (res.data.count === 0) {
-          console.log("no attendences");
           // if there is no attendence data the Checked in is false
           setCheckedIn(false);
-        } 
+        }
         // if there is attendence data then check if we have checked in today
         else {
           // Get the today date
           const todayDate = new Date().toISOString().slice(0, 10);
           // Get the latest checkIn data (Attendence data)
           const today_checked_data = res.data.results[0];
-          console.log(today_checked_data)
 
           // Compare if the latest checked in date and today date match??
           if (today_checked_data.date === todayDate) {
-            console.log("Checked");
             // Set the checked in time
             setCheckedInTime(today_checked_data.checked_in_time);
             setCheckedIn(true);
 
             // Check if we have checked out today
-            if(today_checked_data.checked_out_time != null){
-              console.log("checked out")
+            if (today_checked_data.checked_out_time != null) {
               setCheckedOutTime(today_checked_data.checked_out_time);
               setDisableCheckIn(true);
               // set the duration time if we have checked out
@@ -67,9 +67,7 @@ function CheckIn(props) {
         }
         // end of check attendence
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   const checkInStrings = {
@@ -78,7 +76,6 @@ function CheckIn(props) {
   };
 
   const checkIn = async () => {
-    console.log("check in");
     const data = {
       checked_in: true,
       store: store,
@@ -86,34 +83,52 @@ function CheckIn(props) {
     await axiosInstance
       .post("/attendance/self/check_in/", data)
       .then((res) => {
-        console.log(res.data);
         setCheckedInTime(res.data.time);
+        window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("Can't check in");
       });
   };
 
   const checkOut = async () => {
-    console.log("check out");
     const data = {
       checked_out: true,
     };
-    await axiosInstance
-      .post("/attendance/self/check_out/", data)
-      .then((res) => {
-        setCheckedOutTime(res.data.time);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const confirmCheckOut = window.confirm(
+      "Are you sure you want to checkout?"
+    );
+    if (confirmCheckOut) {
+      await axiosInstance
+        .post("/attendance/self/check_out/", data)
+        .then((res) => {
+          setCheckedOutTime(res.data.time);
+          setDisableCheckIn(true);
+          window.location.reload();
+        })
+        .catch((err) => {
+          window.alert("Error : Can't checkout");
+        });
+    }
   };
 
   const toggleCheckIn = () => {
-    console.log("toggle");
     hasCheckedIn ? checkOut() : checkIn();
     setCheckedIn(!hasCheckedIn);
   };
+
+  const displayDate = () => {
+    let date, month, day;
+    if(lastAttendence.date){
+      date = lastAttendence.date;
+      // console.log(date);
+      month= date.slice(5, 7)
+      // console.log(lastAttendence.date);
+      day = date.slice(8, 10);
+      return day;
+    }
+    return "";
+  }
 
   return (
     <div className="div_format pt-3 pb-4">
@@ -122,11 +137,12 @@ function CheckIn(props) {
       <span className="muted_text text-muted">
         Check In/Out to make an attendance
       </span>
+      <hr />
       <div className="desc">
         <div className="row">
           <div className="col-md-3">
             <button
-              className="btn btn-primary check_in_background btn-xl"
+              className="btn btn-primary check_in_background btn-xl pl-1"
               disabled={disableCheckIn}
               onClick={toggleCheckIn}
             >
@@ -135,13 +151,14 @@ function CheckIn(props) {
           </div>
           <div className="col-md-9">
             <div className="medium_font">
-              <span className="">29 Nov</span>
+              <span className="">{getMonthDayFromFullYear(lastAttendence.date)}</span>
               <br />
               <span className="text-muted muted_text pr-3">Check In :</span>
-              <span className="time pr-4 ">10:45 AM</span>
+              <span className="time pr-4 ">{timeDisplayer(lastAttendence.checked_in_time)}</span>
               <span className="text-muted muted_text pr-3">Check Out :</span>
-              <span className="time">03:45 PM</span>
+              <span className="time">{timeDisplayer(lastAttendence.checked_out_time)}</span>
             </div>
+            <hr />
             <div className="medium_font primary_color pt-3">
               <h5>Today</h5>
               <div className="d-flex justify-content-between medium_font">

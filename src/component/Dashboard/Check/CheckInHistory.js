@@ -15,7 +15,8 @@ const CheckInHistory = (props) => {
         result.push(
           <tr key={attendance.date}>
             <td className="text-muted muted_text">{attendance.date}</td>
-            <td>Jawalakhel</td>
+            <td>{attendance.store.name}</td>
+            <td>{attendance.store.address}</td>
             <td className="text-muted muted_text">
               {timeDisplayer(attendance.checked_in_time)}
             </td>
@@ -25,13 +26,13 @@ const CheckInHistory = (props) => {
             <td className="text-muted muted_text">
               {secondsToHms(attendance.duration)}
             </td>
-            <td>
+            {/* <td>
               <input
                 type="checkbox"
                 name="action_check_in"
                 id="action_check_in"
               />
-            </td>
+            </td> */}
           </tr>
         )
       );
@@ -48,10 +49,10 @@ const CheckInHistory = (props) => {
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Branch</th>
+              <th scope="col">Address</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
               <th scope="col">Total Hours</th>
-              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>{attendanceData()}</tbody>

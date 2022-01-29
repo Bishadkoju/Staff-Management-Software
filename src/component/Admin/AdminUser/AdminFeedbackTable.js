@@ -50,7 +50,7 @@ const AdminFeedbackTable = (props) => {
               </span>
 
               <div
-                class="dropdown-menu feedbackActionDropdown"
+                className="dropdown-menu feedbackActionDropdown"
                 aria-labelledby="dropdownMenuButton"
               >
                 <a

@@ -1,6 +1,10 @@
 import React from "react";
-import IncreaseSalaryModal from "./IncreaseSalaryModal";
-import AssignNewStore from "./AssignNewStore";
+import IncreaseSalaryModal from "./Modal/IncreaseSalaryModal";
+import IncreaseCommisionModal from "./Modal/IncreaseCommisionModal";
+import IncreaseBonusModal from "./Modal/IncreaseBonusModal";
+import SendMessage from "./Modal/SendMessage";
+
+import AssignNewStore from "./Modal/AssignNewStore";
 
 const ActionMenuTable = (props) => {
   const userId = props.userId;
@@ -46,7 +50,12 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="/#">
+          <a
+            className="dropdown-item"
+            href={`#IncreaseCommisionModal${userId}`}
+            data-toggle="modal"
+            data-target={`#IncreaseCommisionModal${userId}`}
+          >
             <div
               className="
                 dropdown_item_desc
@@ -63,7 +72,12 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="/#">
+          <a
+            className="dropdown-item"
+            href={`#IncreaseBonusModal${userId}`}
+            data-toggle="modal"
+            data-target={`#IncreaseBonusModal${userId}`}
+          >
             <div
               className="
                 dropdown_item_desc
@@ -103,6 +117,30 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
+          {/* Send message modal */}
+          <a
+            className="dropdown-item"
+            href="#sendMessageModal"
+            data-toggle="modal"
+            data-target="#sendMessageModal"
+          >
+            <div
+              className="
+                dropdown_item_desc
+                d-flex
+                justify-content-start
+              "
+            >
+              <div className="icon div_flex_icon">
+              <i className="fa fa-comments" aria-hidden="true"></i>
+              </div>
+              <div>
+                <span className="heading_text">Send Message</span>
+                <br />
+              </div>
+            </div>
+          </a>
+          {/* end of send message modal */}
           <hr />
           <a className="dropdown-item" href="/#">
             <div
@@ -140,8 +178,11 @@ const ActionMenuTable = (props) => {
           </a>
         </div>
       </div>
-      <IncreaseSalaryModal userId = {userId} />
+      <IncreaseSalaryModal userId={userId} />
+      <IncreaseCommisionModal userId = {userId} />
+      <IncreaseBonusModal userId = {userId} />
       <AssignNewStore />
+      <SendMessage />
     </React.Fragment>
   );
 };
