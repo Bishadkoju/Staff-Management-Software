@@ -10,12 +10,15 @@ import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
 import logOutIcon from "../../assets/icons/logOut.svg";
 import messageIcon from "../../assets/icons/message.svg";
+import notificationIcon from "../../assets/icons/Notification.svg";
+
 
 import { useAuth } from "../../context/auth";
 
 import { getBasicUserInfo } from "../../HelperFunction/GenericFunction";
 
 import ViewMessageModal from "./Modal/ViewMessageModal";
+import ViewNotificationModal from "./Modal/ViewNotificationModal"
 
 function NavBar() {
   const navigate = useNavigate();
@@ -99,6 +102,11 @@ function NavBar() {
             <div className="pr-2">
               <div className="cursor_pointer" data-toggle="modal" data-target="#viewMessageModal">
                 <img src={messageIcon} alt="message" />
+              </div>
+            </div>
+            <div className="pr-2">
+              <div className="cursor_pointer" data-toggle="modal" data-target="#viewNotificationModal">
+                <img src={notificationIcon} alt="notification" />
               </div>
             </div>
             <div className="profile_picture mr-2">
@@ -244,6 +252,7 @@ function NavBar() {
       </div>
       <FeedbackModal />
       <ViewMessageModal />
+      <ViewNotificationModal />
     </div>
   );
 }
