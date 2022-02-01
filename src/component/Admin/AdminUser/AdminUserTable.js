@@ -32,10 +32,10 @@ const AdminUserTable = () => {
           <td className="text-muted">
             <a href={`/admin/user/${user.id}`}>{user.full_name}</a></td>
           <td className="text-muted">{user.role}</td>
-          <td className="text-muted">{user.phone_number}</td>
+          <td className="text-muted">{user.phone_number ? user.phone_number : "-"}</td>
           <td className="text-primary">{user.salary ? user.salary : "-"}</td>
-          <td className="text-primary">{user.salary}</td>
-          <td className="text-primary">{user.store}</td>
+          <td className="text-primary">{user.salary_updated_date ? user.salary_updated_date : "-"}</td>
+          <td className="text-primary">{user.store ? user.store : "-"}</td>
           <td>
             {isGeneralManagerOrHigher && <UserActionMenuTable userId = {user.id} />}
           </td>
