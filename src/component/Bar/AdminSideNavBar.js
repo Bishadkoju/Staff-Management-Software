@@ -134,6 +134,22 @@ const AdminSideNavBar = () => {
           </div>
         </div>
       </NavLink>
+
+      <NavLink exact to="/admin/notice">
+        <div
+          className={`mb-2 pl-2 py-1 d-flex justify-content-start admin_nav ${isActive(
+            "notice",
+            splitLocation
+          )}`}
+        >
+          <div className="div_flex_icon">
+            <img src={feedbackIcon} alt="user" className="icon mr-3"  />
+          </div>
+          <div>
+            <span>Notice</span>
+          </div>
+        </div>
+      </NavLink>
     </div>
   );
 };

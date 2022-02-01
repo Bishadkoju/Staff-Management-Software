@@ -12,22 +12,24 @@ import groupIcon from "../../assets/icons/groupIcon.svg";
 import feedbackIcon from "../../assets/icons/feedbackIcon.svg";
 import logOut from "../../assets/icons/logOut.svg";
 
-import {getBasicUserInfo} from "../../HelperFunction/GenericFunction";
+import notificationIcon from "../../assets/icons/Notification.svg";
+import ViewNotificationModal from "./Modal/ViewNotificationModal";
 
+import { getBasicUserInfo } from "../../HelperFunction/GenericFunction";
 
 const AdminNavBar = () => {
-  const {logOut: logout} = useAuth()
-  const navigate = useNavigate()
+  const { logOut: logout } = useAuth();
+  const navigate = useNavigate();
   const handleLogout = () => {
     logout();
-    navigate('/')
+    navigate("/");
   };
   // Get the user name
   const [basicUserInfo, setBasicUserInfo] = useState({
-    "name" : "",
-    "email" : "",
-    "shortName" : ""
-  })
+    name: "",
+    email: "",
+    shortName: "",
+  });
 
   useEffect(() => {
     getUserInfo();
@@ -53,7 +55,18 @@ const AdminNavBar = () => {
           </div>
 
           <div className="user_info d-flex justify-content-md-between">
-            <div className="profile_picture mr-2">{basicUserInfo.shortName}</div>
+            <div className="pr-2">
+              <div
+                className="cursor_pointer"
+                data-toggle="modal"
+                data-target="#viewNotificationModal"
+              >
+                <img src={notificationIcon} alt="notification" />
+              </div>
+            </div>
+            <div className="profile_picture mr-2">
+              {basicUserInfo.shortName}
+            </div>
             <div>
               <div className="dropdown">
                 <span
@@ -64,7 +77,9 @@ const AdminNavBar = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="profile_name">{basicUserInfo.name ? basicUserInfo.name : ""}</span>
+                  <span className="profile_name">
+                    {basicUserInfo.name ? basicUserInfo.name : ""}
+                  </span>
                 </span>
                 <div
                   className="dropdown-menu dropDownMenuLeft pt-0"
@@ -74,7 +89,9 @@ const AdminNavBar = () => {
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="mr-2 drop_profile_picture">
                         <div className="profile_picture mr-2">
-                          <span className="firstLastLetter">{basicUserInfo.shortName}</span>
+                          <span className="firstLastLetter">
+                            {basicUserInfo.shortName}
+                          </span>
                         </div>
                       </div>
                       <div>
@@ -163,8 +180,11 @@ const AdminNavBar = () => {
                     </div>
                   </a>
 
-                  <a className="dropdown-item cursor_pointer" onClick={handleLogout}>
-                  <hr className="mt-0 mb-3" />
+                  <a
+                    className="dropdown-item cursor_pointer"
+                    onClick={handleLogout}
+                  >
+                    <hr className="mt-0 mb-3" />
                     <div className="dropdown_item_desc d-flex justify-content-start">
                       <div className="icon mr-2">
                         <img src={logOut} alt="profile user" className="icon" />
@@ -186,6 +206,7 @@ const AdminNavBar = () => {
         </div>
       </div>
       <FeedbackModal />
+      <ViewNotificationModal />
     </div>
   );
 };

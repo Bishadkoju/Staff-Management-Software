@@ -31,6 +31,7 @@ import AdminUserProfile from "./pages/Admin/AdminUserProfile";
 import AdminEarning from "./pages/Admin/AdminEarning";
 import AdminLeave from "./pages/Admin/AdminLeave";
 import AdminProfile from "./pages/Admin/AdminProfile";
+import AdminNotice from "./pages/Admin/AdminNotice";
 
 // Admin Handbook
 import AdminHandbook from "./pages/Admin/Handbook/AdminHandbook";
@@ -105,6 +106,7 @@ const  App = () => {
             <Route exact path="/admin/leave" element={<PrivateRoute Target={AdminLeave} />} />
             <Route exact path="/admin/profile" element={<PrivateRoute Target={AdminProfile} />} />
             <Route exact path="/admin/feedback" element={<PrivateRoute Target={AdminFeedback} />} />
+            <Route exact path="/admin/notice" element={<PrivateRoute Target={AdminNotice} />} />
 
             <Route exact path="/admin/handbook" element={<PrivateRoute Target={AdminHandbook} />} />
             <Route exact path="/admin/handbook/create" element={<PrivateRoute Target={AdminHandbookCreate} />}/>
