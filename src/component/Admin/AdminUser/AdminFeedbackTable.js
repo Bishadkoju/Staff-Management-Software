@@ -4,22 +4,18 @@ import axiosInstance from "../../../HelperFunction/Axios";
 
 const AdminFeedbackTable = (props) => {
   let feedbackData = props.feedback;
-  console.log("Feedback");
-  console.log(feedbackData);
 
   const deleteFeedback = async (e, id) => {
     e.preventDefault();
     let confirm = window.confirm("Are you sure you want to delete?");
-    console.log(confirm);
     if(confirm){
       await axiosInstance
         .delete(`/feedback/${id}/delete`)
         .then((res) => {
-          console.log(res.data);
           window.location.reload(true)
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     }
   };

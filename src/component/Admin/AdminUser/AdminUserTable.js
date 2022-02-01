@@ -14,11 +14,10 @@ const AdminUserTable = () => {
         .get(`/user/list/short/`)
         .then((res) => {
           setUserList(res.data);
-          console.log("user list : ", res.data);
           setAllUserList(res.data);
         })
         .catch((err) => {
-          console.log(err);
+
         });
     };
 
@@ -34,7 +33,7 @@ const AdminUserTable = () => {
             <a href={`/admin/user/${user.id}`}>{user.full_name}</a></td>
           <td className="text-muted">{user.role}</td>
           <td className="text-muted">{user.phone_number}</td>
-          <td className="text-primary">{user.salary}</td>
+          <td className="text-primary">{user.salary ? user.salary : "-"}</td>
           <td className="text-primary">{user.salary}</td>
           <td className="text-primary">{user.store}</td>
           <td>

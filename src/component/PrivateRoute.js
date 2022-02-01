@@ -20,6 +20,7 @@ import AdminEarning from "../pages/Admin/AdminEarning";
 import AdminLeave from "../pages/Admin/AdminLeave";
 import AdminProfile from "../pages/Admin/AdminProfile";
 import AdminUserProfile from "../pages/Admin/AdminUserProfile";
+import AdminNotice from "../pages/Admin/AdminNotice";
 
 // Admin Handbook
 import AdminHandbook from "../pages/Admin/Handbook/AdminHandbook";
@@ -47,6 +48,7 @@ const userPageAccess = {
     AdminHandbookEditor,
     AdminFeedback,
     Register,
+    AdminNotice,
   ],
   2: [AdminAttendance],
   3: [
