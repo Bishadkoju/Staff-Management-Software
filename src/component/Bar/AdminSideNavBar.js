@@ -7,6 +7,8 @@ import DollarSign from "../../assets/icons/dollarSign.svg";
 import leave from "../../assets/icons/leave.svg";
 import feedbackIcon from "../../assets/icons/feedbackSide.svg";
 import DashboardIcon from "../../assets/icons/Dashboard.svg";
+import messageIcon from "../../assets/icons/message.svg";
+
 
 const AdminSideNavBar = () => {
   //assigning location variable
@@ -147,6 +149,22 @@ const AdminSideNavBar = () => {
           </div>
           <div>
             <span>Notice</span>
+          </div>
+        </div>
+      </NavLink>
+
+      <NavLink exact to="/admin/inbox">
+        <div
+          className={`mb-2 pl-2 py-1 d-flex justify-content-start admin_nav ${isActive(
+            "inbox",
+            splitLocation
+          )}`}
+        >
+          <div className="div_flex_icon">
+            <img src={messageIcon} alt="user" className="icon mr-3"  />
+          </div>
+          <div>
+            <span>Inbox</span>
           </div>
         </div>
       </NavLink>

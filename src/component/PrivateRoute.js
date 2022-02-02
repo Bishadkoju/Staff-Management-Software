@@ -21,6 +21,7 @@ import AdminLeave from "../pages/Admin/AdminLeave";
 import AdminProfile from "../pages/Admin/AdminProfile";
 import AdminUserProfile from "../pages/Admin/AdminUserProfile";
 import AdminNotice from "../pages/Admin/AdminNotice";
+import AdminInbox from "../pages/Admin/AdminInbox";
 
 // Admin Handbook
 import AdminHandbook from "../pages/Admin/Handbook/AdminHandbook";
@@ -49,6 +50,7 @@ const userPageAccess = {
     AdminFeedback,
     Register,
     AdminNotice,
+    AdminInbox,
   ],
   2: [
     AdminDashboard,

@@ -1,7 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MessagePost from "./MessagePost";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const ViewMessageModal = () => {
+  // 0 -> All Notifications
+  // 1 -> Unread Notifications
+  const [active, setActive] = useState("0");
+
+  const [messeges, setMesseges] = useState();
+  const [filteredMessege, setFilteredMessage] = useState([]);
+
+  useEffect(() => {
+    const getMesseges = async () => {
+      axiosInstance
+        .get(`/message/inbox/`)
+        .then((res) => {
+          console.log("messeges : ", res.data);
+          setMesseges(res.data);
+          setFilteredMessage(res.data);
+        })
+        .catch((err) => {});
+    };
+    getMesseges();
+  }, []);
+
+  const displayMessage = () => {
+    let result = [];
+    if (filteredMessege) {
+      if (filteredMessege.length > 0) {
+        filteredMessege.map((messege) => {
+          result.push(<MessagePost messege={messege} key={messege.id} />);
+        });
+      }
+    }
+    return result;
+  };
+
+  const updateFilteredNotifications = (id) => {
+    if (id === "0") {
+      setFilteredMessage(messeges);
+    } else {
+      setFilteredMessage(messeges.filter((messege) => messege.read === false));
+    }
+  };
+
+  const updateActive = (id) => {
+    setActive(id);
+    updateFilteredNotifications(id);
+  };
+
+  const displaySelectionHead = () => {
+    let result = [];
+    result.push(
+      <div className="read_unread_div">
+        <button
+          className={
+            active === "0" ? "btn btn-primary mr-2" : "btn btn-secondary mr-2"
+          }
+          onClick={() => updateActive("0")}
+        >
+          All
+        </button>
+        <button
+          className={active === "1" ? "btn btn-primary" : "btn btn-secondary"}
+          onClick={() => updateActive("1")}
+        >
+          Unread
+        </button>
+      </div>
+    );
+    return result;
+  };
+
   return (
     <div
       className="modal fade text-dark bd-example-modal-lg"
@@ -27,16 +97,8 @@ const ViewMessageModal = () => {
             </button>
           </div>
           <div className="modal-body">
-            <div className="read_unread_div">
-              <div>
-                <button className="btn btn-primary mr-2">All</button>
-                <button className="btn btn-secondary">Unread</button>
-              </div>
-            </div>
-            <div className="messages_division">
-              <MessagePost />
-              <MessagePost />
-            </div>
+            {displaySelectionHead()}
+            <div className="messages_division">{displayMessage()}</div>
           </div>
         </div>
       </div>
