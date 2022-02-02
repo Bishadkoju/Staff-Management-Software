@@ -34,7 +34,7 @@ function AdminNotice() {
             <div className="row">
               <div className="col-md-12 d-flex justify-content-between pt-3">
                 <div>
-                  <h2>My Leave</h2>
+                  <h2>Notice</h2>
                 </div>
                 <div>
                   <button
