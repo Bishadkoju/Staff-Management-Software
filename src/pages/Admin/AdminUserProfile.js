@@ -26,15 +26,14 @@ const AdminProfile = () => {
   }, []);
 
   const getUserInfo = async () => {
-    await axiosInstance
-      .get(`/user/${id}/view/`)
-      .then((res) => {
+    const res = await axiosInstance.get(`/user/${id}/view/`)
+      if(res){
         setName(res.data.first_name + " " + res.data.last_name);
         setRequiredUserInfo([
           res.data.email,
           res.data.address,
           res.data.phone_number,
-          res.data.emergency_contact.full_name,
+          res.data.emergency_contact?.full_name,
           res.data.father_name,
           res.data.mother_name,
           res.data.marital_status,
@@ -43,10 +42,7 @@ const AdminProfile = () => {
           res.data.joined_date,
           res.data.termination_date,
         ]);
-      })
-      .catch((err) => {
-        //console.log(err);
-      });
+      }
   };
 
   return (
@@ -57,6 +53,7 @@ const AdminProfile = () => {
           <div className="col-md-2">
             <AdminSideNavBar />
           </div>
+          {requiredUserInfo.length>0?
           <div className="col-md-10">
             <div className="row mb-3">
               <div className="col-md-12 d-flex justify-content-between pt-3">
@@ -80,7 +77,8 @@ const AdminProfile = () => {
             <div>
               <CheckLeaveEarningTable id = {id}/>
             </div>
-          </div>
+          </div>: 
+          <div>User not found</div>}
         </div>
       </div>
     </div>
