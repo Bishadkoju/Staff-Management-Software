@@ -4,6 +4,7 @@ import InfoBar from "../../component/Bar/InfoBar";
 import CheckIn from "../../component/Dashboard/Check/CheckIn";
 import Notice from "../../component/Dashboard/Notice/Notice";
 import CheckInHistory from "../../component/Dashboard/Check/CheckInHistory";
+import moment from 'moment'
 
 import axiosInstance from "../../HelperFunction/Axios";
 
@@ -17,6 +18,7 @@ const Dashboard = () => {
   const [active, setActive] = useState("0 mins");
   const [earning, setEarning] = useState("0 %");
   const [leave, setLeave] = useState("0 ");
+  const selectedDate = moment().format('YYYY-MM')
 
   useEffect(() => {
     getAttendance();
@@ -26,7 +28,7 @@ const Dashboard = () => {
   }, []);
 
   const getAttendance = async () => {
-    await axiosInstance
+    axiosInstance
       .get("/attendance/self/list/")
       .then((res) => {
         setAttendances(res.data.results);
@@ -40,9 +42,8 @@ const Dashboard = () => {
       });
   };
 
-  const getMonthlyLeaveHistory = async (date) => {
-    let selectedDate = date.toISOString().slice(0, 7);
-    await axiosInstance
+  const getMonthlyLeaveHistory = async () => {
+    axiosInstance
       .get(`/leave_history/${selectedDate}/self/month/view/`)
       .then((res) => {
         setLeave(res.data.history.leaves_taken);
@@ -51,18 +52,29 @@ const Dashboard = () => {
       });
   };
 
-  const getMonthlyAttendenceHistory = async (date) => {
-    let selectedDate = date.toISOString().slice(0, 7);
-    await axiosInstance
+  const getMonthlyAttendenceHistory = async () => {
+    axiosInstance
       .get(`/attendance/self/list/${selectedDate}/`)
       .then((res) => {
         setAppearance(res.data.length);
-        setActive(secondsToHms(calculateDuration(res.data)))
+        setActive(secondsToHms(calculateActiveDuration(res.data[0])))
       })
       .catch((err) => {
 
       });
   };
+
+  const calculateActiveDuration = (attendance) => {
+    console.log(attendance)
+    if(!attendance) return 0
+    
+    if(moment().format('YYYY-MM-DD') !== attendance.date) return 0
+    
+    if(attendance.checked_out_time) return attendance.duration
+    var current_time = moment();
+    var check_in = moment(attendance.date+"T"+attendance.checked_in_time);
+    return(current_time.diff(check_in,'seconds'))
+  }
 
   return (
     <div className="body">

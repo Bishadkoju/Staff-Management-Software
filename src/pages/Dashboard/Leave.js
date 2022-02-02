@@ -6,6 +6,7 @@ import ApplyLeaveModal from "../../component/Dashboard/Modal/ApplyLeaveModal";
 
 import axiosInstance from "../../HelperFunction/Axios";
 import DatePicker from "react-datepicker";
+import moment from 'moment'
 
 const Earning = () => {
   const [leaveHistory, setLeaveHistory] = useState([]);
@@ -16,9 +17,9 @@ const Earning = () => {
     getMonthlyLeaveHistory(currentDate);
   }, []);
 
-  const getMonthlyLeaveHistory = async (date) => {
-    let selectedDate = date.toISOString().slice(0, 7);
-    await axiosInstance
+  const getMonthlyLeaveHistory =  (date) => {
+    let selectedDate = moment(date).format("YYYY-MM");
+    axiosInstance
       .get(`/leave_history/${selectedDate}/self/month/view/`)
       .then((res) => {
         console.log("Called");

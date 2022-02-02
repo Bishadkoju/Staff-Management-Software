@@ -10,8 +10,8 @@ const AdminDashboard = () => {
   const [storeList, setStoreList] = useState([]);
 
   useEffect(() => {
-    const getStoreList = async () => {
-      await axiosInstance
+    const getStoreList =  () => {
+      axiosInstance
         .get(`/store/list/`)
         .then((res) => {
           console.log(res.data);
@@ -44,20 +44,7 @@ const AdminDashboard = () => {
           </div>
           <div className="col-md-10">
             <h2>Dashboard</h2>
-            <div className="row mt-4">
-              <div className="col-md-3">
-                <InfoBar title="ACTIVE" value="2040 Hours" />
-              </div>
-              <div className="col-md-3">
-                <InfoBar title="MY EARNING" value="29.4%" />
-              </div>
-              <div className="col-md-3">
-                <InfoBar title="APPEARANCE" value="20 Days" />
-              </div>
-              <div className="col-md-3">
-                <InfoBar title="LEAVE" value="4 Days" />
-              </div>
-            </div>
+            
 
             <div className="row mb-3">
               <div className="col-md-12 mt-4">

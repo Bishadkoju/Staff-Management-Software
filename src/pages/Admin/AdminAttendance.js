@@ -6,6 +6,8 @@ import CheckInHistory from "../../component/Dashboard/Check/CheckInHistory";
 import { calculateDuration, secondsToHms, getDaysFromDate } from "../../HelperFunction/GenericFunction"
 
 import axiosInstance from "../../HelperFunction/Axios";
+import InfoBar from "../../component/Bar/InfoBar";
+import moment from 'moment'
 
 const AdminAttendance = () => {
 
@@ -17,6 +19,8 @@ const AdminAttendance = () => {
   const [earning, setEarning] = useState("0 %");
   const [leave, setLeave] = useState("0 ");
 
+  const selectedDate = moment().format('YYYY-MM')
+
   useEffect(() => {
     getAttendance();
     const currentDate = new Date();
@@ -25,7 +29,7 @@ const AdminAttendance = () => {
   }, []);
 
   const getAttendance = async () => {
-    await axiosInstance
+    axiosInstance
       .get("/attendance/self/list/")
       .then((res) => {
         setAttendances(res.data.results);
@@ -39,9 +43,8 @@ const AdminAttendance = () => {
       });
   };
 
-  const getMonthlyLeaveHistory = async (date) => {
-    let selectedDate = date.toISOString().slice(0, 7);
-    await axiosInstance
+  const getMonthlyLeaveHistory = async () => {
+    axiosInstance
       .get(`/leave_history/${selectedDate}/self/month/view/`)
       .then((res) => {
         setLeave(res.data.history.leaves_taken);
@@ -50,18 +53,29 @@ const AdminAttendance = () => {
       });
   };
 
-  const getMonthlyAttendenceHistory = async (date) => {
-    let selectedDate = date.toISOString().slice(0, 7);
-    await axiosInstance
+  const getMonthlyAttendenceHistory = async () => {
+    axiosInstance
       .get(`/attendance/self/list/${selectedDate}/`)
       .then((res) => {
         setAppearance(res.data.length);
-        setActive(secondsToHms(calculateDuration(res.data)))
+        setActive(secondsToHms(calculateActiveDuration(res.data[0])))
       })
       .catch((err) => {
 
       });
   };
+
+  const calculateActiveDuration = (attendance) => {
+    console.log(attendance)
+    if(!attendance) return 0
+    
+    if(moment().format('YYYY-MM-DD') !== attendance.date) return 0
+    
+    if(attendance.checked_out_time) return attendance.duration
+    var current_time = moment();
+    var check_in = moment(attendance.date+"T"+attendance.checked_in_time);
+    return(current_time.diff(check_in,'seconds'))
+  }
 
   return (
     <div className="body">
@@ -71,11 +85,26 @@ const AdminAttendance = () => {
           <div className="col-md-2">
             <AdminSideNavBar />
           </div>
+
           <div className="col-md-10">
             <h2>Attendance</h2>
-            <CheckIn lastAttendence={lastAttendence}/>
-            <CheckInHistory attendances = {attendances} />
-
+            <div className="row mt-4">
+              <div className="col-md-3">
+                <InfoBar title="ACTIVE" value={active} />
+              </div>
+              <div className="col-md-3">
+                <InfoBar title="MY EARNING" value={earning} />
+              </div>
+              <div className="col-md-3">
+                <InfoBar title="APPEARANCE" value={appearance + " Days"} />
+              </div>
+              <div className="col-md-3">
+                <InfoBar title="TOTAL LEAVES" value={leave + " Days"} />
+              </div>
+            </div>
+            <br/>
+            <CheckIn lastAttendence={lastAttendence} />
+            <CheckInHistory attendances={attendances} />
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams} from "react-router-dom";
 import AdminLayout from "../../HOC/AdminLayout";
 import AdminSideNavBar from "../../component/Bar/AdminSideNavBar";
+import { useAuth } from "../../context/auth";
 
 import ProfileInfo from "../../component/Dashboard/Profile/ProfileInfo";
 import ProfileModal from "../../component/Dashboard/Modal/ProfileModal";
@@ -10,6 +12,12 @@ import axiosInstance from "../../HelperFunction/Axios";
 const AdminProfile = () => {
   const [adminInfo, setAdminInfo] = useState([]);
   const [name, setName] = useState("");
+  const [id, setId] = useState(0)
+
+  const { roleBasedPermissions } = useAuth();
+  const { isGeneralManagerOrHigher } = roleBasedPermissions();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getAdminInfo = async () => {
@@ -32,6 +40,7 @@ const AdminProfile = () => {
             res.data.joined_date,
             res.data.termination_date,
           ]);
+          setId(res.data.id)
         })
         .catch((err) => {
           console.log(err);
@@ -55,20 +64,19 @@ const AdminProfile = () => {
                   <span>Users &#62; </span>
                   <span className="font-weight-bold f_24">Joe Halen</span>
                 </div>
-                <div>
-                  <button
-                    className="btn btn_primary"
-                    data-toggle="modal"
-                    data-target="#editProfileModal"
-                  >
-                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Edit Profile
-                  </button>
-                </div>
+                {isGeneralManagerOrHigher &&
+                  <div>
+                    <button
+                      className="btn btn_primary"
+                      onClick={()=>{navigate(`/edit/${id}/`)}}
+                    >
+                      <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      Edit Profile
+                    </button>
+                  </div>}
               </div>
             </div>
             <ProfileInfo userInfo =  {adminInfo} name = {name}/>
-            <ProfileModal />
           </div>
         </div>
       </div>

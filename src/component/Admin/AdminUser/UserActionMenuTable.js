@@ -5,9 +5,22 @@ import IncreaseBonusModal from "./Modal/IncreaseBonusModal";
 import SendMessage from "./Modal/SendMessage";
 
 import AssignNewStore from "./Modal/AssignNewStore";
+import axiosInstance from "../../../HelperFunction/Axios";
 
 const ActionMenuTable = (props) => {
   const userId = props.userId;
+  const handleDelete = async() => {
+    console.log("delete")
+    if (window.confirm("Are you sure you want to delete the user ?")){
+      console.log("confirm")
+      const res = await axiosInstance.delete(`/user/${userId}/delete`)
+      if(res && res.status === 200){
+        console.log(res)
+        alert("User successfully deletedd")
+        window.location.reload()
+      }
+    }
+  }
 
   return (
     <React.Fragment>
@@ -132,7 +145,7 @@ const ActionMenuTable = (props) => {
               "
             >
               <div className="icon div_flex_icon">
-              <i className="fa fa-comments" aria-hidden="true"></i>
+                <i className="fa fa-comments" aria-hidden="true"></i>
               </div>
               <div>
                 <span className="heading_text">Send Message</span>
@@ -142,7 +155,7 @@ const ActionMenuTable = (props) => {
           </a>
           {/* end of send message modal */}
           <hr />
-          <a className="dropdown-item" href="/#">
+          <a className="dropdown-item" href={"/edit/"+userId}>
             <div
               className="
                               dropdown_item_desc
@@ -159,28 +172,31 @@ const ActionMenuTable = (props) => {
               </div>
             </div>
           </a>
-          <a className="dropdown-item" href="/#">
+          
             <div
-              className="
+              className="dropdown-item cursor_pointer">
+              <div
+                className="
                 dropdown_item_desc
                 d-flex
                 justify-content-start
               "
-            >
-              <div className="icon div_flex_icon">
-                <i className="fa fa-trash-o" aria-hidden="true"></i>
-              </div>
-              <div>
-                <span className="heading_text text-danger">Delete</span>
-                <br />
+              >
+                <div className="icon div_flex_icon">
+                  <i className="fa fa-trash-o" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <span className="heading_text text-danger">Delete</span>
+                  <br />
+                </div>
               </div>
             </div>
-          </a>
+          
         </div>
       </div>
       <IncreaseSalaryModal userId={userId} />
-      <IncreaseCommisionModal userId = {userId} />
-      <IncreaseBonusModal userId = {userId} />
+      <IncreaseCommisionModal userId={userId} />
+      <IncreaseBonusModal userId={userId} />
       <AssignNewStore />
       <SendMessage />
     </React.Fragment>
