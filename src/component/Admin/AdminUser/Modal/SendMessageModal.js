@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import axiosInstance from "../../../../HelperFunction/Axios";
 
-const SendMessage = () => {
+const SendMessage = (props) => {
+  const userId = props.userId;
+
   const [formData, setFormData] = useState({
     subject: "",
     message: "",
-    read: true,
+    files: [{}],
+    sent_to: userId,
   });
 
-  const { subject, message, read } = formData;
+  const { subject, message, files, sent_to } = formData;
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
@@ -19,20 +22,21 @@ const SendMessage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post(`/feedback/create/`, { subject, message, read })
+      .post(`/message/create/`, { subject, message, files, sent_to })
       .then((res) => {
         document.getElementById("close").click();
-        window.alert("Feedback Sent Successfully");
+        window.alert("Message Sent Successfully");
+        window.location.reload();
       })
       .catch((err) => {
-        window.alert("Error : Feedback Not Sent!!!");
+        window.alert("Error : Message Not Sent!!!");
       });
   };
 
   return (
     <div
       className="modal fade"
-      id="sendMessageModal"
+      id={`sendMessageModal${userId}`}
       tabIndex="-1"
       role="dialog"
       aria-labelledby="myLargeModalLabel"
